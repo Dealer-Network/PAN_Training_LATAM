@@ -7,7 +7,7 @@ Guia Interativo de Atualização do **Plano Anual de Negócios (PAN)** no Portal
 ## 🌐 Acesso Online / Live Demo
 
 Você pode acessar o treinamento online diretamente pelo **GitHub Pages**:
-🔗 **[https://geisiane3d-gif.github.io/PAN_Training_LATAM/](https://geisiane3d-gif.github.io/PAN_Training_LATAM/)**
+🔗 **[https://dealer-network.github.io/PAN_Training_LATAM/](https://dealer-network.github.io/PAN_Training_LATAM/)**
 
 ---
 
