@@ -2222,6 +2222,38 @@ body.theme-light .nh-machinery-pan {
 
 <!-- MODAL DE RECUPERAÃ‡ÃƒO DE SENHA -->
 <!-- MODAL DE RECUPERAÃ‡ÃƒO E REDEFINIÃ‡ÃƒO DE SENHA -->
+<!-- MODAL SUCESSO DE CADASTRO & NOTIFICAÃ‡ÃƒO DO ADM -->
+<div id="modal-cad-success" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden nh-fade-in">
+    <div class="w-full max-w-md nh-glass-card rounded-2xl p-6 sm:p-7 relative border border-emerald-500/40 text-center">
+        <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl shadow-inner">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h3 class="text-xl font-bold font-heading text-white">SolicitaÃ§Ã£o Realizada!</h3>
+        <p class="text-xs text-slate-300 mt-2 mb-4 leading-relaxed">
+            Seus dados foram registrados com sucesso. Para agilizar a liberaÃ§Ã£o, um e-mail foi preparado com seu <strong>Link de AprovaÃ§Ã£o em 1 Clique</strong> para a equipe de Desenvolvimento de Rede NHCE.
+        </p>
+
+        <div class="bg-slate-900/70 border border-slate-700/60 rounded-xl p-3.5 text-left mb-4 space-y-1.5 text-xs text-slate-300">
+            <div><span class="text-slate-400 font-semibold">Nome:</span> <span id="cad-succ-name" class="text-white font-medium"></span></div>
+            <div><span class="text-slate-400 font-semibold">E-mail:</span> <span id="cad-succ-email" class="text-white font-medium"></span></div>
+            <div><span class="text-slate-400 font-semibold">ConcessionÃ¡ria:</span> <span id="cad-succ-dealer" class="text-white font-medium"></span></div>
+            <div><span class="text-slate-400 font-semibold">Cargo:</span> <span id="cad-succ-role" class="text-white font-medium"></span></div>
+        </div>
+
+        <div class="space-y-2.5">
+            <a id="btn-cad-mailto" href="#" class="btn-primary flex items-center justify-center w-full py-3 text-xs sm:text-sm font-semibold cursor-pointer shadow-lg shadow-nhyellow-500/20">
+                <i class="fa-solid fa-envelope mr-2"></i> Notificar Administrador por E-mail
+            </a>
+            <button type="button" onclick="window.copyCadApprovalLink()" class="btn-secondary flex items-center justify-center w-full py-2.5 text-xs font-semibold cursor-pointer">
+                <i class="fa-regular fa-copy mr-2"></i> Copiar Link de AprovaÃ§Ã£o Direta
+            </button>
+            <button type="button" onclick="window.closeCadSuccessModal()" class="w-full py-2 text-xs text-slate-400 hover:text-white transition-colors cursor-pointer">
+                Voltar para a Tela de Login
+            </button>
+        </div>
+    </div>
+</div>
+
 <div id="modal-forgot-password" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden nh-fade-in">
     <div class="w-full max-w-md nh-glass-card rounded-2xl p-6 sm:p-7 relative border border-nhyellow-500/30">
         <button type="button" onclick="window.closeForgotPasswordModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-lg cursor-pointer">
@@ -3320,12 +3352,19 @@ body.theme-light .nh-machinery-pan {
 
   async function handleCadastroSubmit(event) {
     event.preventDefault();
-    const name = document.getElementById('cad-name').value.trim();
-    const email = document.getElementById('cad-email').value.trim().toLowerCase();
-    const dealer = document.getElementById('cad-dealership').value.trim();
-    const role = document.getElementById('cad-role').value.trim();
-    const password = document.getElementById('cad-password').value;
-    const confirm = document.getElementById('cad-confirm-password').value;
+    const nameEl = document.getElementById('cad-name');
+    const emailEl = document.getElementById('cad-email');
+    const dealerEl = document.getElementById('cad-dealer') || document.getElementById('cad-dealership');
+    const roleEl = document.getElementById('cad-role');
+    const passEl = document.getElementById('cad-password');
+    const confEl = document.getElementById('cad-confirm') || document.getElementById('cad-confirm-password');
+
+    const name = nameEl ? nameEl.value.trim() : '';
+    const email = emailEl ? emailEl.value.trim().toLowerCase() : '';
+    const dealer = dealerEl ? dealerEl.value.trim() : '';
+    const role = roleEl ? roleEl.value.trim() : '';
+    const password = passEl ? passEl.value : '';
+    const confirm = confEl ? confEl.value : '';
 
     if (!name || !email || !dealer || !role || !password || !confirm) {
       showAlert('cad', t('errFillAll'), true);
