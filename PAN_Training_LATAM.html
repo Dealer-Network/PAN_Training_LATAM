@@ -197,7 +197,6 @@
     </style>
 
 <style>
-
 /* ==========================================================================
    PLATAFORMA CORPORATIVA NEW HOLLAND CONSTRUCTION (LATAM)
    Estilos Integrados: Light & Dark Mode, Fundo Animado Ken Burns, Multi-idioma
@@ -208,7 +207,7 @@
     --nh-yellow-light: #FFE066;
     --nh-yellow-glow: rgba(255, 204, 0, 0.35);
     
-    /* Tema Escuro (Padrão) */
+    /* Tema Escuro (PadrÃ£o) */
     --nh-bg-primary: #070A0F;
     --nh-bg-surface: #0B0F17;
     --nh-bg-card: rgba(11, 15, 23, 0.88);
@@ -424,11 +423,9 @@ body.theme-light .nh-machinery-pan {
 
 .nh-fade-in { animation: nhFadeIn 0.35s ease-out forwards; }
 @keyframes nhFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
 </style>
 </head>
 <body class="theme-dark text-slate-100 min-h-screen overflow-x-hidden">
-
 
 <!-- FUNDO ANIMADO -->
 <div class="nh-animated-bg-container" id="nh-animated-bg">
@@ -437,7 +434,7 @@ body.theme-light .nh-machinery-pan {
     <div class="nh-bg-tech-grid"></div>
 </div>
 
-<!-- BARRA SUPERIOR GLOBAL (HEADER: LOGO À ESQUERDA, IDIOMAS, TEMA, BADGES) -->
+<!-- BARRA SUPERIOR GLOBAL (HEADER: LOGO Ã€ ESQUERDA, IDIOMAS, TEMA, BADGES) -->
 <header id="platform-global-header" class="relative z-20 w-full px-4 sm:px-8 py-3 flex flex-wrap items-center justify-between border-b border-white/10 backdrop-blur-md">
     <!-- Brand / Logo no canto esquerdo -->
     <div class="flex items-center space-x-3.5">
@@ -460,18 +457,18 @@ body.theme-light .nh-machinery-pan {
                 <i class="fa-solid fa-lock text-[10px]"></i> <span data-i18n="secureHttps">Ambiente Seguro HTTPS</span>
             </span>
             <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-nhyellow-500/10 text-nhyellow-500 border border-nhyellow-500/20">
-                <i class="fa-solid fa-shield-halved text-[10px]"></i> <span data-i18n="shaActive">Proteção SHA-256 Ativa</span>
+                <i class="fa-solid fa-shield-halved text-[10px]"></i> <span data-i18n="shaActive">ProteÃ§Ã£o SHA-256 Ativa</span>
             </span>
         </div>
 
-        <!-- Seletor de Idioma Trilíngue (PT / ES / EN) -->
+        <!-- Seletor de Idioma TrilÃ­ngue (PT / ES / EN) -->
         <div class="flex items-center p-1 rounded-lg bg-black/40 border border-white/10 backdrop-blur-sm" id="lang-selector-group">
-            <button type="button" class="nh-lang-btn active" onclick="setLanguage('pt')" id="btn-lang-pt" title="Português">🇧🇷 PT</button>
-            <button type="button" class="nh-lang-btn" onclick="setLanguage('es')" id="btn-lang-es" title="Español">🇪🇸 ES</button>
-            <button type="button" class="nh-lang-btn" onclick="setLanguage('en')" id="btn-lang-en" title="English">🇺🇸 EN</button>
+            <button type="button" class="nh-lang-btn active" onclick="setLanguage('pt')" id="btn-lang-pt" title="PortuguÃªs">ðŸ‡§ðŸ‡· PT</button>
+            <button type="button" class="nh-lang-btn" onclick="setLanguage('es')" id="btn-lang-es" title="EspaÃ±ol">ðŸ‡ªðŸ‡¸ ES</button>
+            <button type="button" class="nh-lang-btn" onclick="setLanguage('en')" id="btn-lang-en" title="English">ðŸ‡ºðŸ‡¸ EN</button>
         </div>
 
-        <!-- Botão de Alternância de Tema -->
+        <!-- BotÃ£o de AlternÃ¢ncia de Tema -->
         <button type="button" class="nh-theme-btn" onclick="toggleTheme()" id="theme-toggle-btn" title="Alternar Modo Claro/Escuro" data-i18n-title="themeToggle">
             <i class="fa-solid fa-moon" id="theme-icon"></i>
         </button>
@@ -488,10 +485,10 @@ body.theme-light .nh-machinery-pan {
                 <i class="fa-solid fa-graduation-cap text-2xl"></i>
             </div>
             <h1 class="text-2xl font-bold font-heading text-white tracking-tight" data-i18n="loginTitle">
-                Capacitação PAN LATAM
+                CapacitaÃ§Ã£o PAN LATAM
             </h1>
             <p class="text-xs sm:text-sm text-slate-400 mt-1 font-normal" data-i18n="loginSubtitle">
-                Guia Interativo de Atualização do Plano Anual de Negócios
+                Guia Interativo de AtualizaÃ§Ã£o do Plano Anual de NegÃ³cios
             </p>
         </div>
 
@@ -530,7 +527,7 @@ body.theme-light .nh-machinery-pan {
                     </span>
                     <input type="password" id="login-password" required
                         class="nh-input w-full pl-10 pr-11 py-3 rounded-xl text-sm placeholder-slate-500 font-mono"
-                        placeholder="••••••••••••" data-i18n-placeholder="passwordPlaceholder" autocomplete="current-password">
+                        placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" data-i18n-placeholder="passwordPlaceholder" autocomplete="current-password">
                     <button type="button" onclick="togglePasswordVisibility('login-password', this)" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-200">
                         <i class="fa-regular fa-eye text-sm"></i>
                     </button>
@@ -543,7 +540,7 @@ body.theme-light .nh-machinery-pan {
                     <span data-i18n="rememberEmail">Lembrar meu e-mail</span>
                 </label>
                 <span class="flex items-center gap-1 text-[11px] text-slate-500">
-                    <i class="fa-solid fa-info-circle text-[10px]"></i> <span data-i18n="maxAttempts">Máx. 5 tentativas</span>
+                    <i class="fa-solid fa-info-circle text-[10px]"></i> <span data-i18n="maxAttempts">MÃ¡x. 5 tentativas</span>
                 </span>
             </div>
 
@@ -567,11 +564,11 @@ body.theme-light .nh-machinery-pan {
 
     <footer class="mt-8 text-center text-xs text-slate-500 space-y-1">
         <p data-i18n="footerCopyright">&copy; 2026 CNH Industrial &bull; New Holland Construction. Todos os direitos reservados.</p>
-        <p class="text-[11px] text-slate-600" data-i18n="footerDev">Desenvolvimento de Rede NHCE LATAM &bull; Plataforma de Capacitação Corporativa</p>
+        <p class="text-[11px] text-slate-600" data-i18n="footerDev">Desenvolvimento de Rede NHCE LATAM &bull; Plataforma de CapacitaÃ§Ã£o Corporativa</p>
     </footer>
 </section>
 
-<!-- VIEW 2: SOLICITAÇÃO DE CADASTRO -->
+<!-- VIEW 2: SOLICITAÃ‡ÃƒO DE CADASTRO -->
 <section id="view-cadastro" class="nh-view-wrapper min-h-[calc(100vh-70px)] hidden flex-col justify-center items-center px-4 py-8 nh-fade-in">
     <div class="w-full max-w-lg nh-glass-card rounded-2xl p-6 sm:p-8 relative overflow-hidden">
         <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-nhyellow-400 via-nhyellow-500 to-nhyellow-600"></div>
@@ -584,7 +581,7 @@ body.theme-light .nh-machinery-pan {
                 Solicitar Acesso
             </h2>
             <p class="text-xs sm:text-sm text-slate-400 mt-1 font-normal" data-i18n="cadSubtitle">
-                Preencha os dados abaixo para solicitar autorização de acesso ao treinamento PAN
+                Preencha os dados abaixo para solicitar autorizaÃ§Ã£o de acesso ao treinamento PAN
             </p>
         </div>
 
@@ -611,7 +608,7 @@ body.theme-light .nh-machinery-pan {
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
                     <label for="cad-dealer" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1" data-i18n="dealerLabel">
-                        Concessionária / Filial
+                        ConcessionÃ¡ria / Filial
                     </label>
                     <div class="relative">
                         <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
@@ -619,13 +616,13 @@ body.theme-light .nh-machinery-pan {
                         </span>
                         <input type="text" id="cad-dealer" required
                             class="nh-input w-full pl-10 pr-4 py-2.5 rounded-xl text-sm placeholder-slate-500"
-                            placeholder="Ex: Paveca - Córdoba" data-i18n-placeholder="dealerPlaceholder">
+                            placeholder="Ex: Paveca - CÃ³rdoba" data-i18n-placeholder="dealerPlaceholder">
                     </div>
                 </div>
 
                 <div>
                     <label for="cad-role" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1" data-i18n="roleLabel">
-                        Função / Cargo
+                        FunÃ§Ã£o / Cargo
                     </label>
                     <div class="relative">
                         <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
@@ -663,7 +660,7 @@ body.theme-light .nh-machinery-pan {
                         </span>
                         <input type="password" id="cad-password" required minlength="8" oninput="checkPasswordStrength(this.value)"
                             class="nh-input w-full pl-10 pr-10 py-2.5 rounded-xl text-sm placeholder-slate-500 font-mono"
-                            placeholder="Mínimo 8 caracteres" data-i18n-placeholder="cadPasswordPlaceholder">
+                            placeholder="MÃ­nimo 8 caracteres" data-i18n-placeholder="cadPasswordPlaceholder">
                         <button type="button" onclick="togglePasswordVisibility('cad-password', this)" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-200">
                             <i class="fa-regular fa-eye text-xs"></i>
                         </button>
@@ -690,7 +687,7 @@ body.theme-light .nh-machinery-pan {
 
             <div id="pwd-strength-container" class="space-y-1 pt-1">
                 <div class="flex items-center justify-between text-[11px] text-slate-400">
-                    <span data-i18n="pwdStrengthText">Força da senha:</span>
+                    <span data-i18n="pwdStrengthText">ForÃ§a da senha:</span>
                     <span id="pwd-strength-label" class="font-semibold text-slate-500">-</span>
                 </div>
                 <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden flex gap-1">
@@ -701,12 +698,12 @@ body.theme-light .nh-machinery-pan {
             </div>
 
             <button type="submit" id="btn-cad-submit" class="nh-btn-primary w-full py-3.5 rounded-xl flex items-center justify-center space-x-2 text-sm mt-2">
-                <span data-i18n="btnSubmitCad">Enviar Solicitação de Acesso &rarr;</span>
+                <span data-i18n="btnSubmitCad">Enviar SolicitaÃ§Ã£o de Acesso &rarr;</span>
             </button>
         </form>
 
         <div class="mt-6 pt-4 border-t border-white/10 text-center">
-            <span class="text-xs text-slate-400" data-i18n="alreadyHaveAccount">Já possui acesso?</span>
+            <span class="text-xs text-slate-400" data-i18n="alreadyHaveAccount">JÃ¡ possui acesso?</span>
             <a href="javascript:void(0)" onclick="showView('view-login')" class="ml-1 text-xs font-semibold text-nhyellow-500 hover:text-nhyellow-400 transition-colors" data-i18n="btnBackLogin">
                 Voltar para o Login
             </a>
@@ -723,11 +720,11 @@ body.theme-light .nh-machinery-pan {
                     ADMIN
                 </span>
                 <h1 class="text-2xl sm:text-3xl font-bold font-heading text-white tracking-tight" data-i18n="adminHeaderTitle">
-                    Painel de Governança & Acessos
+                    Painel de GovernanÃ§a & Acessos
                 </h1>
             </div>
             <p class="text-xs sm:text-sm text-slate-400 mt-1" data-i18n="adminHeaderSubtitle">
-                Desenvolvimento de Rede NHCE LATAM &bull; Gestão de Usuários e Auditoria
+                Desenvolvimento de Rede NHCE LATAM &bull; GestÃ£o de UsuÃ¡rios e Auditoria
             </p>
         </div>
 
@@ -746,15 +743,15 @@ body.theme-light .nh-machinery-pan {
     <!-- Cards de KPIs -->
     <div class="w-full max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-6 gap-3.5 mb-8" id="admin-kpi-grid">
         <div class="nh-glass-card rounded-xl p-4 border border-white/10">
-            <div class="text-[11px] text-slate-400 font-medium uppercase" data-i18n="kpiTotal">Total de Usuários</div>
+            <div class="text-[11px] text-slate-400 font-medium uppercase" data-i18n="kpiTotal">Total de UsuÃ¡rios</div>
             <div class="text-2xl font-bold font-heading text-white mt-1" id="kpi-total-users">0</div>
         </div>
         <div class="nh-glass-card rounded-xl p-4 border border-emerald-500/20">
-            <div class="text-[11px] text-emerald-400 font-medium uppercase" data-i18n="kpiActive">Usuários Aprovados</div>
+            <div class="text-[11px] text-emerald-400 font-medium uppercase" data-i18n="kpiActive">UsuÃ¡rios Aprovados</div>
             <div class="text-2xl font-bold font-heading text-emerald-400 mt-1" id="kpi-active-users">0</div>
         </div>
         <div class="nh-glass-card rounded-xl p-4 border border-amber-500/20">
-            <div class="text-[11px] text-amber-400 font-medium uppercase" data-i18n="kpiPending">Pendentes de Análise</div>
+            <div class="text-[11px] text-amber-400 font-medium uppercase" data-i18n="kpiPending">Pendentes de AnÃ¡lise</div>
             <div class="text-2xl font-bold font-heading text-amber-400 mt-1" id="kpi-pending-users">0</div>
         </div>
         <div class="nh-glass-card rounded-xl p-4 border border-rose-500/20">
@@ -771,18 +768,18 @@ body.theme-light .nh-machinery-pan {
         </div>
     </div>
 
-    <!-- Tabela e Gestão -->
+    <!-- Tabela e GestÃ£o -->
     <div class="w-full max-w-7xl mx-auto nh-glass-card rounded-2xl p-6 relative">
         <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4 mb-6">
             <div class="flex items-center space-x-2">
                 <button type="button" onclick="switchAdminTab('users')" id="tab-btn-users" class="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-nhyellow-500 text-nhdark-950 font-heading">
-                    <span data-i18n="tabUsers">Gestão de Usuários</span>
+                    <span data-i18n="tabUsers">GestÃ£o de UsuÃ¡rios</span>
                 </button>
                 <button type="button" onclick="switchAdminTab('audit')" id="tab-btn-audit" class="px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-white font-heading">
-                    <span data-i18n="tabMetrics">Métricas & Auditoria</span>
+                    <span data-i18n="tabMetrics">MÃ©tricas & Auditoria</span>
                 </button>
                 <button type="button" onclick="switchAdminTab('backup')" id="tab-btn-backup" class="px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-white font-heading">
-                    <span data-i18n="tabSecurity">Segurança & Backup</span>
+                    <span data-i18n="tabSecurity">SeguranÃ§a & Backup</span>
                 </button>
             </div>
 
@@ -793,7 +790,7 @@ body.theme-light .nh-machinery-pan {
                     </span>
                     <input type="text" id="admin-search-input" oninput="filterAdminUsers()"
                         class="nh-input w-full pl-9 pr-3 py-1.5 rounded-lg text-xs placeholder-slate-500"
-                        placeholder="Buscar por nome, e-mail ou concessionária..." data-i18n-placeholder="searchPlaceholder">
+                        placeholder="Buscar por nome, e-mail ou concessionÃ¡ria..." data-i18n-placeholder="searchPlaceholder">
                 </div>
                 <select id="admin-status-filter" onchange="filterAdminUsers()" class="nh-input py-1.5 px-3 rounded-lg text-xs">
                     <option value="ALL" data-i18n="filterStatusAll">Todos os Status</option>
@@ -809,12 +806,12 @@ body.theme-light .nh-machinery-pan {
             <table class="w-full text-left text-xs">
                 <thead>
                     <tr class="border-b border-white/10 text-slate-400 uppercase font-semibold">
-                        <th class="pb-3 px-3" data-i18n="colUser">Usuário</th>
-                        <th class="pb-3 px-3" data-i18n="colDealer">Concessionária</th>
+                        <th class="pb-3 px-3" data-i18n="colUser">UsuÃ¡rio</th>
+                        <th class="pb-3 px-3" data-i18n="colDealer">ConcessionÃ¡ria</th>
                         <th class="pb-3 px-3" data-i18n="colDate">Data de Cadastro</th>
                         <th class="pb-3 px-3" data-i18n="colRole">Perfil</th>
                         <th class="pb-3 px-3" data-i18n="colStatus">Status</th>
-                        <th class="pb-3 px-3 text-right" data-i18n="colActions">Ações</th>
+                        <th class="pb-3 px-3 text-right" data-i18n="colActions">AÃ§Ãµes</th>
                     </tr>
                 </thead>
                 <tbody id="admin-users-table-body" class="divide-y divide-white/5"></tbody>
@@ -843,7 +840,7 @@ body.theme-light .nh-machinery-pan {
                         <i class="fa-solid fa-download text-nhyellow-500"></i> Exportar Base de Dados
                     </h3>
                     <p class="text-xs text-slate-400">
-                        Baixe um arquivo JSON com todos os usuários cadastrados, senhas com salt criptográfico e logs de acesso para cópia de segurança.
+                        Baixe um arquivo JSON com todos os usuÃ¡rios cadastrados, senhas com salt criptogrÃ¡fico e logs de acesso para cÃ³pia de seguranÃ§a.
                     </p>
                     <button type="button" onclick="exportFullDatabaseJson()" class="nh-btn-primary px-4 py-2.5 rounded-xl text-xs flex items-center gap-2">
                         <i class="fa-solid fa-file-arrow-down"></i> Baixar Backup JSON
@@ -855,7 +852,7 @@ body.theme-light .nh-machinery-pan {
                         <i class="fa-solid fa-upload text-nhyellow-500"></i> Restaurar Base de Dados
                     </h3>
                     <p class="text-xs text-slate-400">
-                        Restaure a base de usuários e permissões a partir de um backup prévio em formato JSON.
+                        Restaure a base de usuÃ¡rios e permissÃµes a partir de um backup prÃ©vio em formato JSON.
                     </p>
                     <label class="nh-btn-secondary px-4 py-2.5 rounded-xl text-xs inline-flex items-center gap-2 cursor-pointer">
                         <i class="fa-solid fa-file-arrow-up"></i> Selecionar Arquivo JSON
@@ -866,7 +863,6 @@ body.theme-light .nh-machinery-pan {
         </div>
     </div>
 </section>
-
 
 <!-- =================================================================== -->
 <!-- VIEW 4: TREINAMENTO ORIGINAL COMPLETO (100% PRESERVADO) -->
@@ -2082,8 +2078,7 @@ body.theme-light .nh-machinery-pan {
 
 </div>
 
-
-<!-- MODAL: RECUPERAÇÃO DE SENHA -->
+<!-- MODAL: RECUPERAÃ‡ÃƒO DE SENHA -->
 <div id="modal-forgot-password" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="w-full max-w-md nh-glass-card rounded-2xl p-6 border border-nhyellow-500/30 relative">
         <button type="button" onclick="closeForgotPasswordModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
@@ -2094,9 +2089,9 @@ body.theme-light .nh-machinery-pan {
             <i class="fa-solid fa-key text-xl"></i>
         </div>
 
-        <h3 class="text-lg font-bold font-heading text-white" data-i18n="forgotTitle">Recuperação de Acesso Corporativo</h3>
+        <h3 class="text-lg font-bold font-heading text-white" data-i18n="forgotTitle">RecuperaÃ§Ã£o de Acesso Corporativo</h3>
         <p class="text-xs text-slate-400 mt-1" data-i18n="forgotDesc">
-            Digite seu e-mail corporativo para solicitar a redefinição de senha ao administrador.
+            Digite seu e-mail corporativo para solicitar a redefiniÃ§Ã£o de senha ao administrador.
         </p>
 
         <form id="form-forgot-password" onsubmit="handleForgotPasswordSubmit(event)" class="mt-4 space-y-3">
@@ -2113,156 +2108,154 @@ body.theme-light .nh-machinery-pan {
                     Cancelar
                 </button>
                 <button type="submit" class="nh-btn-primary px-4 py-2 rounded-xl text-xs" data-i18n="btnSendRecovery">
-                    Enviar Solicitação
+                    Enviar SolicitaÃ§Ã£o
                 </button>
             </div>
         </form>
     </div>
 </div>
 
-
 <script>
-
 /* ==========================================================================
-   SISTEMA DE INTERNACIONALIZAÇÃO (I18N)
+   SISTEMA DE INTERNACIONALIZAÃ‡ÃƒO (I18N)
    ========================================================================== */
 const I18N = {
   pt: {
     brandSubtitle: "Desenvolvimento de Rede NHCE LATAM",
     secureHttps: "Ambiente Seguro HTTPS",
-    shaActive: "Proteção SHA-256 Ativa",
+    shaActive: "ProteÃ§Ã£o SHA-256 Ativa",
     themeToggle: "Alternar Modo Claro/Escuro",
-    loginTitle: "Capacitação PAN LATAM",
-    loginSubtitle: "Guia Interativo de Atualização do Plano Anual de Negócios",
+    loginTitle: "CapacitaÃ§Ã£o PAN LATAM",
+    loginSubtitle: "Guia Interativo de AtualizaÃ§Ã£o do Plano Anual de NegÃ³cios",
     emailLabel: "E-MAIL CORPORATIVO",
     emailPlaceholder: "seu.nome@concessionaria.com",
     passwordLabel: "SENHA DE ACESSO",
-    passwordPlaceholder: "••••••••••••",
+    passwordPlaceholder: "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢",
     forgotPassword: "Esqueceu a senha?",
     rememberEmail: "Lembrar meu e-mail",
-    maxAttempts: "Máx. 5 tentativas",
-    btnLogin: "ACESSAR TREINAMENTO →",
+    maxAttempts: "MÃ¡x. 5 tentativas",
+    btnLogin: "ACESSAR TREINAMENTO â†’",
     newHere: "NOVO NA PLATAFORMA?",
     btnRequestAccess: "Solicitar Cadastro de Acesso",
-    footerCopyright: "© 2026 CNH Industrial • New Holland Construction. Todos os direitos reservados.",
-    footerDev: "Desenvolvimento de Rede NHCE LATAM • Plataforma de Capacitação Corporativa",
+    footerCopyright: "Â© 2026 CNH Industrial â€¢ New Holland Construction. Todos os direitos reservados.",
+    footerDev: "Desenvolvimento de Rede NHCE LATAM â€¢ Plataforma de CapacitaÃ§Ã£o Corporativa",
     cadTitle: "Solicitar Acesso",
-    cadSubtitle: "Preencha os dados abaixo para solicitar autorização de acesso ao treinamento PAN",
+    cadSubtitle: "Preencha os dados abaixo para solicitar autorizaÃ§Ã£o de acesso ao treinamento PAN",
     nameLabel: "NOME COMPLETO",
     namePlaceholder: "Ex: Roberto Carlos da Silva",
-    dealerLabel: "CONCESSIONÁRIA / FILIAL",
-    dealerPlaceholder: "Ex: Shark Máquinas / Brasif / Paveca",
-    roleLabel: "FUNÇÃO / CARGO",
+    dealerLabel: "CONCESSIONÃRIA / FILIAL",
+    dealerPlaceholder: "Ex: Shark MÃ¡quinas / Brasif / Paveca",
+    roleLabel: "FUNÃ‡ÃƒO / CARGO",
     rolePlaceholder: "Ex: Gerente Geral / Diretor",
     cadPasswordLabel: "CRIAR SENHA",
-    cadPasswordPlaceholder: "Mínimo 8 caracteres",
+    cadPasswordPlaceholder: "MÃ­nimo 8 caracteres",
     cadConfirmLabel: "CONFIRMAR SENHA",
     cadConfirmPlaceholder: "Repita sua senha",
-    pwdStrengthText: "Força da senha:",
+    pwdStrengthText: "ForÃ§a da senha:",
     strengthWeak: "Fraca",
-    strengthMedium: "Média",
+    strengthMedium: "MÃ©dia",
     strengthStrong: "Forte",
-    btnSubmitCad: "Enviar Solicitação de Acesso →",
-    alreadyHaveAccount: "Já possui acesso?",
+    btnSubmitCad: "Enviar SolicitaÃ§Ã£o de Acesso â†’",
+    alreadyHaveAccount: "JÃ¡ possui acesso?",
     btnBackLogin: "Voltar para o Login",
-    adminHeaderTitle: "Painel de Governança & Acessos",
-    adminHeaderSubtitle: "Desenvolvimento de Rede NHCE LATAM • Gestão de Usuários e Auditoria",
-    btnGoTraining: "Ir para o Treinamento →",
+    adminHeaderTitle: "Painel de GovernanÃ§a & Acessos",
+    adminHeaderSubtitle: "Desenvolvimento de Rede NHCE LATAM â€¢ GestÃ£o de UsuÃ¡rios e Auditoria",
+    btnGoTraining: "Ir para o Treinamento â†’",
     btnLogout: "Sair do Sistema",
-    tabUsers: "Gestão de Usuários",
-    tabMetrics: "Métricas & Auditoria",
-    tabSecurity: "Segurança & Backup",
-    kpiTotal: "Total de Usuários",
-    kpiActive: "Usuários Aprovados",
-    kpiPending: "Pendentes de Análise",
+    tabUsers: "GestÃ£o de UsuÃ¡rios",
+    tabMetrics: "MÃ©tricas & Auditoria",
+    tabSecurity: "SeguranÃ§a & Backup",
+    kpiTotal: "Total de UsuÃ¡rios",
+    kpiActive: "UsuÃ¡rios Aprovados",
+    kpiPending: "Pendentes de AnÃ¡lise",
     kpiBlocked: "Contas Bloqueadas",
     kpiLogins: "Total de Acessos",
     kpiAlerts: "Incidentes / Bloqueios",
-    searchPlaceholder: "Buscar por nome, e-mail ou concessionária...",
+    searchPlaceholder: "Buscar por nome, e-mail ou concessionÃ¡ria...",
     filterStatusAll: "Todos os Status",
     filterStatusPending: "Pendentes",
     filterStatusApproved: "Aprovados",
     filterStatusBlocked: "Bloqueados",
     filterStatusRejected: "Reprovados",
-    btnAddUser: "+ Novo Usuário",
-    colUser: "Usuário",
-    colDealer: "Concessionária",
+    btnAddUser: "+ Novo UsuÃ¡rio",
+    colUser: "UsuÃ¡rio",
+    colDealer: "ConcessionÃ¡ria",
     colDate: "Data de Cadastro",
     colRole: "Perfil",
     colStatus: "Status",
-    colActions: "Ações",
+    colActions: "AÃ§Ãµes",
     btnApprove: "Aprovar",
     btnReject: "Reprovar",
     btnUnblock: "Desbloquear",
     btnBlock: "Bloquear",
     btnDelete: "Excluir",
-    errFillFields: "Por favor, preencha todos os campos obrigatórios.",
-    errInvalidEmail: "Por favor, insira um e-mail corporativo válido.",
+    errFillFields: "Por favor, preencha todos os campos obrigatÃ³rios.",
+    errInvalidEmail: "Por favor, insira um e-mail corporativo vÃ¡lido.",
     errPasswordLength: "A senha deve ter pelo menos 8 caracteres.",
-    errPasswordMismatch: "As senhas digitadas não coincidem.",
-    errEmailRegistered: "Este e-mail já está cadastrado no sistema.",
-    msgCadSuccess: "Solicitação enviada com sucesso! Seu acesso está em análise pelo Dealer Development.",
-    msgPendingAccount: "Seu cadastro está em análise pela equipe de Dealer Development. Aguarde a aprovação.",
+    errPasswordMismatch: "As senhas digitadas nÃ£o coincidem.",
+    errEmailRegistered: "Este e-mail jÃ¡ estÃ¡ cadastrado no sistema.",
+    msgCadSuccess: "SolicitaÃ§Ã£o enviada com sucesso! Seu acesso estÃ¡ em anÃ¡lise pelo Dealer Development.",
+    msgPendingAccount: "Seu cadastro estÃ¡ em anÃ¡lise pela equipe de Dealer Development. Aguarde a aprovaÃ§Ã£o.",
     msgBlockedAccount: "Conta temporariamente bloqueada por excesso de tentativas. Contate o administrador.",
-    msgRejectedAccount: "Sua solicitação de acesso não foi aprovada. Contate o suporte corporativo.",
+    msgRejectedAccount: "Sua solicitaÃ§Ã£o de acesso nÃ£o foi aprovada. Contate o suporte corporativo.",
     msgWrongPassword: "Senha incorreta. Tentativa {current} de {max}.",
-    msgWarningLastChance: "ATENÇÃO: Última tentativa antes do bloqueio da conta!",
-    msgUserNotFound: "Usuário não encontrado. Verifique o e-mail ou solicite cadastro.",
+    msgWarningLastChance: "ATENÃ‡ÃƒO: Ãšltima tentativa antes do bloqueio da conta!",
+    msgUserNotFound: "UsuÃ¡rio nÃ£o encontrado. Verifique o e-mail ou solicite cadastro.",
     msgLoginSuccess: "Acesso autorizado! Redirecionando...",
-    forgotTitle: "Recuperação de Acesso Corporativo",
-    forgotDesc: "Digite seu e-mail corporativo para solicitar a redefinição de senha ao administrador.",
-    btnSendRecovery: "Enviar Solicitação",
+    forgotTitle: "RecuperaÃ§Ã£o de Acesso Corporativo",
+    forgotDesc: "Digite seu e-mail corporativo para solicitar a redefiniÃ§Ã£o de senha ao administrador.",
+    btnSendRecovery: "Enviar SolicitaÃ§Ã£o",
     btnClose: "Fechar",
-    msgForgotSent: "Solicitação enviada! O administrador do sistema foi notificado para redefinir sua senha."
+    msgForgotSent: "SolicitaÃ§Ã£o enviada! O administrador do sistema foi notificado para redefinir sua senha."
   },
   es: {
     brandSubtitle: "Desarrollo de Red NHCE LATAM",
     secureHttps: "Ambiente Seguro HTTPS",
-    shaActive: "Protección SHA-256 Activa",
+    shaActive: "ProtecciÃ³n SHA-256 Activa",
     themeToggle: "Alternar Modo Claro/Oscuro",
-    loginTitle: "Capacitación PAN LATAM",
-    loginSubtitle: "Guía Interactiva de Actualización del Plan Anual de Negocios",
+    loginTitle: "CapacitaciÃ³n PAN LATAM",
+    loginSubtitle: "GuÃ­a Interactiva de ActualizaciÃ³n del Plan Anual de Negocios",
     emailLabel: "CORREO CORPORATIVO",
     emailPlaceholder: "su.nombre@concesionario.com",
-    passwordLabel: "CONTRASEÑA DE ACCESO",
-    passwordPlaceholder: "••••••••••••",
-    forgotPassword: "¿Olvidó su contraseña?",
+    passwordLabel: "CONTRASEÃ‘A DE ACCESO",
+    passwordPlaceholder: "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢",
+    forgotPassword: "Â¿OlvidÃ³ su contraseÃ±a?",
     rememberEmail: "Recordar mi correo",
-    maxAttempts: "Máx. 5 intentos",
-    btnLogin: "ACCEDER A LA CAPACITACIÓN →",
-    newHere: "¿NUEVO EN LA PLATAFORMA?",
+    maxAttempts: "MÃ¡x. 5 intentos",
+    btnLogin: "ACCEDER A LA CAPACITACIÃ“N â†’",
+    newHere: "Â¿NUEVO EN LA PLATAFORMA?",
     btnRequestAccess: "Solicitar Registro de Acceso",
-    footerCopyright: "© 2026 CNH Industrial • New Holland Construction. Todos los derechos reservados.",
-    footerDev: "Desarrollo de Red NHCE LATAM • Plataforma de Capacitación Corporativa",
+    footerCopyright: "Â© 2026 CNH Industrial â€¢ New Holland Construction. Todos los derechos reservados.",
+    footerDev: "Desarrollo de Red NHCE LATAM â€¢ Plataforma de CapacitaciÃ³n Corporativa",
     cadTitle: "Solicitar Acceso",
-    cadSubtitle: "Complete los datos a continuación para solicitar autorización de acceso a la capacitación PAN",
+    cadSubtitle: "Complete los datos a continuaciÃ³n para solicitar autorizaciÃ³n de acceso a la capacitaciÃ³n PAN",
     nameLabel: "NOMBRE COMPLETO",
-    namePlaceholder: "Ej: Carlos Alberto Gómez",
+    namePlaceholder: "Ej: Carlos Alberto GÃ³mez",
     dealerLabel: "CONCESIONARIO / SUCURSAL",
-    dealerPlaceholder: "Ej: Paveca - Córdoba / Gruma",
-    roleLabel: "FUNCIÓN / CARGO",
+    dealerPlaceholder: "Ej: Paveca - CÃ³rdoba / Gruma",
+    roleLabel: "FUNCIÃ“N / CARGO",
     rolePlaceholder: "Ej: Gerente General / Director",
-    cadPasswordLabel: "CREAR CONTRASEÑA",
-    cadPasswordPlaceholder: "Mínimo 8 caracteres",
-    cadConfirmLabel: "CONFIRMAR CONTRASEÑA",
-    cadConfirmPlaceholder: "Repita su contraseña",
-    pwdStrengthText: "Seguridad de contraseña:",
-    strengthWeak: "Débil",
+    cadPasswordLabel: "CREAR CONTRASEÃ‘A",
+    cadPasswordPlaceholder: "MÃ­nimo 8 caracteres",
+    cadConfirmLabel: "CONFIRMAR CONTRASEÃ‘A",
+    cadConfirmPlaceholder: "Repita su contraseÃ±a",
+    pwdStrengthText: "Seguridad de contraseÃ±a:",
+    strengthWeak: "DÃ©bil",
     strengthMedium: "Media",
     strengthStrong: "Fuerte",
-    btnSubmitCad: "Enviar Solicitud de Acceso →",
-    alreadyHaveAccount: "¿Ya tiene acceso?",
-    btnBackLogin: "Volver al Inicio de Sesión",
+    btnSubmitCad: "Enviar Solicitud de Acceso â†’",
+    alreadyHaveAccount: "Â¿Ya tiene acceso?",
+    btnBackLogin: "Volver al Inicio de SesiÃ³n",
     adminHeaderTitle: "Panel de Gobernanza & Accesos",
-    adminHeaderSubtitle: "Desarrollo de Red NHCE LATAM • Gestión de Usuarios y Auditoría",
-    btnGoTraining: "Ir a la Capacitación →",
-    btnLogout: "Cerrar Sesión",
-    tabUsers: "Gestión de Usuarios",
-    tabMetrics: "Métricas & Auditoría",
+    adminHeaderSubtitle: "Desarrollo de Red NHCE LATAM â€¢ GestiÃ³n de Usuarios y AuditorÃ­a",
+    btnGoTraining: "Ir a la CapacitaciÃ³n â†’",
+    btnLogout: "Cerrar SesiÃ³n",
+    tabUsers: "GestiÃ³n de Usuarios",
+    tabMetrics: "MÃ©tricas & AuditorÃ­a",
     tabSecurity: "Seguridad & Respaldo",
     kpiTotal: "Total de Usuarios",
     kpiActive: "Usuarios Aprobados",
-    kpiPending: "Pendientes de Análisis",
+    kpiPending: "Pendientes de AnÃ¡lisis",
     kpiBlocked: "Cuentas Bloqueadas",
     kpiLogins: "Total de Accesos",
     kpiAlerts: "Incidentes / Bloqueos",
@@ -2285,23 +2278,23 @@ const I18N = {
     btnBlock: "Bloquear",
     btnDelete: "Eliminar",
     errFillFields: "Por favor, complete todos los campos obligatorios.",
-    errInvalidEmail: "Por favor, ingrese un correo corporativo válido.",
-    errPasswordLength: "La contraseña debe tener al menos 8 caracteres.",
-    errPasswordMismatch: "Las contraseñas ingresadas no coinciden.",
-    errEmailRegistered: "Este correo ya está registrado en el sistema.",
-    msgCadSuccess: "¡Solicitud enviada con éxito! Su acceso está en revisión por Dealer Development.",
-    msgPendingAccount: "Su cuenta está en proceso de revisión por Dealer Development. Por favor, aguarde.",
+    errInvalidEmail: "Por favor, ingrese un correo corporativo vÃ¡lido.",
+    errPasswordLength: "La contraseÃ±a debe tener al menos 8 caracteres.",
+    errPasswordMismatch: "Las contraseÃ±as ingresadas no coinciden.",
+    errEmailRegistered: "Este correo ya estÃ¡ registrado en el sistema.",
+    msgCadSuccess: "Â¡Solicitud enviada con Ã©xito! Su acceso estÃ¡ en revisiÃ³n por Dealer Development.",
+    msgPendingAccount: "Su cuenta estÃ¡ en proceso de revisiÃ³n por Dealer Development. Por favor, aguarde.",
     msgBlockedAccount: "Cuenta temporalmente bloqueada por exceso de intentos. Contacte al administrador.",
     msgRejectedAccount: "Su solicitud de acceso no fue aprobada. Contacte a soporte corporativo.",
-    msgWrongPassword: "Contraseña incorrecta. Intento {current} de {max}.",
-    msgWarningLastChance: "ATENCIÓN: ¡Último intento antes del bloqueo de seguridad!",
+    msgWrongPassword: "ContraseÃ±a incorrecta. Intento {current} de {max}.",
+    msgWarningLastChance: "ATENCIÃ“N: Â¡Ãšltimo intento antes del bloqueo de seguridad!",
     msgUserNotFound: "Usuario no encontrado. Verifique el correo o solicite su registro.",
-    msgLoginSuccess: "¡Acceso autorizado! Redirigiendo...",
-    forgotTitle: "Recuperación de Acceso Corporativo",
-    forgotDesc: "Ingrese su correo corporativo para solicitar el restablecimiento de contraseña al administrador.",
+    msgLoginSuccess: "Â¡Acceso autorizado! Redirigiendo...",
+    forgotTitle: "RecuperaciÃ³n de Acceso Corporativo",
+    forgotDesc: "Ingrese su correo corporativo para solicitar el restablecimiento de contraseÃ±a al administrador.",
     btnSendRecovery: "Enviar Solicitud",
     btnClose: "Cerrar",
-    msgForgotSent: "¡Solicitud enviada! El administrador ha sido notificado para restablecer su contraseña."
+    msgForgotSent: "Â¡Solicitud enviada! El administrador ha sido notificado para restablecer su contraseÃ±a."
   },
   en: {
     brandSubtitle: "Dealer Development NHCE LATAM",
@@ -2313,15 +2306,15 @@ const I18N = {
     emailLabel: "CORPORATE EMAIL",
     emailPlaceholder: "your.name@dealership.com",
     passwordLabel: "ACCESS PASSWORD",
-    passwordPlaceholder: "••••••••••••",
+    passwordPlaceholder: "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢",
     forgotPassword: "Forgot password?",
     rememberEmail: "Remember my email",
     maxAttempts: "Max 5 attempts",
-    btnLogin: "ACCESS TRAINING →",
+    btnLogin: "ACCESS TRAINING â†’",
     newHere: "NEW TO THE PLATFORM?",
     btnRequestAccess: "Request Access Registration",
-    footerCopyright: "© 2026 CNH Industrial • New Holland Construction. All rights reserved.",
-    footerDev: "Dealer Development NHCE LATAM • Corporate Training Platform",
+    footerCopyright: "Â© 2026 CNH Industrial â€¢ New Holland Construction. All rights reserved.",
+    footerDev: "Dealer Development NHCE LATAM â€¢ Corporate Training Platform",
     cadTitle: "Request Access",
     cadSubtitle: "Fill in the details below to request authorization to access the PAN training",
     nameLabel: "FULL NAME",
@@ -2338,12 +2331,12 @@ const I18N = {
     strengthWeak: "Weak",
     strengthMedium: "Medium",
     strengthStrong: "Strong",
-    btnSubmitCad: "Submit Access Request →",
+    btnSubmitCad: "Submit Access Request â†’",
     alreadyHaveAccount: "Already have an account?",
     btnBackLogin: "Back to Login",
     adminHeaderTitle: "Governance & Access Panel",
-    adminHeaderSubtitle: "Dealer Development NHCE LATAM • User Management & Audit",
-    btnGoTraining: "Go to Training →",
+    adminHeaderSubtitle: "Dealer Development NHCE LATAM â€¢ User Management & Audit",
+    btnGoTraining: "Go to Training â†’",
     btnLogout: "Sign Out",
     tabUsers: "User Management",
     tabMetrics: "Metrics & Audit",
@@ -2464,9 +2457,9 @@ function applyTheme(theme) {
 }
 
 /* ==========================================================================
-   SEGURANÇA DO FRONT-END (ANTI-INSPEÇÃO & PROTEÇÃO DE CÓDIGO FONTE)
+   SEGURANÃ‡A DO FRONT-END (ANTI-INSPEÃ‡ÃƒO & PROTEÃ‡ÃƒO DE CÃ“DIGO FONTE)
    ========================================================================== */
-// 1. Bloquear botão direito (contextmenu)
+// 1. Bloquear botÃ£o direito (contextmenu)
 document.addEventListener('contextmenu', function(e) {
   e.preventDefault();
   return false;
@@ -2501,14 +2494,14 @@ document.addEventListener('keydown', function(e) {
     }
   }
 
-  // Ctrl + U (Ver Código Fonte) / Cmd + U
+  // Ctrl + U (Ver CÃ³digo Fonte) / Cmd + U
   if ((e.ctrlKey || e.metaKey) && (e.key === 'U' || e.key === 'u' || e.keyCode === 85)) {
     e.preventDefault();
     e.stopPropagation();
     return false;
   }
 
-  // Ctrl + S (Salvar Página) / Cmd + S
+  // Ctrl + S (Salvar PÃ¡gina) / Cmd + S
   if ((e.ctrlKey || e.metaKey) && (e.key === 'S' || e.key === 's' || e.keyCode === 83)) {
     e.preventDefault();
     e.stopPropagation();
@@ -2560,7 +2553,7 @@ function showView(viewId) {
 }
 
 /* ==========================================================================
-   SERVIÇO DE AUTENTICAÇÃO E BANCO DE DADOS CLIENT-SIDE (SHA-256)
+   SERVIÃ‡O DE AUTENTICAÃ‡ÃƒO E BANCO DE DADOS CLIENT-SIDE (SHA-256)
    ========================================================================== */
 const STORAGE_KEYS = {
   USERS: 'nh_auth_users',
@@ -2688,13 +2681,13 @@ async function handleLoginSubmit(event) {
       localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
     }
     showAlert('login', t('msgBlockedAccount'), true);
-    addAuditLog('ACCOUNT_LOCKED', email, 'Bloqueio de segurança automático ativado.');
+    addAuditLog('ACCOUNT_LOCKED', email, 'Bloqueio de seguranÃ§a automÃ¡tico ativado.');
     return;
   }
 
   if (!user) {
     showAlert('login', t('msgUserNotFound'), true);
-    addAuditLog('LOGIN_USER_NOT_FOUND', email, 'E-mail não cadastrado.');
+    addAuditLog('LOGIN_USER_NOT_FOUND', email, 'E-mail nÃ£o cadastrado.');
     return;
   }
 
@@ -2805,7 +2798,7 @@ async function handleCadastroSubmit(event) {
 
   users.push(newUser);
   localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
-  addAuditLog('REGISTER_REQUEST', email, `Nova solicitação de acesso para ${dealer}.`);
+  addAuditLog('REGISTER_REQUEST', email, `Nova solicitaÃ§Ã£o de acesso para ${dealer}.`);
 
   alert(t('msgCadSuccess'));
   document.getElementById('form-cadastro').reset();
@@ -2815,7 +2808,7 @@ async function handleCadastroSubmit(event) {
 function handleLogout() {
   const session = JSON.parse(sessionStorage.getItem(STORAGE_KEYS.SESSION) || '{}');
   if (session.email) {
-    addAuditLog('LOGOUT', session.email, 'Sessão finalizada pelo usuário.');
+    addAuditLog('LOGOUT', session.email, 'SessÃ£o finalizada pelo usuÃ¡rio.');
   }
   sessionStorage.removeItem(STORAGE_KEYS.SESSION);
   showView('view-login');
@@ -2925,7 +2918,7 @@ function renderAdminTable() {
   });
 
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-slate-500 text-xs">Nenhum usuário encontrado com os filtros atuais.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-slate-500 text-xs">Nenhum usuÃ¡rio encontrado com os filtros atuais.</td></tr>`;
     return;
   }
 
@@ -2992,11 +2985,11 @@ function setUserStatus(userId, newStatus) {
 }
 
 function deleteUser(userId) {
-  if (!confirm('Tem certeza de que deseja excluir permanentemente este usuário?')) return;
+  if (!confirm('Tem certeza de que deseja excluir permanentemente este usuÃ¡rio?')) return;
   let users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
   const user = users.find(u => u.id === userId);
   if (user) {
-    addAuditLog('USER_DELETED', user.email, `Usuário ${user.name} excluído.`);
+    addAuditLog('USER_DELETED', user.email, `UsuÃ¡rio ${user.name} excluÃ­do.`);
   }
   users = users.filter(u => u.id !== userId);
   localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
@@ -3070,7 +3063,7 @@ function importFullDatabaseJson(event) {
         alert('Base de dados restaurada com sucesso!');
         loadAdminData();
       } else {
-        alert('Formato de arquivo JSON inválido.');
+        alert('Formato de arquivo JSON invÃ¡lido.');
       }
     } catch(err) {
       alert('Erro ao processar o arquivo: ' + err.message);
@@ -3106,7 +3099,7 @@ function handleForgotPasswordSubmit(event) {
   const email = document.getElementById('forgot-email').value.trim();
   if (!email) return;
 
-  addAuditLog('FORGOT_PASSWORD_REQUEST', email, 'Solicitação de recuperação de senha enviada.');
+  addAuditLog('FORGOT_PASSWORD_REQUEST', email, 'SolicitaÃ§Ã£o de recuperaÃ§Ã£o de senha enviada.');
   alert(t('msgForgotSent'));
   closeForgotPasswordModal();
 }
@@ -3142,7 +3135,7 @@ document.addEventListener('DOMContentLoaded', function() {
     showView('view-login');
   }
 });
-
 </script>
+
 </body>
 </html>

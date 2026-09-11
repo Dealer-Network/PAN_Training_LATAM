@@ -6,34 +6,32 @@ Plataforma Corporativa de Capacitação Interativa do **Plano Anual de Negócios
 
 ## 🌐 Acesso Online / Live Platform
 
-- 🔗 **Portal de Login**: [https://dealer-network.github.io/PAN_Training_LATAM/](https://dealer-network.github.io/PAN_Training_LATAM/)
-- 🔗 **Solicitar Cadastro**: [cadastro.html](cadastro.html)
-- 🔗 **Painel Administrativo**: [admin.html](admin.html) *(Requer perfil de Administrador)*
-- 🔗 **Ambiente de Treinamento**: [treinamento.html](treinamento.html) *(Protegido por autenticação)*
+- 🔗 **Plataforma Completa (SPA)**: [https://dealer-network.github.io/PAN_Training_LATAM/](https://dealer-network.github.io/PAN_Training_LATAM/)
+- 🔗 **Arquivo Principal Local**: [PAN_Training_LATAM.html](PAN_Training_LATAM.html)
 
 ---
 
-## 🌟 Funcionalidades da Plataforma
+## 🌟 Funcionalidades da Plataforma Integrada
 
 ### 🔐 Camada de Autenticação e Segurança
-- **Controle de Acesso em Múltiplos Níveis**: Visitante ➔ Cadastro Pendente ➔ Aprovação ADM ➔ Acesso Liberado.
+- **Controle de Acesso em Múltiplos Níveis**: Visitante ➔ Cadastro Pendente ➔ Aprovação ADM ➔ Acesso Liberado ao Treinamento.
 - **Criptografia SHA-256 com Salt Corporativo**: Segurança nativa através da Web Crypto API.
-- **Bloqueio Automático após 5 Tentativas Incorretas**: Proteção contra força bruta diretamente no banco de dados.
-- **Guardião de Rotas (Anti-Bypass)**: Redirecionamento instantâneo caso ocorra tentativa de acesso direto à URL do treinamento ou do painel ADM.
-- **Proteção de Front-end**: Bloqueio de atalhos de inspeção casual (`F12`, `Ctrl+Shift+I/J/C`, `Ctrl+U`, `Ctrl+S` e clique direito).
+- **Bloqueio Automático após 5 Tentativas Incorretas**: Proteção contra força bruta diretamente na base de dados.
+- **Roteamento SPA Seguro**: Visibilidade de views controlada por estado (`#view-login`, `#view-cadastro`, `#view-admin`, `#view-training`). Acesso direto ao treinamento sem autenticação é bloqueado.
+- **Proteção de Front-end (Item 9)**: Bloqueio de atalhos de inspeção casual (`F12`, `Ctrl+Shift+I/J/C/K`, `Ctrl+U`, `Ctrl+S` e clique direito).
 
-### 🛠️ Painel Administrativo & Auditoria (`admin.html`)
-- **Dashboard com Indicadores em Tempo Real**: Total de cadastros, aprovados, pendentes, bloqueados e sessões.
-- **Gestão de Usuários**: Aprovação, reprovação, bloqueio, redefinição de senha e exclusão.
-- **Monitoramento de Acessos**: Tabela detalhada de logs com histórico completo de eventos de login, logout e navegação.
-- **Exportação e Backup**: Download de relatórios em formato CSV e backup completo do banco em JSON.
+### 🛠️ Painel Administrativo & Auditoria
+- **Dashboard com 6 Indicadores em Tempo Real**: Total de cadastros, aprovados, pendentes, bloqueados, acessos totais e alertas de segurança.
+- **Gestão Completa de Usuários**: Aprovação, reprovação, bloqueio, desbloqueio e filtros dinâmicos por nome, e-mail, empresa e status.
+- **Monitoramento de Acessos**: Trilha de auditoria em tempo real com histórico completo de eventos (logins, falhas, bloqueios, cadastros).
+- **Exportação e Backup**: Download de relatórios em formato CSV e backup/restauração completa do banco em JSON.
 
-### 📚 Treinamento Interativo Preservado (`treinamento.html`)
+### 📚 Treinamento Interativo 100% Preservado
 - 🇧🇷 🇪🇸 🇺🇸 **Trilíngue Completo**: Suporte nativo e alternância instantânea entre Português, Espanhol e Inglês.
+- 🌓 **Alternador de Tema Claro/Escuro**: Modo Dark de alta fidelidade e Modo Light Clean com persistência no navegador.
 - 🔊 **Locução de Áudio Integrada**: Narração em voz feminina nativa com sintetizador de voz (Web Speech API) e onda sonora dinâmica.
 - 💬 **Assistente Virtual Inteligente (Chatbot IA)**: Respostas rápidas sobre login, preenchimento, download/upload do Excel e suporte.
 - 🔍 **Visualizador em Alta Definição (HD)**: Lightbox interativo com zoom em todas as telas oficiais.
-- 📱 **Barra Superior de Sessão**: Exibição do usuário conectado, concessionária, status e botão de encerramento seguro de sessão.
 
 ---
 
@@ -41,18 +39,11 @@ Plataforma Corporativa de Capacitação Interativa do **Plano Anual de Negócios
 
 ```
 Treinamento PAN/
-├── index.html                  # Página de Login Corporativo (Portal de Entrada)
-├── cadastro.html               # Formulário de Solicitação de Cadastro e Validações
-├── admin.html                  # Painel Administrativo, Gestão de Usuários e Monitoramento
-├── treinamento.html            # Ambiente de Treinamento PAN Completo e Protegido
-├── PAN_Training_LATAM.html     # Backup Original do Treinamento Interativo
-├── GUIA_ADMINISTRADOR.md       # Manual de Administração, Credenciais e Banco de Dados
+├── PAN_Training_LATAM.html     # Aplicação Central Unificada (Login, Cadastro, Admin e Treinamento)
+├── index.html                  # Espelho Idêntico para Publicação no GitHub Pages
+├── GUIA_ADMINISTRADOR.md       # Manual de Administração, Credenciais e Governança
 ├── README.md                   # Documentação Geral do Projeto
-├── css/
-│   └── platform-custom.css     # Design System Corporativo New Holland Construction
-└── js/
-    ├── auth-service.js         # Serviço Central de Autenticação, 5 Tentativas e Logs
-    └── security-guard.js       # Guardião de Rotas, Sessão e Proteção de Front-end
+└── media/                      # Recursos visuais e logos oficiais da marca
 ```
 
 ---
