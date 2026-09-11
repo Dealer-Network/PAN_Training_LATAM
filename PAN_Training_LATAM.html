@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 
@@ -2210,6 +2210,8 @@ body.theme-light .nh-machinery-pan {
       btnBlock: "Bloquear",
       btnUnblock: "Desbloquear",
       btnDelete: "Excluir",
+      roleViewer: "Leitor",
+      roleAdmin: "Admin",
       neverAccessed: "Nunca acessou",
       strengthWeak: "Fraca",
       strengthMedium: "M\u00E9dia",
@@ -2309,6 +2311,8 @@ body.theme-light .nh-machinery-pan {
       btnBlock: "Bloquear",
       btnUnblock: "Desbloquear",
       btnDelete: "Eliminar",
+      roleViewer: "Lector",
+      roleAdmin: "Admin",
       neverAccessed: "Nunca ingres\u00F3",
       strengthWeak: "D\u00E9bil",
       strengthMedium: "Media",
@@ -2408,6 +2412,8 @@ body.theme-light .nh-machinery-pan {
       btnBlock: "Block",
       btnUnblock: "Unblock",
       btnDelete: "Delete",
+      roleViewer: "Reader",
+      roleAdmin: "Admin",
       neverAccessed: "Never accessed",
       strengthWeak: "Weak",
       strengthMedium: "Medium",
@@ -3010,11 +3016,16 @@ body.theme-light .nh-machinery-pan {
       const createdDate = u.createdAt ? new Date(u.createdAt).toLocaleDateString(currentAppLang === 'en' ? 'en-US' : (currentAppLang === 'es' ? 'es-ES' : 'pt-BR')) : '-';
       const lastLoginDate = u.lastLogin ? new Date(u.lastLogin).toLocaleString(currentAppLang === 'en' ? 'en-US' : (currentAppLang === 'es' ? 'es-ES' : 'pt-BR')) : `<span class="text-slate-500 italic">${t('neverAccessed')}</span>`;
 
+      const isMasterAdmin = u.email && u.email.toLowerCase() === 'admin@newholland.com';
       let actionsHtml = '';
-      if (u.role !== 'ADMIN') {
+      if (!isMasterAdmin) {
         if (u.status === 'PENDENTE') {
           actionsHtml = `
-            <button onclick="window.setUserStatus('${u.id}', 'APROVADO')" class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 font-semibold mr-1.5 transition-colors">
+            <select id="role-select-${u.id}" class="bg-slate-800 text-slate-200 border border-white/20 rounded px-2 py-1 text-xs mr-1.5 focus:outline-none cursor-pointer">
+              <option value="USER" ${u.role !== 'ADMIN' ? 'selected' : ''}>${t('roleViewer')}</option>
+              <option value="ADMIN" ${u.role === 'ADMIN' ? 'selected' : ''}>${t('roleAdmin')}</option>
+            </select>
+            <button onclick="window.setUserStatus('${u.id}', 'APROVADO', document.getElementById('role-select-${u.id}').value)" class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 font-semibold mr-1.5 transition-colors">
               <i class="fa-solid fa-check mr-1"></i>${t('btnApprove')}
             </button>
             <button onclick="window.setUserStatus('${u.id}', 'REPROVADO')" class="px-2.5 py-1 rounded bg-slate-700 text-slate-300 hover:bg-slate-600 mr-1.5 transition-colors">
@@ -3062,12 +3073,15 @@ body.theme-light .nh-machinery-pan {
     }).join('');
   }
 
-  function setUserStatus(userId, newStatus) {
+  function setUserStatus(userId, newStatus, newRole) {
     const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
     const user = users.find(u => u.id === userId);
     if (!user) return;
 
     user.status = newStatus;
+    if (newRole) {
+      user.role = newRole;
+    }
     if (newStatus === 'APROVADO') {
       user.approvedAt = new Date().toISOString();
       const attempts = JSON.parse(localStorage.getItem(STORAGE_KEYS.ATTEMPTS) || '{}');
@@ -3076,7 +3090,7 @@ body.theme-light .nh-machinery-pan {
     }
 
     localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
-    addAuditLog('USER_STATUS_CHANGE', user.email, `Status alterado para ${newStatus} pelo administrador.`);
+    addAuditLog('USER_STATUS_CHANGE', user.email, `Status alterado para ${newStatus}${newRole ? ' (Perfil: ' + newRole + ')' : ''} pelo administrador.`);
     loadAdminData();
   }
 
