@@ -1,0 +1,494 @@
+<!-- =================================================================== -->
+<!-- FUNDO ANIMADO COM MÁQUINAS NEW HOLLAND & GRADIENTE ELEGANTE -->
+<!-- =================================================================== -->
+<div class="nh-animated-bg-container" id="nh-animated-bg">
+    <div class="nh-machinery-pan" id="nh-machinery-pan-layer"></div>
+    <div class="nh-bg-overlay-gradient"></div>
+    <div class="nh-bg-tech-grid"></div>
+</div>
+
+<!-- =================================================================== -->
+<!-- BARRA SUPERIOR GLOBAL (HEADER: LOGO, IDIOMAS, TEMA, BADGES) -->
+<!-- =================================================================== -->
+<header id="platform-global-header" class="relative z-20 w-full px-4 sm:px-8 py-3.5 flex flex-wrap items-center justify-between border-b border-white/10 backdrop-blur-md">
+    <!-- Brand / Logo -->
+    <div class="flex items-center space-x-3.5">
+        <div class="w-10 h-10 rounded-xl bg-nhyellow-500 flex items-center justify-center font-heading font-black text-nhdark-950 text-base shadow-lg shadow-nhyellow-500/20">
+            NH
+        </div>
+        <div>
+            <div class="font-heading font-extrabold text-sm sm:text-base tracking-wide text-nhyellow-500 flex items-center gap-2">
+                NEW HOLLAND CONSTRUCTION
+            </div>
+            <div class="text-xs text-slate-400 font-medium" data-i18n="brandSubtitle">
+                Desenvolvimento de Rede NHCE LATAM
+            </div>
+        </div>
+    </div>
+
+    <!-- Controles Direita: Idioma, Tema e Badges -->
+    <div class="flex items-center gap-2.5 sm:gap-4 mt-2 sm:mt-0">
+        <!-- Badges de Segurança -->
+        <div class="hidden md:flex items-center space-x-3 text-xs font-medium mr-2">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                <i class="fa-solid fa-lock text-[10px]"></i> <span data-i18n="secureHttps">Ambiente Seguro HTTPS</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-nhyellow-500/10 text-nhyellow-500 border border-nhyellow-500/20">
+                <i class="fa-solid fa-shield-halved text-[10px]"></i> <span data-i18n="shaActive">Proteção SHA-256 Ativa</span>
+            </span>
+        </div>
+
+        <!-- Seletor de Idioma Trilíngue (PT / ES / EN) -->
+        <div class="flex items-center p-1 rounded-lg bg-black/40 border border-white/10 backdrop-blur-sm" id="lang-selector-group">
+            <button type="button" class="nh-lang-btn active" onclick="setLanguage('pt')" id="btn-lang-pt" title="Português">🇧🇷 PT</button>
+            <button type="button" class="nh-lang-btn" onclick="setLanguage('es')" id="btn-lang-es" title="Español">🇪🇸 ES</button>
+            <button type="button" class="nh-lang-btn" onclick="setLanguage('en')" id="btn-lang-en" title="English">🇺🇸 EN</button>
+        </div>
+
+        <!-- Botão de Alternância de Tema (Light / Dark Mode) -->
+        <button type="button" class="nh-theme-btn" onclick="toggleTheme()" id="theme-toggle-btn" title="Alternar Modo Claro/Escuro" data-i18n-title="themeToggle">
+            <i class="fa-solid fa-moon" id="theme-icon"></i>
+        </button>
+    </div>
+</header>
+
+<!-- =================================================================== -->
+<!-- VIEW 1: LOGIN CORPORATIVO -->
+<!-- =================================================================== -->
+<section id="view-login" class="nh-view-wrapper min-h-[calc(100vh-70px)] flex flex-col justify-center items-center px-4 py-8 nh-fade-in">
+    <div class="w-full max-w-md nh-glass-card rounded-2xl p-6 sm:p-8 relative overflow-hidden">
+        <!-- Detalhe superior em amarelo New Holland -->
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-nhyellow-400 via-nhyellow-500 to-nhyellow-600"></div>
+
+        <!-- Cabeçalho do Card -->
+        <div class="text-center mb-6 pt-2">
+            <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-nhyellow-500/10 border border-nhyellow-500/30 flex items-center justify-center text-nhyellow-500 shadow-inner">
+                <i class="fa-solid fa-graduation-cap text-2xl"></i>
+            </div>
+            <h1 class="text-2xl font-bold font-heading text-white tracking-tight" data-i18n="loginTitle">
+                Capacitação PAN LATAM
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-400 mt-1 font-normal" data-i18n="loginSubtitle">
+                Guia Interativo de Atualização do Plano Anual de Negócios
+            </p>
+        </div>
+
+        <!-- Banner de Alerta Dinâmico -->
+        <div id="login-alert" class="hidden mb-5 p-3.5 rounded-xl text-xs font-medium border flex items-start space-x-2.5">
+            <i class="fa-solid fa-circle-exclamation mt-0.5 flex-shrink-0 text-sm" id="login-alert-icon"></i>
+            <div id="login-alert-text" class="flex-1 leading-relaxed"></div>
+        </div>
+
+        <!-- Formulário de Login -->
+        <form id="form-login" onsubmit="handleLoginSubmit(event)" class="space-y-4">
+            <div>
+                <label for="login-email" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5" data-i18n="emailLabel">
+                    E-mail Corporativo
+                </label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                        <i class="fa-regular fa-envelope text-sm"></i>
+                    </span>
+                    <input type="email" id="login-email" required
+                        class="nh-input w-full pl-10 pr-4 py-3 rounded-xl text-sm placeholder-slate-500"
+                        placeholder="seu.nome@concessionaria.com" data-i18n-placeholder="emailPlaceholder" autocomplete="email">
+                </div>
+            </div>
+
+            <div>
+                <div class="flex items-center justify-between mb-1.5">
+                    <label for="login-password" class="block text-xs font-semibold uppercase tracking-wider text-slate-300" data-i18n="passwordLabel">
+                        Senha de Acesso
+                    </label>
+                    <a href="javascript:void(0)" onclick="openForgotPasswordModal()" class="text-xs text-nhyellow-500 hover:text-nhyellow-400 transition-colors font-medium" data-i18n="forgotPassword">
+                        Esqueceu a senha?
+                    </a>
+                </div>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                        <i class="fa-solid fa-lock text-sm"></i>
+                    </span>
+                    <input type="password" id="login-password" required
+                        class="nh-input w-full pl-10 pr-11 py-3 rounded-xl text-sm placeholder-slate-500 font-mono"
+                        placeholder="••••••••••••" data-i18n-placeholder="passwordPlaceholder" autocomplete="current-password">
+                    <button type="button" onclick="togglePasswordVisibility('login-password', this)" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-200">
+                        <i class="fa-regular fa-eye text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs text-slate-400 pt-1">
+                <label class="flex items-center space-x-2 cursor-pointer select-none">
+                    <input type="checkbox" id="remember-email" class="rounded border-slate-700 bg-slate-900 text-nhyellow-500 focus:ring-nhyellow-500 h-4 w-4">
+                    <span data-i18n="rememberEmail">Lembrar meu e-mail</span>
+                </label>
+                <span class="flex items-center gap-1 text-[11px] text-slate-500">
+                    <i class="fa-solid fa-info-circle text-[10px]"></i> <span data-i18n="maxAttempts">Máx. 5 tentativas</span>
+                </span>
+            </div>
+
+            <button type="submit" id="btn-login-submit" class="nh-btn-primary w-full py-3.5 rounded-xl flex items-center justify-center space-x-2 text-sm mt-2">
+                <span data-i18n="btnLogin">Acessar Treinamento &rarr;</span>
+            </button>
+        </form>
+
+        <!-- Divisor & Solicitação de Cadastro -->
+        <div class="relative my-6 text-center">
+            <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-white/10"></div></div>
+            <span class="relative px-3 bg-nhdark-900 text-slate-400 text-[11px] uppercase tracking-wider font-semibold" data-i18n="newHere">
+                Novo na plataforma?
+            </span>
+        </div>
+
+        <button type="button" onclick="showView('view-cadastro')" class="nh-btn-secondary w-full py-3 rounded-xl flex items-center justify-center space-x-2 text-xs uppercase tracking-wider">
+            <i class="fa-solid fa-user-plus text-xs"></i>
+            <span data-i18n="btnRequestAccess">Solicitar Cadastro de Acesso</span>
+        </button>
+    </div>
+
+    <!-- Rodapé Corporativo -->
+    <footer class="mt-8 text-center text-xs text-slate-500 space-y-1">
+        <p data-i18n="footerCopyright">&copy; 2026 CNH Industrial &bull; New Holland Construction. Todos os direitos reservados.</p>
+        <p class="text-[11px] text-slate-600" data-i18n="footerDev">Desenvolvimento de Rede NHCE LATAM &bull; Plataforma de Capacitação Corporativa</p>
+    </footer>
+</section>
+
+<!-- =================================================================== -->
+<!-- VIEW 2: SOLICITAÇÃO DE CADASTRO -->
+<!-- =================================================================== -->
+<section id="view-cadastro" class="nh-view-wrapper min-h-[calc(100vh-70px)] hidden flex-col justify-center items-center px-4 py-8 nh-fade-in">
+    <div class="w-full max-w-lg nh-glass-card rounded-2xl p-6 sm:p-8 relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-nhyellow-400 via-nhyellow-500 to-nhyellow-600"></div>
+
+        <div class="text-center mb-6 pt-2">
+            <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-nhyellow-500/10 border border-nhyellow-500/30 flex items-center justify-center text-nhyellow-500">
+                <i class="fa-solid fa-user-plus text-2xl"></i>
+            </div>
+            <h2 class="text-2xl font-bold font-heading text-white tracking-tight" data-i18n="cadTitle">
+                Solicitar Acesso
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-400 mt-1 font-normal" data-i18n="cadSubtitle">
+                Preencha os dados abaixo para solicitar autorização de acesso ao treinamento PAN
+            </p>
+        </div>
+
+        <div id="cad-alert" class="hidden mb-5 p-3.5 rounded-xl text-xs font-medium border flex items-start space-x-2.5">
+            <i class="fa-solid fa-circle-exclamation mt-0.5 flex-shrink-0 text-sm" id="cad-alert-icon"></i>
+            <div id="cad-alert-text" class="flex-1 leading-relaxed"></div>
+        </div>
+
+        <form id="form-cadastro" onsubmit="handleCadastroSubmit(event)" class="space-y-4">
+            <div>
+                <label for="cad-name" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1" data-i18n="nameLabel">
+                    Nome Completo
+                </label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                        <i class="fa-regular fa-user text-sm"></i>
+                    </span>
+                    <input type="text" id="cad-name" required
+                        class="nh-input w-full pl-10 pr-4 py-2.5 rounded-xl text-sm placeholder-slate-500"
+                        placeholder="Ex: Carlos Silva" data-i18n-placeholder="namePlaceholder">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div>
+                    <label for="cad-dealer" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1" data-i18n="dealerLabel">
+                        Concessionária / Filial
+                    </label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-building text-sm"></i>
+                        </span>
+                        <input type="text" id="cad-dealer" required
+                            class="nh-input w-full pl-10 pr-4 py-2.5 rounded-xl text-sm placeholder-slate-500"
+                            placeholder="Ex: Paveca - Córdoba" data-i18n-placeholder="dealerPlaceholder">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="cad-role" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1" data-i18n="roleLabel">
+                        Função / Cargo
+                    </label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-briefcase text-sm"></i>
+                        </span>
+                        <input type="text" id="cad-role" required
+                            class="nh-input w-full pl-10 pr-4 py-2.5 rounded-xl text-sm placeholder-slate-500"
+                            placeholder="Ex: Gerente Geral" data-i18n-placeholder="rolePlaceholder">
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label for="cad-email" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1" data-i18n="emailLabel">
+                    E-mail Corporativo
+                </label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                        <i class="fa-regular fa-envelope text-sm"></i>
+                    </span>
+                    <input type="email" id="cad-email" required
+                        class="nh-input w-full pl-10 pr-4 py-2.5 rounded-xl text-sm placeholder-slate-500"
+                        placeholder="seu.nome@concessionaria.com" data-i18n-placeholder="emailPlaceholder" autocomplete="email">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div>
+                    <label for="cad-password" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1" data-i18n="cadPasswordLabel">
+                        Criar Senha
+                    </label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-lock text-sm"></i>
+                        </span>
+                        <input type="password" id="cad-password" required minlength="8" oninput="checkPasswordStrength(this.value)"
+                            class="nh-input w-full pl-10 pr-10 py-2.5 rounded-xl text-sm placeholder-slate-500 font-mono"
+                            placeholder="Mínimo 8 caracteres" data-i18n-placeholder="cadPasswordPlaceholder">
+                        <button type="button" onclick="togglePasswordVisibility('cad-password', this)" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-200">
+                            <i class="fa-regular fa-eye text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="cad-confirm" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1" data-i18n="cadConfirmLabel">
+                        Confirmar Senha
+                    </label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-lock text-sm"></i>
+                        </span>
+                        <input type="password" id="cad-confirm" required minlength="8"
+                            class="nh-input w-full pl-10 pr-10 py-2.5 rounded-xl text-sm placeholder-slate-500 font-mono"
+                            placeholder="Repita sua senha" data-i18n-placeholder="cadConfirmPlaceholder">
+                        <button type="button" onclick="togglePasswordVisibility('cad-confirm', this)" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-200">
+                            <i class="fa-regular fa-eye text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Indicador de Força de Senha -->
+            <div id="pwd-strength-container" class="space-y-1 pt-1">
+                <div class="flex items-center justify-between text-[11px] text-slate-400">
+                    <span data-i18n="pwdStrengthText">Força da senha:</span>
+                    <span id="pwd-strength-label" class="font-semibold text-slate-500">-</span>
+                </div>
+                <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden flex gap-1">
+                    <div id="bar-strength-1" class="h-full w-1/3 bg-slate-700 transition-all duration-300"></div>
+                    <div id="bar-strength-2" class="h-full w-1/3 bg-slate-700 transition-all duration-300"></div>
+                    <div id="bar-strength-3" class="h-full w-1/3 bg-slate-700 transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <button type="submit" id="btn-cad-submit" class="nh-btn-primary w-full py-3.5 rounded-xl flex items-center justify-center space-x-2 text-sm mt-2">
+                <span data-i18n="btnSubmitCad">Enviar Solicitação de Acesso &rarr;</span>
+            </button>
+        </form>
+
+        <div class="mt-6 pt-4 border-t border-white/10 text-center">
+            <span class="text-xs text-slate-400" data-i18n="alreadyHaveAccount">Já possui acesso?</span>
+            <a href="javascript:void(0)" onclick="showView('view-login')" class="ml-1 text-xs font-semibold text-nhyellow-500 hover:text-nhyellow-400 transition-colors" data-i18n="btnBackLogin">
+                Voltar para o Login
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- =================================================================== -->
+<!-- VIEW 3: PAINEL ADMINISTRATIVO (EXCLUSIVO PARA GESTORES NHCE) -->
+<!-- =================================================================== -->
+<section id="view-admin" class="nh-view-wrapper min-h-screen hidden flex-col p-4 sm:p-8 nh-fade-in">
+    <!-- Cabeçalho do Painel ADM -->
+    <div class="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8">
+        <div>
+            <div class="flex items-center gap-3">
+                <span class="px-2.5 py-1 rounded-md bg-nhyellow-500 text-nhdark-950 text-xs font-black uppercase tracking-wider font-heading">
+                    ADMIN
+                </span>
+                <h1 class="text-2xl sm:text-3xl font-bold font-heading text-white tracking-tight" data-i18n="adminHeaderTitle">
+                    Painel de Governança & Acessos
+                </h1>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-400 mt-1" data-i18n="adminHeaderSubtitle">
+                Desenvolvimento de Rede NHCE LATAM &bull; Gestão de Usuários e Auditoria
+            </p>
+        </div>
+
+        <div class="flex items-center gap-3 w-full md:w-auto">
+            <button type="button" onclick="showView('view-training')" class="nh-btn-primary px-4 py-2.5 rounded-xl text-xs flex items-center gap-2">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span data-i18n="btnGoTraining">Ir para o Treinamento &rarr;</span>
+            </button>
+            <button type="button" onclick="handleLogout()" class="nh-btn-secondary px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 text-rose-400 border-rose-500/30 hover:bg-rose-500/10">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span data-i18n="btnLogout">Sair do Sistema</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Cards de Métricas / KPIs em Tempo Real -->
+    <div class="w-full max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-6 gap-3.5 mb-8" id="admin-kpi-grid">
+        <div class="nh-glass-card rounded-xl p-4 border border-white/10">
+            <div class="text-[11px] text-slate-400 font-medium uppercase" data-i18n="kpiTotal">Total de Usuários</div>
+            <div class="text-2xl font-bold font-heading text-white mt-1" id="kpi-total-users">0</div>
+        </div>
+        <div class="nh-glass-card rounded-xl p-4 border border-emerald-500/20">
+            <div class="text-[11px] text-emerald-400 font-medium uppercase" data-i18n="kpiActive">Usuários Aprovados</div>
+            <div class="text-2xl font-bold font-heading text-emerald-400 mt-1" id="kpi-active-users">0</div>
+        </div>
+        <div class="nh-glass-card rounded-xl p-4 border border-amber-500/20">
+            <div class="text-[11px] text-amber-400 font-medium uppercase" data-i18n="kpiPending">Pendentes de Análise</div>
+            <div class="text-2xl font-bold font-heading text-amber-400 mt-1" id="kpi-pending-users">0</div>
+        </div>
+        <div class="nh-glass-card rounded-xl p-4 border border-rose-500/20">
+            <div class="text-[11px] text-rose-400 font-medium uppercase" data-i18n="kpiBlocked">Contas Bloqueadas</div>
+            <div class="text-2xl font-bold font-heading text-rose-400 mt-1" id="kpi-blocked-users">0</div>
+        </div>
+        <div class="nh-glass-card rounded-xl p-4 border border-nhyellow-500/20">
+            <div class="text-[11px] text-nhyellow-500 font-medium uppercase" data-i18n="kpiLogins">Total de Acessos</div>
+            <div class="text-2xl font-bold font-heading text-nhyellow-500 mt-1" id="kpi-total-logins">0</div>
+        </div>
+        <div class="nh-glass-card rounded-xl p-4 border border-white/10">
+            <div class="text-[11px] text-slate-400 font-medium uppercase" data-i18n="kpiAlerts">Incidentes / Bloqueios</div>
+            <div class="text-2xl font-bold font-heading text-slate-300 mt-1" id="kpi-security-alerts">0</div>
+        </div>
+    </div>
+
+    <!-- Abas e Tabela de Gestão -->
+    <div class="w-full max-w-7xl mx-auto nh-glass-card rounded-2xl p-6 relative">
+        <!-- Navegação das Abas -->
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4 mb-6">
+            <div class="flex items-center space-x-2">
+                <button type="button" onclick="switchAdminTab('users')" id="tab-btn-users" class="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-nhyellow-500 text-nhdark-950 font-heading">
+                    <span data-i18n="tabUsers">Gestão de Usuários</span>
+                </button>
+                <button type="button" onclick="switchAdminTab('audit')" id="tab-btn-audit" class="px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-white font-heading">
+                    <span data-i18n="tabMetrics">Métricas & Auditoria</span>
+                </button>
+                <button type="button" onclick="switchAdminTab('backup')" id="tab-btn-backup" class="px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-white font-heading">
+                    <span data-i18n="tabSecurity">Segurança & Backup</span>
+                </button>
+            </div>
+
+            <!-- Filtros de Busca e Ações Rápidas -->
+            <div class="flex items-center gap-2.5 flex-1 max-w-md">
+                <div class="relative flex-1">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                    </span>
+                    <input type="text" id="admin-search-input" oninput="filterAdminUsers()"
+                        class="nh-input w-full pl-9 pr-3 py-1.5 rounded-lg text-xs placeholder-slate-500"
+                        placeholder="Buscar por nome, e-mail ou concessionária..." data-i18n-placeholder="searchPlaceholder">
+                </div>
+                <select id="admin-status-filter" onchange="filterAdminUsers()" class="nh-input py-1.5 px-3 rounded-lg text-xs">
+                    <option value="ALL" data-i18n="filterStatusAll">Todos os Status</option>
+                    <option value="PENDENTE" data-i18n="filterStatusPending">Pendentes</option>
+                    <option value="APROVADO" data-i18n="filterStatusApproved">Aprovados</option>
+                    <option value="BLOQUEADO" data-i18n="filterStatusBlocked">Bloqueados</option>
+                    <option value="REPROVADO" data-i18n="filterStatusRejected">Reprovados</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Conteúdo da Aba: Usuários -->
+        <div id="admin-tab-users-content" class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+                <thead>
+                    <tr class="border-b border-white/10 text-slate-400 uppercase font-semibold">
+                        <th class="pb-3 px-3" data-i18n="colUser">Usuário</th>
+                        <th class="pb-3 px-3" data-i18n="colDealer">Concessionária</th>
+                        <th class="pb-3 px-3" data-i18n="colDate">Data de Cadastro</th>
+                        <th class="pb-3 px-3" data-i18n="colRole">Perfil</th>
+                        <th class="pb-3 px-3" data-i18n="colStatus">Status</th>
+                        <th class="pb-3 px-3 text-right" data-i18n="colActions">Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-users-table-body" class="divide-y divide-white/5">
+                    <!-- Gerado dinamicamente via JS -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Conteúdo da Aba: Auditoria e Logs -->
+        <div id="admin-tab-audit-content" class="hidden space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-sm font-bold text-white uppercase font-heading">Registro de Auditoria de Acessos</h3>
+                <div class="flex gap-2">
+                    <button type="button" onclick="exportAuditCsv()" class="nh-btn-secondary px-3 py-1.5 rounded-lg text-xs flex items-center gap-1.5">
+                        <i class="fa-solid fa-file-csv"></i> Exportar CSV
+                    </button>
+                    <button type="button" onclick="clearAuditLogs()" class="nh-btn-secondary px-3 py-1.5 rounded-lg text-xs text-rose-400 border-rose-500/30">
+                        <i class="fa-solid fa-trash-can"></i> Limpar Logs
+                    </button>
+                </div>
+            </div>
+            <div class="max-h-96 overflow-y-auto rounded-xl border border-white/10 p-3 bg-black/40 font-mono text-[11px] space-y-1.5" id="admin-audit-log-box">
+                <!-- Logs gerados dinamicamente -->
+            </div>
+        </div>
+
+        <!-- Conteúdo da Aba: Backup & Restauração -->
+        <div id="admin-tab-backup-content" class="hidden space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-5 rounded-xl border border-white/10 bg-white/5 space-y-3">
+                    <h3 class="text-sm font-bold text-white uppercase font-heading flex items-center gap-2">
+                        <i class="fa-solid fa-download text-nhyellow-500"></i> Exportar Base de Dados
+                    </h3>
+                    <p class="text-xs text-slate-400">
+                        Baixe um arquivo JSON com todos os usuários cadastrados, senhas com salt criptográfico e logs de acesso para cópia de segurança.
+                    </p>
+                    <button type="button" onclick="exportFullDatabaseJson()" class="nh-btn-primary px-4 py-2.5 rounded-xl text-xs flex items-center gap-2">
+                        <i class="fa-solid fa-file-arrow-down"></i> Baixar Backup JSON
+                    </button>
+                </div>
+
+                <div class="p-5 rounded-xl border border-white/10 bg-white/5 space-y-3">
+                    <h3 class="text-sm font-bold text-white uppercase font-heading flex items-center gap-2">
+                        <i class="fa-solid fa-upload text-nhyellow-500"></i> Restaurar Base de Dados
+                    </h3>
+                    <p class="text-xs text-slate-400">
+                        Restaure a base de usuários e permissões a partir de um backup prévio em formato JSON.
+                    </p>
+                    <label class="nh-btn-secondary px-4 py-2.5 rounded-xl text-xs inline-flex items-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-file-arrow-up"></i> Selecionar Arquivo JSON
+                        <input type="file" accept=".json" onchange="importFullDatabaseJson(event)" class="hidden">
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MODAL: RECUPERAÇÃO DE SENHA -->
+<div id="modal-forgot-password" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="w-full max-w-md nh-glass-card rounded-2xl p-6 border border-nhyellow-500/30 relative">
+        <button type="button" onclick="closeForgotPasswordModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+            <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+
+        <div class="w-12 h-12 rounded-xl bg-nhyellow-500/10 border border-nhyellow-500/30 flex items-center justify-center text-nhyellow-500 mb-4">
+            <i class="fa-solid fa-key text-xl"></i>
+        </div>
+
+        <h3 class="text-lg font-bold font-heading text-white" data-i18n="forgotTitle">Recuperação de Acesso Corporativo</h3>
+        <p class="text-xs text-slate-400 mt-1" data-i18n="forgotDesc">
+            Digite seu e-mail corporativo para solicitar a redefinição de senha ao administrador.
+        </p>
+
+        <form id="form-forgot-password" onsubmit="handleForgotPasswordSubmit(event)" class="mt-4 space-y-3">
+            <div>
+                <label for="forgot-email" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1" data-i18n="emailLabel">E-mail Corporativo</label>
+                <input type="email" id="forgot-email" required class="nh-input w-full px-3.5 py-2.5 rounded-xl text-sm placeholder-slate-500" placeholder="seu.nome@concessionaria.com" data-i18n-placeholder="emailPlaceholder">
+            </div>
+            <div class="flex gap-2 pt-2">
+                <button type="button" onclick="closeForgotPasswordModal()" class="nh-btn-secondary flex-1 py-2.5 rounded-xl text-xs uppercase font-semibold" data-i18n="btnClose">Fechar</button>
+                <button type="submit" class="nh-btn-primary flex-1 py-2.5 rounded-xl text-xs uppercase font-bold" data-i18n="btnSendRecovery">Enviar Solicitação</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -423,6 +423,103 @@ body.theme-light .nh-machinery-pan {
 
 .nh-fade-in { animation: nhFadeIn 0.35s ease-out forwards; }
 @keyframes nhFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ==========================================================================
+   ADAPTAÃ‡ÃƒO RESPONSIVA E COMPATIBILIDADE MOBILE (TREINAMENTO PAN)
+   ========================================================================== */
+@media (max-width: 767px) {
+    #view-training {
+        height: auto !important;
+        min-height: 100vh !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+    #view-training main {
+        height: auto !important;
+        min-height: calc(100vh - 60px) !important;
+        overflow: visible !important;
+        flex-direction: column !important;
+    }
+    #main-content-section {
+        overflow-y: visible !important;
+        padding: 0.75rem 0.5rem !important;
+        width: 100% !important;
+        flex: 1 1 auto !important;
+    }
+    .nh-sidebar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        bottom: 0 !important;
+        width: 85% !important;
+        max-width: 320px !important;
+        height: 100vh !important;
+        z-index: 60 !important;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.8) !important;
+    }
+    .nh-sidebar.mobile-open {
+        transform: translateX(0) !important;
+    }
+    .nh-sidebar-backdrop {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(4px);
+        z-index: 55;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    .nh-sidebar-backdrop.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    #slide-content {
+        padding: 1rem 0.75rem !important;
+        min-height: auto !important;
+    }
+    #slide-body {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+    #slide-text {
+        width: 100% !important;
+    }
+    #slide-media-container {
+        width: 100% !important;
+    }
+    #slide-media-container img {
+        max-height: 250px !important;
+        object-fit: contain !important;
+    }
+    #chat-window {
+        width: calc(100vw - 24px) !important;
+        max-width: 360px !important;
+        right: 12px !important;
+        bottom: 75px !important;
+        max-height: 70vh !important;
+    }
+    #btn-prev, #btn-next {
+        min-height: 44px !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    .step-dot {
+        min-height: 28px !important;
+        min-width: 28px !important;
+    }
+}
+@media (min-width: 768px) {
+    .nh-sidebar {
+        transform: none !important;
+        position: static !important;
+    }
+    .nh-sidebar-backdrop {
+        display: none !important;
+    }
+}
 </style>
 </head>
 <body class="theme-dark text-slate-100 min-h-screen overflow-x-hidden">
@@ -896,7 +993,10 @@ body.theme-light .nh-machinery-pan {
 <header class="nh-header border-b shadow-xl z-20 shrink-0 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-3">
         <!-- Logotipo Oficial New Holland Construction -->
-        <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-2 md:space-x-4">
+            <button type="button" id="btn-toggle-mobile-menu" onclick="toggleMobileMenu()" class="md:hidden bg-nhdark-850 hover:bg-slate-800 text-nhyellow-500 border border-nhyellow-500/40 p-2 rounded-xl flex items-center justify-center transition active:scale-95 shadow-md cursor-pointer mr-1" title="Menu de Pasos" aria-label="Abrir Menu">
+                <i class="fa-solid fa-bars text-base"></i>
+            </button>
             <img src="data:image/png;base64,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" alt="New Holland Construction" class="h-9 sm:h-10 object-contain drop-shadow-md cursor-pointer" onclick="selectStep(0)">
             <div class="h-7 w-[1px] bg-slate-400/30 hidden sm:block"></div>
             <div class="hidden sm:block">
@@ -960,13 +1060,19 @@ body.theme-light .nh-machinery-pan {
 <main class="flex-1 flex flex-col md:flex-row overflow-hidden relative">
     
     <!-- NAVEGACIÓN LATERAL DE PASOS -->
+    <div id="nh-sidebar-backdrop" onclick="closeMobileMenu()" class="nh-sidebar-backdrop"></div>
     <aside class="nh-sidebar w-full md:w-80 border-r flex flex-col shadow-2xl z-10 shrink-0 transition-colors duration-300">
         <div class="p-3 border-b border-slate-700/40 bg-nhdark-850/40 flex items-center justify-between">
             <div class="flex items-center space-x-2">
                 <i class="fa-solid fa-list-ol text-nhyellow-500 text-xs"></i>
                 <span id="nav-header-title" class="text-xs font-bold uppercase tracking-widest font-heading">Navegación del Plan</span>
             </div>
-            <span id="step-badge" class="bg-nhyellow-500/20 text-nhyellow-500 border border-nhyellow-500/30 text-[10px] px-2.5 py-0.5 rounded-full font-bold">Paso 1 de 10</span>
+            <div class="flex items-center space-x-2">
+                <span id="step-badge" class="bg-nhyellow-500/20 text-nhyellow-500 border border-nhyellow-500/30 text-[10px] px-2.5 py-0.5 rounded-full font-bold">Paso 1 de 10</span>
+                <button type="button" onclick="closeMobileMenu()" class="md:hidden text-slate-400 hover:text-white p-1 rounded-lg focus:outline-none cursor-pointer" title="Cerrar Menu" aria-label="Cerrar Menu">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
         </div>
         
         <nav id="steps-menu" class="flex-1 overflow-y-auto custom-scrollbar p-3 space-y-1">
@@ -1747,7 +1853,32 @@ body.theme-light .nh-machinery-pan {
         document.getElementById('print-modal').classList.add('hidden');
     }
 
+    function toggleMobileMenu() {
+        const sidebar = document.querySelector('.nh-sidebar');
+        const backdrop = document.getElementById('nh-sidebar-backdrop');
+        if (!sidebar) return;
+        const isOpen = sidebar.classList.contains('mobile-open');
+        if (isOpen) {
+            sidebar.classList.remove('mobile-open');
+            if (backdrop) backdrop.classList.remove('active');
+        } else {
+            sidebar.classList.add('mobile-open');
+            if (backdrop) backdrop.classList.add('active');
+        }
+    }
+
+    function closeMobileMenu() {
+        const sidebar = document.querySelector('.nh-sidebar');
+        const backdrop = document.getElementById('nh-sidebar-backdrop');
+        if (sidebar) sidebar.classList.remove('mobile-open');
+        if (backdrop) backdrop.classList.remove('active');
+    }
+
+    window.toggleMobileMenu = toggleMobileMenu;
+    window.closeMobileMenu = closeMobileMenu;
+
     function selectStep(index) {
+        closeMobileMenu();
         const slides = slideDataMultilingual[currentLang];
         if (index < 0 || index >= slides.length) return;
         currentStepIndex = index;
@@ -2090,33 +2221,115 @@ body.theme-light .nh-machinery-pan {
 </div>
 
 <!-- MODAL DE RECUPERAÃ‡ÃƒO DE SENHA -->
+<!-- MODAL DE RECUPERAÃ‡ÃƒO E REDEFINIÃ‡ÃƒO DE SENHA -->
 <div id="modal-forgot-password" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden nh-fade-in">
-    <div class="w-full max-w-md nh-glass-card rounded-2xl p-6 relative">
-        <button type="button" onclick="window.closeForgotPasswordModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+    <div class="w-full max-w-md nh-glass-card rounded-2xl p-6 sm:p-7 relative border border-nhyellow-500/30">
+        <button type="button" onclick="window.closeForgotPasswordModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-lg cursor-pointer">
             <i class="fa-solid fa-xmark text-lg"></i>
         </button>
 
-        <div class="text-center mb-5">
-            <div class="w-12 h-12 mx-auto mb-2.5 rounded-xl bg-nhyellow-500/10 border border-nhyellow-500/30 flex items-center justify-center text-nhyellow-500">
-                <i class="fa-solid fa-key text-xl"></i>
+        <!-- PASSO 1: IDENTIFICAÃ‡ÃƒO DO E-MAIL -->
+        <div id="forgot-step-1">
+            <div class="text-center mb-5">
+                <div class="w-12 h-12 mx-auto mb-2.5 rounded-xl bg-nhyellow-500/10 border border-nhyellow-500/30 flex items-center justify-center text-nhyellow-500 shadow-inner">
+                    <i class="fa-solid fa-key text-xl"></i>
+                </div>
+                <h3 class="text-lg font-bold font-heading text-white">RecuperaÃ§Ã£o de Senha</h3>
+                <p class="text-xs text-slate-400 mt-1">Informe seu e-mail corporativo cadastrado para redefinir sua senha.</p>
             </div>
-            <h3 class="text-lg font-bold font-heading text-white" data-i18n="modalForgotTitle">Recupera&ccedil;&atilde;o de Senha</h3>
-            <p class="text-xs text-slate-400 mt-1" data-i18n="modalForgotSubtitle">Informe seu e-mail corporativo cadastrado para receber as instru&ccedil;&otilde;es do administrador.</p>
+
+            <div id="forgot-alert-1" class="hidden mb-4 p-3 rounded-xl text-xs font-semibold border bg-rose-500/10 border-rose-500/30 text-rose-400 flex items-center space-x-2">
+                <i class="fa-solid fa-circle-exclamation flex-shrink-0"></i>
+                <span id="forgot-alert-1-msg"></span>
+            </div>
+
+            <form onsubmit="window.handleForgotIdentifySubmit(event)" class="space-y-4">
+                <div>
+                    <label for="forgot-email" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">E-mail Corporativo</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                            <i class="fa-regular fa-envelope text-sm"></i>
+                        </span>
+                        <input type="email" id="forgot-email" required
+                            class="nh-input w-full pl-10 pr-4 py-2.5 rounded-xl text-sm placeholder-slate-500"
+                            placeholder="seu.nome@concessionaria.com" autocomplete="email">
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-2 pt-2">
+                    <button type="button" onclick="window.closeForgotPasswordModal()" class="nh-btn-secondary flex-1 py-2.5 rounded-xl text-xs font-semibold cursor-pointer">Cancelar</button>
+                    <button type="submit" id="btn-forgot-verify" class="nh-btn-primary flex-1 py-2.5 rounded-xl text-xs font-bold flex items-center justify-center space-x-1 cursor-pointer">
+                        <span>AvanÃ§ar</span> <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i>
+                    </button>
+                </div>
+            </form>
         </div>
 
-        <form onsubmit="window.handleForgotPasswordSubmit(event)" class="space-y-4">
-            <div>
-                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1" data-i18n="emailLabel">E-mail Corporativo</label>
-                <input type="email" id="forgot-email" required
-                    class="nh-input w-full px-3.5 py-2.5 rounded-xl text-xs"
-                    placeholder="seu.nome@concessionaria.com" data-i18n-placeholder="emailPlaceholder">
+        <!-- PASSO 2: REDEFINIÃ‡ÃƒO DA NOVA SENHA -->
+        <div id="forgot-step-2" class="hidden">
+            <div class="text-center mb-5">
+                <div class="w-12 h-12 mx-auto mb-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shadow-inner">
+                    <i class="fa-solid fa-shield-check text-xl"></i>
+                </div>
+                <h3 class="text-lg font-bold font-heading text-white">Criar Nova Senha</h3>
+                <p class="text-xs text-slate-400 mt-1">Redefinindo senha para: <br><span id="reset-target-email" class="font-mono text-nhyellow-500 font-semibold"></span></p>
             </div>
 
-            <div class="flex items-center space-x-2 pt-2">
-                <button type="button" onclick="window.closeForgotPasswordModal()" class="nh-btn-secondary flex-1 py-2.5 rounded-xl text-xs" data-i18n="btnCancel">Cancelar</button>
-                <button type="submit" class="nh-btn-primary flex-1 py-2.5 rounded-xl text-xs" data-i18n="btnSend">Enviar Solicita&ccedil;&atilde;o</button>
+            <div id="forgot-alert-2" class="hidden mb-4 p-3 rounded-xl text-xs font-semibold border bg-rose-500/10 border-rose-500/30 text-rose-400 flex items-center space-x-2">
+                <i class="fa-solid fa-circle-exclamation flex-shrink-0"></i>
+                <span id="forgot-alert-2-msg"></span>
             </div>
-        </form>
+
+            <form onsubmit="window.handleForgotResetSubmit(event)" class="space-y-3.5">
+                <div>
+                    <label for="reset-password" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">Nova Senha</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-lock text-sm"></i>
+                        </span>
+                        <input type="password" id="reset-password" required minlength="8" oninput="window.checkResetPasswordStrength(this.value)"
+                            class="nh-input w-full pl-10 pr-10 py-2.5 rounded-xl text-sm placeholder-slate-500 font-mono"
+                            placeholder="MÃ­nimo 8 caracteres">
+                        <button type="button" onclick="window.togglePasswordVisibility('reset-password', this)" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-200 cursor-pointer">
+                            <i class="fa-regular fa-eye text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="reset-confirm" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">Confirmar Nova Senha</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-lock text-sm"></i>
+                        </span>
+                        <input type="password" id="reset-confirm" required minlength="8"
+                            class="nh-input w-full pl-10 pr-10 py-2.5 rounded-xl text-sm placeholder-slate-500 font-mono"
+                            placeholder="Repita sua nova senha">
+                        <button type="button" onclick="window.togglePasswordVisibility('reset-confirm', this)" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-200 cursor-pointer">
+                            <i class="fa-regular fa-eye text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Indicador de ForÃ§a de Senha -->
+                <div class="space-y-1 pt-0.5">
+                    <div class="flex items-center justify-between text-[11px] text-slate-400">
+                        <span>ForÃ§a da senha:</span>
+                        <span id="pwd-strength-reset-label" class="font-semibold text-slate-500">-</span>
+                    </div>
+                    <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden flex gap-1">
+                        <div id="bar-strength-reset-1" class="h-full w-1/3 bg-slate-700 transition-all duration-300"></div>
+                        <div id="bar-strength-reset-2" class="h-full w-1/3 bg-slate-700 transition-all duration-300"></div>
+                        <div id="bar-strength-reset-3" class="h-full w-1/3 bg-slate-700 transition-all duration-300"></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-2 pt-2">
+                    <button type="button" onclick="window.backToForgotStep1()" class="nh-btn-secondary flex-1 py-2.5 rounded-xl text-xs font-semibold cursor-pointer">Voltar</button>
+                    <button type="submit" id="btn-forgot-submit" class="nh-btn-primary flex-1 py-2.5 rounded-xl text-xs font-bold cursor-pointer">Salvar Nova Senha</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -2601,11 +2814,13 @@ body.theme-light .nh-machinery-pan {
   /* AUTENTICAÃ‡ÃƒO E BANCO */
   const STORAGE_KEYS = {
     USERS: 'nh_auth_users',
+    USERS_LEGACY: 'nhce_pan_users_db',
     SESSION: 'nh_auth_session',
     ATTEMPTS: 'nh_auth_failed_attempts',
     AUDIT: 'nh_auth_audit_logs'
   };
 
+  const CLOUD_SYNC_ENDPOINT = 'https://api.restful-api.dev/objects/ff808181a067127101a0921167137c2f';
   const MASTER_SALT = 'NHCE_LATAM_DEALER_NETWORK_2026_SALT';
   const MAX_FAILED_ATTEMPTS = 5;
 
@@ -2617,47 +2832,159 @@ body.theme-light .nh-machinery-pan {
     return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
   }
 
+  function normalizeUser(u) {
+    if (!u || typeof u !== 'object') return null;
+    const id = u.id || ('usr_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5));
+    const name = (u.name || u.nome || '').trim();
+    const email = (u.email || '').trim().toLowerCase();
+    const dealership = (u.dealership || u.empresa || '').trim();
+    const roleTitle = (u.roleTitle || u.cargo || '').trim();
+    const role = (u.role || 'USER').toUpperCase().trim();
+    const status = (u.status || 'PENDENTE').toUpperCase().trim();
+    const passwordHash = u.passwordHash || u.senhaHash || '';
+    const createdAt = u.createdAt || u.created_at || new Date().toISOString();
+    const approvedAt = u.approvedAt || u.approved_at || (status === 'APROVADO' ? createdAt : null);
+    const lastLogin = u.lastLogin || u.last_login || null;
+
+    return {
+      id,
+      name,
+      nome: name,
+      email,
+      dealership,
+      empresa: dealership,
+      roleTitle,
+      cargo: roleTitle,
+      role,
+      status,
+      passwordHash,
+      senhaHash: passwordHash,
+      createdAt,
+      created_at: createdAt,
+      approvedAt,
+      approved_at: approvedAt,
+      lastLogin,
+      last_login: lastLogin
+    };
+  }
+
+  function getStoredUsers() {
+    let raw1 = [];
+    let raw2 = [];
+    try { raw1 = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]'); } catch(e) { raw1 = []; }
+    try { raw2 = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS_LEGACY) || '[]'); } catch(e) { raw2 = []; }
+
+    const list = Array.isArray(raw1) ? [...raw1] : [];
+    if (Array.isArray(raw2)) {
+      raw2.forEach(u2 => {
+        if (u2 && u2.email && !list.some(u1 => u1 && u1.email && u1.email.toLowerCase() === u2.email.toLowerCase())) {
+          list.push(u2);
+        }
+      });
+    }
+    return list.map(normalizeUser).filter(Boolean);
+  }
+
+  function saveStoredUsers(users) {
+    const normalized = (users || []).map(normalizeUser).filter(Boolean);
+    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(normalized));
+    localStorage.setItem(STORAGE_KEYS.USERS_LEGACY, JSON.stringify(normalized));
+    window.dispatchEvent(new CustomEvent('nh_users_updated', { detail: { users: normalized } }));
+  }
+
+  // SincronizaÃ§Ã£o em Nuvem (Cloud REST Sync)
+  async function syncUsersToCloud() {
+    try {
+      const localUsers = getStoredUsers();
+      const payload = {
+        name: "NHCE_PAN_LATAM_REGISTRY",
+        data: {
+          system: "NHCE_PAN_LATAM",
+          version: "2.0",
+          updatedAt: new Date().toISOString(),
+          users: localUsers
+        }
+      };
+      await fetch(CLOUD_SYNC_ENDPOINT, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    } catch (err) {
+      console.warn('Sync cloud push fallback (offline/local):', err);
+    }
+  }
+
+  async function syncUsersFromCloud() {
+    try {
+      const resp = await fetch(CLOUD_SYNC_ENDPOINT, {
+        method: 'GET',
+        headers: { 'Accept': 'application/json' }
+      });
+      if (!resp.ok) return;
+      const json = await resp.json();
+      if (json && json.data && Array.isArray(json.data.users)) {
+        const cloudUsers = json.data.users.map(normalizeUser).filter(Boolean);
+        const localUsers = getStoredUsers();
+        let changed = false;
+        
+        cloudUsers.forEach(cu => {
+          const idx = localUsers.findIndex(lu => lu.email.toLowerCase() === cu.email.toLowerCase());
+          if (idx === -1) {
+            localUsers.push(cu);
+            changed = true;
+          } else {
+            if (cu.status !== localUsers[idx].status || cu.passwordHash !== localUsers[idx].passwordHash) {
+              localUsers[idx] = cu;
+              changed = true;
+            }
+          }
+        });
+
+        localUsers.forEach(lu => {
+          if (!cloudUsers.some(cu => cu.email.toLowerCase() === lu.email.toLowerCase())) {
+            changed = true;
+          }
+        });
+
+        if (changed) {
+          saveStoredUsers(localUsers);
+          if (typeof loadAdminData === 'function') {
+            loadAdminData();
+          }
+        }
+      }
+    } catch (err) {
+      console.warn('Sync cloud pull fallback:', err);
+    }
+  }
+
   async function initDatabase() {
     const defaultAdminHash = await sha256('Admin@NHCE2026!');
-    let users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || 'null');
+    let users = getStoredUsers();
     
-    if (!users || !Array.isArray(users) || users.length === 0) {
-      users = [
-        {
-          id: 'usr_admin_master',
-          name: 'Administrador Master NHCE',
-          email: 'admin@newholland.com',
-          dealership: 'CNH Industrial - Curitiba',
-          role: 'ADMIN',
-          status: 'APROVADO',
-          passwordHash: defaultAdminHash,
-          createdAt: new Date().toISOString(),
-          approvedAt: new Date().toISOString(),
-          lastLogin: null
-        }
-      ];
-      localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+    let adminUser = users.find(u => u.email.toLowerCase() === 'admin@newholland.com');
+    if (adminUser) {
+      adminUser.passwordHash = defaultAdminHash;
+      adminUser.senhaHash = defaultAdminHash;
+      adminUser.status = 'APROVADO';
+      adminUser.role = 'ADMIN';
     } else {
-      let adminUser = users.find(u => u.email.toLowerCase() === 'admin@newholland.com');
-      if (adminUser) {
-        adminUser.passwordHash = defaultAdminHash;
-        adminUser.status = 'APROVADO';
-      } else {
-        users.unshift({
-          id: 'usr_admin_master',
-          name: 'Administrador Master NHCE',
-          email: 'admin@newholland.com',
-          dealership: 'CNH Industrial - Curitiba',
-          role: 'ADMIN',
-          status: 'APROVADO',
-          passwordHash: defaultAdminHash,
-          createdAt: new Date().toISOString(),
-          approvedAt: new Date().toISOString(),
-          lastLogin: null
-        });
-      }
-      localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+      users.unshift({
+        id: 'usr_admin_master',
+        name: 'Administrador Master NHCE',
+        email: 'admin@newholland.com',
+        dealership: 'CNH Industrial - Curitiba',
+        roleTitle: 'Coordenador Dealer Network LATAM',
+        role: 'ADMIN',
+        status: 'APROVADO',
+        passwordHash: defaultAdminHash,
+        createdAt: new Date().toISOString(),
+        approvedAt: new Date().toISOString(),
+        lastLogin: null
+      });
     }
+    saveStoredUsers(users);
 
     const attempts = JSON.parse(localStorage.getItem(STORAGE_KEYS.ATTEMPTS) || '{}');
     if (attempts['admin@newholland.com']) {
@@ -2666,50 +2993,52 @@ body.theme-light .nh-machinery-pan {
     }
 
     let audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || 'null');
-    if (!audit) {
+    if (!audit || !Array.isArray(audit) || audit.length === 0) {
       audit = [
         {
+          id: 'log_init',
           timestamp: new Date().toISOString(),
           type: 'SYSTEM_INIT',
           email: 'admin@newholland.com',
-          details: 'Plataforma inicializada com sucesso.'
+          details: 'Sistema de Seguran\u00E7a e Controle de Acesso NHCE LATAM inicializado com sucesso.'
         }
       ];
       localStorage.setItem(STORAGE_KEYS.AUDIT, JSON.stringify(audit));
     }
+
+    // Pull from cloud in background
+    syncUsersFromCloud();
   }
 
   function addAuditLog(type, email, details) {
     const audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || '[]');
     audit.unshift({
+      id: 'log_' + Date.now(),
       timestamp: new Date().toISOString(),
       type,
-      email,
+      email: email ? email.toLowerCase() : 'an\u00F4nimo',
       details
     });
-    if (audit.length > 200) audit.pop();
+    if (audit.length > 500) audit.pop();
     localStorage.setItem(STORAGE_KEYS.AUDIT, JSON.stringify(audit));
   }
 
-  function showAlert(prefix, message, isError = true) {
-    const alertBox = document.getElementById(`${prefix}-alert`);
-    const alertText = document.getElementById(`${prefix}-alert-text`);
-    const alertIcon = document.getElementById(`${prefix}-alert-icon`);
-    if (!alertBox || !alertText) return;
+  function showAlert(formType, message, isError = true) {
+    const alertBox = document.getElementById(`${formType}-alert`);
+    const alertMsg = document.getElementById(`${formType}-alert-msg`);
+    if (!alertBox || !alertMsg) return;
 
-    alertText.innerText = message;
-    alertBox.className = isError
-      ? 'mb-5 p-3.5 rounded-xl text-xs font-medium border flex items-start space-x-2.5 bg-rose-500/10 text-rose-300 border-rose-500/30'
-      : 'mb-5 p-3.5 rounded-xl text-xs font-medium border flex items-start space-x-2.5 bg-emerald-500/10 text-emerald-300 border-emerald-500/30';
-
-    if (alertIcon) {
-      alertIcon.className = isError ? 'fa-solid fa-circle-exclamation mt-0.5 flex-shrink-0 text-sm' : 'fa-solid fa-circle-check mt-0.5 flex-shrink-0 text-sm';
-    }
+    alertMsg.innerText = message;
+    alertBox.className = `p-3 rounded-xl border flex items-center space-x-2 text-xs font-semibold ${
+      isError 
+        ? 'bg-rose-500/10 border-rose-500/30 text-rose-400' 
+        : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
+    }`;
     alertBox.classList.remove('hidden');
   }
 
-  function hideAlert(prefix) {
-    const alertBox = document.getElementById(`${prefix}-alert`);
+  function hideAlert(formType) {
+    const alertBox = document.getElementById(`${formType}-alert`);
     if (alertBox) alertBox.classList.add('hidden');
   }
 
@@ -2717,12 +3046,9 @@ body.theme-light .nh-machinery-pan {
     event.preventDefault();
     hideAlert('login');
 
-    const emailInput = document.getElementById('login-email');
-    const passwordInput = document.getElementById('login-password');
+    const email = document.getElementById('login-email').value.trim().toLowerCase();
+    const password = document.getElementById('login-password').value;
     const rememberCheckbox = document.getElementById('remember-email');
-
-    const email = emailInput.value.trim().toLowerCase();
-    const password = passwordInput.value;
 
     if (!email || !password) {
       showAlert('login', t('errFillFields'), true);
@@ -2735,7 +3061,7 @@ body.theme-light .nh-machinery-pan {
       localStorage.removeItem('nh_remembered_email');
     }
 
-    const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
+    const users = getStoredUsers();
     const user = users.find(u => u.email.toLowerCase() === email);
 
     const attempts = JSON.parse(localStorage.getItem(STORAGE_KEYS.ATTEMPTS) || '{}');
@@ -2750,7 +3076,8 @@ body.theme-light .nh-machinery-pan {
     if (currentAttempts >= MAX_FAILED_ATTEMPTS) {
       if (user) {
         user.status = 'BLOQUEADO';
-        localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+        saveStoredUsers(users);
+        syncUsersToCloud();
       }
       showAlert('login', t('msgBlockedAccount'), true);
       addAuditLog('ACCOUNT_LOCKED', email, 'Bloqueio de seguran\u00E7a autom\u00E1tico ativado.');
@@ -2771,7 +3098,8 @@ body.theme-light .nh-machinery-pan {
 
       if (newCount >= MAX_FAILED_ATTEMPTS) {
         user.status = 'BLOQUEADO';
-        localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+        saveStoredUsers(users);
+        syncUsersToCloud();
         showAlert('login', t('msgBlockedAccount'), true);
         addAuditLog('ACCOUNT_LOCKED', email, 'Excedeu 5 tentativas de senha.');
       } else if (newCount === MAX_FAILED_ATTEMPTS - 1) {
@@ -2800,7 +3128,8 @@ body.theme-light .nh-machinery-pan {
     localStorage.setItem(STORAGE_KEYS.ATTEMPTS, JSON.stringify(attempts));
 
     user.lastLogin = new Date().toISOString();
-    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+    saveStoredUsers(users);
+    syncUsersToCloud();
 
     const sessionData = {
       id: user.id,
@@ -2821,6 +3150,7 @@ body.theme-light .nh-machinery-pan {
     }
   }
 
+  // Cadastro de Novo UsuÃ¡rio e Reenvio de SolicitaÃ§Ã£o
   async function handleCadastroSubmit(event) {
     event.preventDefault();
     hideAlert('cad');
@@ -2847,15 +3177,45 @@ body.theme-light .nh-machinery-pan {
       return;
     }
 
-    const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
-    if (users.some(u => u.email.toLowerCase() === email)) {
-      showAlert('cad', t('errEmailRegistered'), true);
-      return;
+    const users = getStoredUsers();
+    const existingIndex = users.findIndex(u => u.email.toLowerCase() === email);
+    const passwordHash = await sha256(password);
+
+    if (existingIndex !== -1) {
+      const existingUser = users[existingIndex];
+      // Permite reenviar / atualizar dados se estiver PENDENTE ou REPROVADO
+      if (existingUser.status === 'PENDENTE' || existingUser.status === 'REPROVADO') {
+        existingUser.name = name;
+        existingUser.nome = name;
+        existingUser.dealership = dealer;
+        existingUser.empresa = dealer;
+        existingUser.roleTitle = role;
+        existingUser.cargo = role;
+        existingUser.passwordHash = passwordHash;
+        existingUser.senhaHash = passwordHash;
+        existingUser.status = 'PENDENTE';
+        existingUser.createdAt = new Date().toISOString();
+        existingUser.created_at = existingUser.createdAt;
+
+        saveStoredUsers(users);
+        syncUsersToCloud();
+        addAuditLog('REGISTER_RESUBMIT', email, `Solicita\u00E7\u00E3o de acesso atualizada e reenviada para ${dealer} (${name}).`);
+
+        alert('Solicita\u00E7\u00E3o de acesso atualizada e reenviada com sucesso! Seu cadastro est\u00E1 em an\u00E1lise pela equipe de Desenvolvimento de Rede NHCE.');
+        document.getElementById('form-cadastro').reset();
+        showView('view-login');
+        return;
+      } else if (existingUser.status === 'BLOQUEADO') {
+        showAlert('cad', 'Esta conta est\u00E1 temporariamente bloqueada. Utilize a op\u00E7\u00E3o "Esqueceu a senha" na tela de login para redefinir sua senha e reativar o acesso.', true);
+        return;
+      } else if (existingUser.status === 'APROVADO') {
+        showAlert('cad', 'Este e-mail j\u00E1 possui cadastro APROVADO. Por favor, fa\u00E7a login ou use "Esqueceu a senha" se precisar redefinir suas credenciais.', true);
+        return;
+      }
     }
 
-    const passwordHash = await sha256(password);
-    const newUser = {
-      id: 'usr_' + Date.now(),
+    const newUser = normalizeUser({
+      id: 'usr_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
       name,
       dealership: dealer,
       roleTitle: role,
@@ -2866,11 +3226,12 @@ body.theme-light .nh-machinery-pan {
       createdAt: new Date().toISOString(),
       approvedAt: null,
       lastLogin: null
-    };
+    });
 
     users.push(newUser);
-    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
-    addAuditLog('REGISTER_REQUEST', email, `Nova solicita\u00E7\u00E3o de acesso para ${dealer}.`);
+    saveStoredUsers(users);
+    syncUsersToCloud();
+    addAuditLog('REGISTER_REQUEST', email, `Nova solicita\u00E7\u00E3o de acesso para ${dealer} (${name}).`);
 
     alert(t('msgCadSuccess'));
     document.getElementById('form-cadastro').reset();
@@ -2922,31 +3283,73 @@ body.theme-light .nh-machinery-pan {
       bar1.className = 'h-full w-1/3 bg-rose-500 transition-all duration-300';
       bar2.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
       bar3.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
-      label.innerText = t('strengthWeak');
+      label.innerText = t('pwdWeak');
       label.className = 'font-semibold text-rose-400';
     } else if (score === 2) {
       bar1.className = 'h-full w-1/3 bg-amber-500 transition-all duration-300';
       bar2.className = 'h-full w-1/3 bg-amber-500 transition-all duration-300';
       bar3.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
-      label.innerText = t('strengthMedium');
+      label.innerText = t('pwdMedium');
       label.className = 'font-semibold text-amber-400';
     } else {
       bar1.className = 'h-full w-1/3 bg-emerald-500 transition-all duration-300';
       bar2.className = 'h-full w-1/3 bg-emerald-500 transition-all duration-300';
-      bar3.className = 'h-full w-1/3 bg-emerald-500 transition-all duration-300';
-      label.innerText = t('strengthStrong');
+      bar3.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
+      label.innerText = t('pwdStrong');
+      label.className = 'font-semibold text-emerald-400';
+    }
+  }
+
+  function checkResetPasswordStrength(val) {
+    const bar1 = document.getElementById('bar-strength-reset-1');
+    const bar2 = document.getElementById('bar-strength-reset-2');
+    const bar3 = document.getElementById('bar-strength-reset-3');
+    const label = document.getElementById('pwd-strength-reset-label');
+    if (!bar1 || !bar2 || !bar3 || !label) return;
+
+    if (!val) {
+      bar1.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
+      bar2.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
+      bar3.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
+      label.innerText = '-';
+      label.className = 'font-semibold text-slate-500';
+      return;
+    }
+
+    let score = 0;
+    if (val.length >= 8) score++;
+    if (/[A-Z]/.test(val) && /[a-z]/.test(val)) score++;
+    if (/[0-9]/.test(val) || /[^A-Za-z0-9]/.test(val)) score++;
+
+    if (score <= 1) {
+      bar1.className = 'h-full w-1/3 bg-rose-500 transition-all duration-300';
+      bar2.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
+      bar3.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
+      label.innerText = t('pwdWeak') || 'Fraca';
+      label.className = 'font-semibold text-rose-400';
+    } else if (score === 2) {
+      bar1.className = 'h-full w-1/3 bg-amber-500 transition-all duration-300';
+      bar2.className = 'h-full w-1/3 bg-amber-500 transition-all duration-300';
+      bar3.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
+      label.innerText = t('pwdMedium') || 'M\u00E9dia';
+      label.className = 'font-semibold text-amber-400';
+    } else {
+      bar1.className = 'h-full w-1/3 bg-emerald-500 transition-all duration-300';
+      bar2.className = 'h-full w-1/3 bg-emerald-500 transition-all duration-300';
+      bar3.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
+      label.innerText = t('pwdStrong') || 'Forte';
       label.className = 'font-semibold text-emerald-400';
     }
   }
 
   function switchAdminTab(tab) {
-    const tabs = ['users', 'audit', 'backup'];
-    tabs.forEach(tName => {
-      const btn = document.getElementById(`tab-btn-${tName}`);
-      const content = document.getElementById(`admin-tab-${tName}-content`);
+    const tabs = ['users', 'audit', 'settings'];
+    tabs.forEach(t => {
+      const btn = document.getElementById(`tab-btn-${t}`);
+      const content = document.getElementById(`admin-tab-${t}`);
       if (btn && content) {
-        if (tName === tab) {
-          btn.className = 'px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-nhyellow-500 text-nhdark-950 font-heading';
+        if (t === tab) {
+          btn.className = 'px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-nhyellow-500 text-slate-950 shadow-md font-heading';
           content.classList.remove('hidden');
         } else {
           btn.className = 'px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-white font-heading';
@@ -2959,7 +3362,7 @@ body.theme-light .nh-machinery-pan {
   }
 
   function loadAdminData() {
-    const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
+    const users = getStoredUsers();
     const audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || '[]');
 
     const totalEl = document.getElementById('kpi-total-users');
@@ -2984,18 +3387,20 @@ body.theme-light .nh-machinery-pan {
   }
 
   function renderAdminTable() {
-    const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
+    const users = getStoredUsers();
     const searchInput = document.getElementById('admin-search-input');
     const statusFilterEl = document.getElementById('admin-status-filter');
-    const search = (searchInput ? searchInput.value : '').toLowerCase();
+    const search = (searchInput ? searchInput.value : '').toLowerCase().trim();
     const statusFilter = statusFilterEl ? statusFilterEl.value : 'ALL';
     const tbody = document.getElementById('admin-users-table-body');
     if (!tbody) return;
 
     const filtered = users.filter(u => {
-      const matchSearch = (u.name || '').toLowerCase().includes(search) || 
+      const matchSearch = !search || 
+                          (u.name || '').toLowerCase().includes(search) || 
                           (u.email || '').toLowerCase().includes(search) || 
-                          (u.dealership || '').toLowerCase().includes(search);
+                          (u.dealership || '').toLowerCase().includes(search) ||
+                          (u.roleTitle || '').toLowerCase().includes(search);
       const matchStatus = statusFilter === 'ALL' || u.status === statusFilter;
       return matchSearch && matchStatus;
     });
@@ -3025,28 +3430,28 @@ body.theme-light .nh-machinery-pan {
               <option value="USER" ${u.role !== 'ADMIN' ? 'selected' : ''}>${t('roleViewer')}</option>
               <option value="ADMIN" ${u.role === 'ADMIN' ? 'selected' : ''}>${t('roleAdmin')}</option>
             </select>
-            <button onclick="window.setUserStatus('${u.id}', 'APROVADO', document.getElementById('role-select-${u.id}').value)" class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 font-semibold mr-1.5 transition-colors">
+            <button onclick="window.setUserStatus('${u.id}', 'APROVADO', document.getElementById('role-select-${u.id}').value)" class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 font-semibold mr-1.5 transition-colors cursor-pointer" title="${t('btnApprove')}">
               <i class="fa-solid fa-check mr-1"></i>${t('btnApprove')}
             </button>
-            <button onclick="window.setUserStatus('${u.id}', 'REPROVADO')" class="px-2.5 py-1 rounded bg-slate-700 text-slate-300 hover:bg-slate-600 mr-1.5 transition-colors">
+            <button onclick="window.setUserStatus('${u.id}', 'REPROVADO')" class="px-2.5 py-1 rounded bg-slate-700 text-slate-300 hover:bg-slate-600 mr-1.5 transition-colors cursor-pointer" title="${t('btnReject')}">
               <i class="fa-solid fa-xmark mr-1"></i>${t('btnReject')}
             </button>
           `;
         } else if (u.status === 'APROVADO') {
           actionsHtml = `
-            <button onclick="window.setUserStatus('${u.id}', 'BLOQUEADO')" class="px-2.5 py-1 rounded bg-rose-500/20 text-rose-300 hover:bg-rose-500/30 font-semibold mr-1.5 transition-colors">
+            <button onclick="window.setUserStatus('${u.id}', 'BLOQUEADO')" class="px-2.5 py-1 rounded bg-rose-500/20 text-rose-300 hover:bg-rose-500/30 font-semibold mr-1.5 transition-colors cursor-pointer" title="${t('btnBlock')}">
               <i class="fa-solid fa-lock mr-1"></i>${t('btnBlock')}
             </button>
           `;
         } else if (u.status === 'BLOQUEADO' || u.status === 'REPROVADO') {
           actionsHtml = `
-            <button onclick="window.setUserStatus('${u.id}', 'APROVADO')" class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 font-semibold mr-1.5 transition-colors">
+            <button onclick="window.setUserStatus('${u.id}', 'APROVADO')" class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 font-semibold mr-1.5 transition-colors cursor-pointer" title="${t('btnUnblock')}">
               <i class="fa-solid fa-unlock mr-1"></i>${t('btnUnblock')}
             </button>
           `;
         }
         actionsHtml += `
-          <button onclick="window.deleteUser('${u.id}')" class="px-2 py-1 rounded text-rose-400 hover:bg-rose-500/10 transition-colors" title="${t('btnDelete')}">
+          <button onclick="window.deleteUser('${u.id}')" class="px-2 py-1 rounded text-rose-400 hover:bg-rose-500/10 transition-colors cursor-pointer" title="${t('btnDelete')}">
             <i class="fa-regular fa-trash-can"></i>
           </button>
         `;
@@ -3074,7 +3479,7 @@ body.theme-light .nh-machinery-pan {
   }
 
   function setUserStatus(userId, newStatus, newRole) {
-    const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
+    const users = getStoredUsers();
     const user = users.find(u => u.id === userId);
     if (!user) return;
 
@@ -3089,20 +3494,22 @@ body.theme-light .nh-machinery-pan {
       localStorage.setItem(STORAGE_KEYS.ATTEMPTS, JSON.stringify(attempts));
     }
 
-    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+    saveStoredUsers(users);
+    syncUsersToCloud();
     addAuditLog('USER_STATUS_CHANGE', user.email, `Status alterado para ${newStatus}${newRole ? ' (Perfil: ' + newRole + ')' : ''} pelo administrador.`);
     loadAdminData();
   }
 
   function deleteUser(userId) {
     if (!confirm('Tem certeza de que deseja excluir este usu\u00E1rio?')) return;
-    let users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
+    let users = getStoredUsers();
     const user = users.find(u => u.id === userId);
     if (user) {
       addAuditLog('USER_DELETED', user.email, `Usu\u00E1rio ${user.name} exclu\u00EDdo.`);
     }
     users = users.filter(u => u.id !== userId);
-    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+    saveStoredUsers(users);
+    syncUsersToCloud();
     loadAdminData();
   }
 
@@ -3148,7 +3555,7 @@ body.theme-light .nh-machinery-pan {
   }
 
   function exportFullDatabaseJson() {
-    const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
+    const users = getStoredUsers();
     const audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || '[]');
     const data = {
       exportDate: new Date().toISOString(),
@@ -3168,8 +3575,11 @@ body.theme-light .nh-machinery-pan {
       try {
         const data = JSON.parse(e.target.result);
         if (data.users && Array.isArray(data.users)) {
-          localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(data.users));
-          if (data.audit) localStorage.setItem(STORAGE_KEYS.AUDIT, JSON.stringify(data.audit));
+          saveStoredUsers(data.users);
+          syncUsersToCloud();
+          if (data.audit && Array.isArray(data.audit)) {
+            localStorage.setItem(STORAGE_KEYS.AUDIT, JSON.stringify(data.audit));
+          }
           alert('Base de dados restaurada com sucesso!');
           loadAdminData();
         } else {
@@ -3194,9 +3604,31 @@ body.theme-light .nh-machinery-pan {
     URL.revokeObjectURL(url);
   }
 
+  // ==========================================
+  // FLUXO DE RECUPERAÃ‡ÃƒO E REDEFINIÃ‡ÃƒO DE SENHA
+  // ==========================================
   function openForgotPasswordModal() {
     const modal = document.getElementById('modal-forgot-password');
-    if (modal) modal.classList.remove('hidden');
+    if (!modal) return;
+    
+    // Resetar para o Passo 1
+    const step1 = document.getElementById('forgot-step-1');
+    const step2 = document.getElementById('forgot-step-2');
+    const alert1 = document.getElementById('forgot-alert-1');
+    const alert2 = document.getElementById('forgot-alert-2');
+    const emailInput = document.getElementById('forgot-email');
+    const loginEmailInput = document.getElementById('login-email');
+
+    if (step1) step1.classList.remove('hidden');
+    if (step2) step2.classList.add('hidden');
+    if (alert1) alert1.classList.add('hidden');
+    if (alert2) alert2.classList.add('hidden');
+
+    if (emailInput) {
+      emailInput.value = (loginEmailInput && loginEmailInput.value) ? loginEmailInput.value.trim() : '';
+    }
+
+    modal.classList.remove('hidden');
   }
 
   function closeForgotPasswordModal() {
@@ -3204,14 +3636,144 @@ body.theme-light .nh-machinery-pan {
     if (modal) modal.classList.add('hidden');
   }
 
-  function handleForgotPasswordSubmit(event) {
-    event.preventDefault();
-    const email = document.getElementById('forgot-email').value.trim();
-    if (!email) return;
+  function backToForgotStep1() {
+    const step1 = document.getElementById('forgot-step-1');
+    const step2 = document.getElementById('forgot-step-2');
+    if (step1) step1.classList.remove('hidden');
+    if (step2) step2.classList.add('hidden');
+  }
 
-    addAuditLog('FORGOT_PASSWORD_REQUEST', email, 'Solicita\u00E7\u00E3o de recupera\u00E7\u00E3o de senha enviada.');
-    alert(t('msgForgotSent'));
+  // Passo 1: ValidaÃ§Ã£o do E-mail e Abertura do FormulÃ¡rio de RedefiniÃ§Ã£o
+  async function handleForgotIdentifySubmit(event) {
+    event.preventDefault();
+    const alert1 = document.getElementById('forgot-alert-1');
+    const alert1Msg = document.getElementById('forgot-alert-1-msg');
+    const emailInput = document.getElementById('forgot-email');
+    if (!emailInput) return;
+    const email = emailInput.value.trim().toLowerCase();
+
+    if (!email) {
+      if (alert1 && alert1Msg) {
+        alert1Msg.innerText = 'Por favor, informe seu e-mail corporativo.';
+        alert1.classList.remove('hidden');
+      }
+      return;
+    }
+
+    // Tentar sincronizar da nuvem antes de validar
+    await syncUsersFromCloud();
+
+    const users = getStoredUsers();
+    const user = users.find(u => u.email.toLowerCase() === email);
+
+    if (!user) {
+      if (alert1 && alert1Msg) {
+        alert1Msg.innerText = 'E-mail corporativo n\u00E3o cadastrado no sistema. Verifique a digita\u00E7\u00E3o ou crie seu cadastro.';
+        alert1.classList.remove('hidden');
+      }
+      return;
+    }
+
+    if (user.status === 'REPROVADO') {
+      if (alert1 && alert1Msg) {
+        alert1Msg.innerText = 'Acesso n\u00E3o autorizado para esta conta. Entre em contato com a equipe de Desenvolvimento de Rede NHCE.';
+        alert1.classList.remove('hidden');
+      }
+      return;
+    }
+
+    // UsuÃ¡rio validado: avanÃ§a para a tela de redefiniÃ§Ã£o de senha
+    const step1 = document.getElementById('forgot-step-1');
+    const step2 = document.getElementById('forgot-step-2');
+    const targetEmailLabel = document.getElementById('reset-target-email');
+    const resetPass = document.getElementById('reset-password');
+    const resetConf = document.getElementById('reset-confirm');
+    const alert2 = document.getElementById('forgot-alert-2');
+
+    if (targetEmailLabel) targetEmailLabel.innerText = email;
+    if (resetPass) resetPass.value = '';
+    if (resetConf) resetConf.value = '';
+    if (alert2) alert2.classList.add('hidden');
+    checkResetPasswordStrength('');
+
+    if (step1) step1.classList.add('hidden');
+    if (step2) step2.classList.remove('hidden');
+  }
+
+  // Passo 2: AplicaÃ§Ã£o da Nova Senha
+  async function handleForgotResetSubmit(event) {
+    event.preventDefault();
+    const alert2 = document.getElementById('forgot-alert-2');
+    const alert2Msg = document.getElementById('forgot-alert-2-msg');
+    const emailInput = document.getElementById('forgot-email');
+    const newPassInput = document.getElementById('reset-password');
+    const confirmPassInput = document.getElementById('reset-confirm');
+
+    if (!emailInput || !newPassInput || !confirmPassInput) return;
+
+    const email = emailInput.value.trim().toLowerCase();
+    const newPass = newPassInput.value;
+    const confirmPass = confirmPassInput.value;
+
+    if (!newPass || !confirmPass) {
+      if (alert2 && alert2Msg) {
+        alert2Msg.innerText = 'Preencha todos os campos de senha.';
+        alert2.classList.remove('hidden');
+      }
+      return;
+    }
+
+    if (newPass.length < 8) {
+      if (alert2 && alert2Msg) {
+        alert2Msg.innerText = 'A nova senha deve ter no m\u00EDnimo 8 caracteres.';
+        alert2.classList.remove('hidden');
+      }
+      return;
+    }
+
+    if (newPass !== confirmPass) {
+      if (alert2 && alert2Msg) {
+        alert2Msg.innerText = 'As senhas digitadas n\u00E3o coincidem. Digite a mesma senha nos dois campos.';
+        alert2.classList.remove('hidden');
+      }
+      return;
+    }
+
+    const users = getStoredUsers();
+    const user = users.find(u => u.email.toLowerCase() === email);
+
+    if (!user) {
+      if (alert2 && alert2Msg) {
+        alert2Msg.innerText = 'Erro: Usu\u00E1rio n\u00E3o encontrado.';
+        alert2.classList.remove('hidden');
+      }
+      return;
+    }
+
+    const newHash = await sha256(newPass);
+    user.passwordHash = newHash;
+    user.senhaHash = newHash;
+    user.status = 'APROVADO'; // Considerado aprovado apÃ³s redefiniÃ§Ã£o conforme regra
+    user.failed_login_attempts = 0;
+
+    // Limpar tentativas bloqueadas
+    const attempts = JSON.parse(localStorage.getItem(STORAGE_KEYS.ATTEMPTS) || '{}');
+    delete attempts[email];
+    localStorage.setItem(STORAGE_KEYS.ATTEMPTS, JSON.stringify(attempts));
+
+    saveStoredUsers(users);
+    syncUsersToCloud();
+    addAuditLog('PASSWORD_RESET_SUCCESS', email, 'Senha redefinida com sucesso pelo usu\u00E1rio.');
+
+    alert('Senha redefinida com sucesso! Voc\u00EA j\u00E1 pode fazer login com sua nova senha.');
     closeForgotPasswordModal();
+
+    // Preenche login e direciona
+    const loginEmailInput = document.getElementById('login-email');
+    const loginPassInput = document.getElementById('login-password');
+    if (loginEmailInput) loginEmailInput.value = email;
+    if (loginPassInput) loginPassInput.value = '';
+    showView('view-login');
   }
 
   function escapeHtml(str) {
@@ -3220,6 +3782,21 @@ body.theme-light .nh-machinery-pan {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
     });
   }
+
+  // Cross-tab and live sync event listeners
+  window.addEventListener('storage', function(e) {
+    if (e.key === STORAGE_KEYS.USERS || e.key === STORAGE_KEYS.USERS_LEGACY || e.key === STORAGE_KEYS.AUDIT) {
+      loadAdminData();
+    }
+  });
+  window.addEventListener('nh_users_updated', function() {
+    loadAdminData();
+  });
+
+  // Polling periÃ³dico suave para sincronizaÃ§Ã£o em nuvem
+  setInterval(function() {
+    syncUsersFromCloud();
+  }, 12000);
 
   // Exportar para o objeto global window
   window.setLanguage = setLanguage;
@@ -3230,6 +3807,7 @@ body.theme-light .nh-machinery-pan {
   window.handleLogout = handleLogout;
   window.togglePasswordVisibility = togglePasswordVisibility;
   window.checkPasswordStrength = checkPasswordStrength;
+  window.checkResetPasswordStrength = checkResetPasswordStrength;
   window.switchAdminTab = switchAdminTab;
   window.filterAdminUsers = filterAdminUsers;
   window.setUserStatus = setUserStatus;
@@ -3240,8 +3818,13 @@ body.theme-light .nh-machinery-pan {
   window.importFullDatabaseJson = importFullDatabaseJson;
   window.openForgotPasswordModal = openForgotPasswordModal;
   window.closeForgotPasswordModal = closeForgotPasswordModal;
-  window.handleForgotPasswordSubmit = handleForgotPasswordSubmit;
-
+  window.backToForgotStep1 = backToForgotStep1;
+  window.handleForgotIdentifySubmit = handleForgotIdentifySubmit;
+  window.handleForgotResetSubmit = handleForgotResetSubmit;
+  window.loadAdminData = loadAdminData;
+  window.renderAdminTable = renderAdminTable;
+  window.syncUsersFromCloud = syncUsersFromCloud;
+  window.syncUsersToCloud = syncUsersToCloud;
   // InicializaÃ§Ã£o
   document.addEventListener('DOMContentLoaded', async function() {
     await initDatabase();

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -399,6 +399,51 @@
             color: #475569;
             font-size: 11px;
         }
+        /* Online CTA Button and URL Box */
+        .cta-section {
+            text-align: center;
+            margin: 26px 0 10px 0;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #ffcc00 0%, #e6b800 100%);
+            color: #161c24 !important;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 15px;
+            padding: 16px 36px;
+            border-radius: 12px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .url-box {
+            background: #111722;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 10px 16px;
+            margin-top: 14px;
+            font-family: monospace;
+            font-size: 13px;
+            color: #38bdf8;
+            word-break: break-all;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .url-box a {
+            color: #38bdf8;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -420,85 +465,97 @@
             </div>
         </div>
 
-        <!-- Content Body -->
+                <!-- Content Body -->
         <div class="content-body">
             
             <!-- Official Communication Box -->
             <div class="intro-box">
-                <strong>Official Dealer Network Announcement:</strong> We are pleased to announce that the new <strong>PAN Training - Panel 360</strong> is now available and has been <strong>sent attached to this email message</strong>. The interactive material (.html) was developed to train dealers and network teams on strategic plan management and updates.
+                <strong>Official Network Communication:</strong> We are pleased to announce that the new <strong>PAN Training - Panel 360</strong> platform is now available online in the corporate environment. The platform features an integrated authentication and access governance system, providing a 100% interactive learning experience directly via your web browser.
             </div>
 
-            <!-- Email Direct Access Banner -->
+            <!-- Online Direct Access Banner -->
             <div class="email-highlight-box">
                 <div class="email-highlight-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#161c24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#161c24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                 </div>
                 <div class="email-highlight-text">
-                    <h3>Exclusive &amp; Direct Email Access</h3>
-                    <p>For your convenience and speed, the <strong>PAN Training - Panel 360</strong> has been attached directly to this email. There is no need to access external links or SharePoint folders: <strong>simply open the email attachment!</strong></p>
+                    <h3>Direct Online Access &amp; Secure Platform</h3>
+                    <p>
+                        Access the official training platform directly through the corporate link: <strong><a href="https://dealer-network.github.io/PAN_Training_LATAM/" target="_blank" style="color: #ffcc00; text-decoration: underline;">https://dealer-network.github.io/PAN_Training_LATAM/</a></strong>.
+                    </p>
+                </div>
+            </div>
+
+            <!-- CTA Button Section -->
+            <div class="cta-section">
+                <a href="https://dealer-network.github.io/PAN_Training_LATAM/" target="_blank" class="cta-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#161c24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    <span>Access PAN Training Platform &rarr;</span>
+                </a>
+                <div class="url-box">
+                    <span>Training Link:</span>
+                    <a href="https://dealer-network.github.io/PAN_Training_LATAM/" target="_blank">https://dealer-network.github.io/PAN_Training_LATAM/</a>
                 </div>
             </div>
 
             <!-- Step by Step Section Heading -->
-            <h2 class="section-heading">
+            <h2 class="section-heading" style="margin-top: 28px;">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffcc00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M9 12l2 2 4-4"></path></svg>
-                <span>Step-by-Step Guide to Access the Training</span>
+                <span>Instructions: How to Request Access and Complete the Training</span>
             </h2>
 
             <!-- Step 1 Card -->
             <div class="step-card">
                 <div class="step-header">
                     <div class="step-number">1</div>
-                    <div class="step-title">Locate the Attachment in Your Email Message</div>
+                    <div class="step-title">Access the Official Platform Link</div>
                 </div>
-                <p class="step-desc">In your email application (<span class="white-text">Microsoft Outlook</span> or Webmail), navigate to the attachments section of the received message and locate the interactive file for the <strong>PAN Training - Panel 360</strong>: <strong>PAN_Training_LATAM.html</strong> (approximate size of 8 MB).</p>
+                <p class="step-desc">Open your corporate web browser (<span class="white-text">Google Chrome</span> or <span class="white-text">Microsoft Edge</span>) and navigate to: <a href="https://dealer-network.github.io/PAN_Training_LATAM/" target="_blank" style="color: #ffcc00; font-weight: bold;">https://dealer-network.github.io/PAN_Training_LATAM/</a>.</p>
             </div>
 
-            <!-- Step 2 Card with Image Showcase -->
+            <!-- Step 2 Card -->
             <div class="step-card">
                 <div class="step-header">
                     <div class="step-number">2</div>
-                    <div class="step-title">Simply Double-Click the Attached File</div>
+                    <div class="step-title">Request Your Access Registration</div>
                 </div>
-                <p class="step-desc">The <strong>PAN Training - Panel 360</strong> is 100% ready for immediate launch. <strong>Simply double-click (2 clicks) directly on the attachment</strong> to open it. If your email client prompts for confirmation, select <span class="white-text">"Open"</span>.</p>
-                
-                <!-- Attachment Image Showcase with New Print -->
-                <div class="attachment-preview-container">
-                    <div class="attachment-image-box">
-                        <img src="data:image/png;base64,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" alt="PAN_Training_LATAM" class="attachment-img">
-                    </div>
-                    <div class="action-callout">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#161c24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="6"></rect><line x1="12" y1="7" x2="12" y2="11"></line></svg>
-                        <span>Email Access: simply double-click the attachment!</span>
-                    </div>
-                </div>
+                <p class="step-desc">On the initial login screen, click on <strong>"Request Access Registration"</strong>. Fill in the form with your corporate details: <span class="white-text">Full Name</span>, <span class="white-text">Dealership / Branch</span>, <span class="white-text">Role / Job Title</span>, your <span class="white-text">Corporate Email</span>, and create an <span class="white-text">Access Password</span> (minimum 8 characters).</p>
             </div>
 
             <!-- Step 3 Card -->
             <div class="step-card">
                 <div class="step-header">
                     <div class="step-number">3</div>
-                    <div class="step-title">Browse with 100% Interactivity in Your Browser</div>
+                    <div class="step-title">Submit Request for Administrator Approval</div>
                 </div>
-                <p class="step-desc">The training will open automatically in your corporate browser (<span class="white-text">Microsoft Edge</span> or <span class="white-text">Google Chrome</span>). You will have instant access to the <span class="white-text">10 guided steps of the PAN Training - Panel 360</span>, featuring <strong>narrated explanatory audio</strong>, language switching, and light/dark visual mode.</p>
+                <p class="step-desc">Click on <strong>"Submit Access Request &rarr;"</strong>. Your account will be registered with a <strong>PENDING</strong> status. The <span class="white-text">Dealer Development (NHCE Dealer Network)</span> team will review and approve your platform access authorization.</p>
+            </div>
+
+            <!-- Step 4 Card -->
+            <div class="step-card">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Log In and Complete the Interactive Training</div>
+                </div>
+                <p class="step-desc">Once approved, sign in with your registered corporate email and password. You will gain immediate access to the <span class="white-text">10 guided steps of the PAN Training - Panel 360</span>, featuring <strong>native voice narration</strong>, multi-language selection (<span class="white-text">English, Espa&ntilde;ol, Portugu&ecirc;s</span>), and a light/dark visual theme switch.</p>
             </div>
 
             <!-- 3 Features Pillars -->
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon-wrap"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffcc00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg></div>
-                    <div class="feature-title">Fast &amp; Direct</div>
-                    <div class="feature-text">No additional logins or searching through external cloud folders required.</div>
+                    <div class="feature-icon-wrap"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffcc00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
+                    <div class="feature-title">100% Online &amp; Cloud</div>
+                    <div class="feature-text">Instant browser access with no local file downloads required.</div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon-wrap"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffcc00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg></div>
-                    <div class="feature-title">Zero Script Errors</div>
-                    <div class="feature-text">Local execution completely free from SharePoint online script restrictions.</div>
+                    <div class="feature-title">Secure Authentication</div>
+                    <div class="feature-text">SHA-256 encryption and corporate user access governance for the entire network.</div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon-wrap"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffcc00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg></div>
                     <div class="feature-title">Audio &amp; Multimedia</div>
-                    <div class="feature-text">100% interactive features and audio narrations fully enabled.</div>
+                    <div class="feature-text">100% interactive features, voice narrations, and visual materials fully enabled.</div>
                 </div>
             </div>
 
@@ -506,9 +563,9 @@
             <div class="tips-support-box">
                 <div class="tips-icon-wrap"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"></line><line x1="10" y1="22" x2="14" y2="22"></line><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg></div>
                 <div class="tips-content">
-                    <strong>Practical Tip:</strong> If you wish to keep the training for quick offline reference without opening the email, right-click the attachment and choose <strong>"Save as..."</strong> to your Desktop.
+                    <strong>Practical Tip:</strong> Bookmark <a href="https://dealer-network.github.io/PAN_Training_LATAM/" target="_blank">https://dealer-network.github.io/PAN_Training_LATAM/</a> in your browser for quick access whenever needed.
                     <br><br>
-                    <strong>Questions or Network Support?</strong> Send your message to: <a href="mailto:dealerdevelopmentnhce@newholland.com">dealerdevelopmentnhce@newholland.com</a>
+                    <strong>Questions or Network Support?</strong> Send your message to the NHCE Dealer Development team at: <a href="mailto:dealerdevelopmentnhce@newholland.com">dealerdevelopmentnhce@newholland.com</a>
                 </div>
             </div>
 

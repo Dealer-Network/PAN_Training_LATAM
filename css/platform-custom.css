@@ -1,0 +1,199 @@
+/* ==========================================================================
+   PLATAFORMA CORPORATIVA NEW HOLLAND CONSTRUCTION (LATAM)
+   Estilos Compartilhados: Login, Cadastro, Painel ADM e Guardião de Acesso
+   ========================================================================== */
+
+:root {
+    --nh-yellow: #FFCC00;
+    --nh-yellow-hover: #E6B800;
+    --nh-yellow-light: #FFE066;
+    --nh-dark-bg: #070A0F;
+    --nh-dark-surface: #0B0F17;
+    --nh-dark-card: #11161F;
+    --nh-dark-border: #1E293B;
+    --nh-text-primary: #F8FAFC;
+    --nh-text-secondary: #94A3B8;
+    --nh-text-muted: #64748B;
+    --nh-status-pending: #F59E0B;
+    --nh-status-approved: #10B981;
+    --nh-status-blocked: #EF4444;
+    --nh-status-rejected: #6B7280;
+}
+
+/* Reset e Tipografia */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--nh-dark-bg);
+    color: var(--nh-text-primary);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+/* Gradientes e Fundos */
+.nh-bg-grid {
+    background-color: var(--nh-dark-bg);
+    background-image: 
+        radial-gradient(circle at 50% 0%, rgba(255, 204, 0, 0.08) 0%, transparent 60%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+}
+
+/* Efeito Vidro / Glassmorphism */
+.nh-glass-card {
+    background: rgba(11, 15, 23, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 204, 0, 0.2);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 204, 0, 0.05);
+}
+
+.nh-glass-card-subtle {
+    background: rgba(17, 22, 31, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--nh-dark-border);
+}
+
+/* Inputs Corporativos */
+.nh-input {
+    background-color: rgba(7, 10, 15, 0.8);
+    border: 1px solid var(--nh-dark-border);
+    color: var(--nh-text-primary);
+    transition: all 0.2s ease;
+}
+
+.nh-input:focus {
+    border-color: var(--nh-yellow);
+    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.15);
+    outline: none;
+    background-color: rgba(11, 15, 23, 0.95);
+}
+
+/* Botões New Holland */
+.nh-btn-primary {
+    background: linear-gradient(135deg, var(--nh-yellow) 0%, var(--nh-yellow-hover) 100%);
+    color: #070A0F;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(255, 204, 0, 0.25);
+}
+
+.nh-btn-primary:hover {
+    background: linear-gradient(135deg, var(--nh-yellow-light) 0%, var(--nh-yellow) 100%);
+    box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4);
+    transform: translateY(-1px);
+}
+
+.nh-btn-primary:active {
+    transform: translateY(0);
+}
+
+.nh-btn-secondary {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid var(--nh-dark-border);
+    color: var(--nh-text-primary);
+    transition: all 0.2s ease;
+}
+
+.nh-btn-secondary:hover {
+    background: rgba(51, 65, 85, 0.8);
+    border-color: rgba(255, 204, 0, 0.4);
+}
+
+/* Badges de Status */
+.nh-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.nh-badge-pending {
+    background: rgba(245, 158, 11, 0.15);
+    color: #FBBF24;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.nh-badge-approved {
+    background: rgba(16, 185, 129, 0.15);
+    color: #34D399;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.nh-badge-blocked {
+    background: rgba(239, 68, 68, 0.15);
+    color: #F87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.nh-badge-rejected {
+    background: rgba(107, 114, 128, 0.15);
+    color: #9CA3AF;
+    border: 1px solid rgba(107, 114, 128, 0.3);
+}
+
+.nh-badge-admin {
+    background: rgba(255, 204, 0, 0.15);
+    color: var(--nh-yellow);
+    border: 1px solid rgba(255, 204, 0, 0.3);
+}
+
+/* Scrollbar Customizada */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--nh-dark-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--nh-dark-border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--nh-yellow-hover);
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Barra Superior de Sessão no Treinamento */
+.nh-session-bar {
+    background: rgba(11, 15, 23, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 204, 0, 0.25);
+    padding: 0.5rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8125rem;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+}

@@ -1,0 +1,315 @@
+/* ==========================================================================
+   PLATAFORMA CORPORATIVA NEW HOLLAND CONSTRUCTION (LATAM) - V2
+   Estilos Integrados: Modo Claro & Escuro, Fundo Animado Ken Burns, Multi-idioma
+   ========================================================================== */
+
+:root {
+    --nh-yellow: #FFCC00;
+    --nh-yellow-hover: #E6B800;
+    --nh-yellow-light: #FFE066;
+    --nh-yellow-glow: rgba(255, 204, 0, 0.35);
+    
+    /* Dark Theme (Padrão) */
+    --nh-bg-primary: #070A0F;
+    --nh-bg-surface: #0B0F17;
+    --nh-bg-card: rgba(11, 15, 23, 0.90);
+    --nh-bg-card-subtle: rgba(17, 22, 31, 0.80);
+    --nh-border: #1E293B;
+    --nh-border-gold: rgba(255, 204, 0, 0.32);
+    --nh-text-primary: #F8FAFC;
+    --nh-text-secondary: #94A3B8;
+    --nh-text-muted: #64748B;
+    --nh-input-bg: rgba(7, 10, 15, 0.90);
+    --nh-input-border: #1E293B;
+    --nh-input-text: #F8FAFC;
+    --nh-overlay-start: rgba(7, 10, 15, 0.72);
+    --nh-overlay-end: rgba(11, 15, 23, 0.95);
+    --nh-shadow-card: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 204, 0, 0.08);
+
+    /* Status */
+    --nh-status-pending: #F59E0B;
+    --nh-status-approved: #10B981;
+    --nh-status-blocked: #EF4444;
+    --nh-status-rejected: #6B7280;
+}
+
+/* Light Theme */
+body.theme-light {
+    --nh-bg-primary: #F1F5F9;
+    --nh-bg-surface: #FFFFFF;
+    --nh-bg-card: rgba(255, 255, 255, 0.95);
+    --nh-bg-card-subtle: rgba(248, 250, 252, 0.90);
+    --nh-border: #CBD5E1;
+    --nh-border-gold: rgba(230, 184, 0, 0.6);
+    --nh-text-primary: #0F172A;
+    --nh-text-secondary: #334155;
+    --nh-text-muted: #64748B;
+    --nh-input-bg: #FFFFFF;
+    --nh-input-border: #94A3B8;
+    --nh-input-text: #0F172A;
+    --nh-overlay-start: rgba(248, 250, 252, 0.82);
+    --nh-overlay-end: rgba(241, 245, 249, 0.96);
+    --nh-shadow-card: 0 20px 40px -15px rgba(0, 0, 0, 0.15), 0 0 15px rgba(255, 204, 0, 0.12);
+}
+
+body.theme-light .nh-glass-card h1,
+body.theme-light .nh-glass-card h2,
+body.theme-light .nh-glass-card h3,
+body.theme-light #view-admin h1,
+body.theme-light #view-admin h2,
+body.theme-light #view-admin h3 {
+    color: #0F172A !important;
+}
+
+body.theme-light .nh-glass-card p,
+body.theme-light #view-admin p {
+    color: #475569 !important;
+}
+
+body.theme-light .text-slate-300,
+body.theme-light .text-slate-400 {
+    color: #334155 !important;
+}
+
+body.theme-light .text-white {
+    color: #0F172A !important;
+}
+
+body.theme-light .border-white\/10 {
+    border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+body.theme-light .divide-white\/5 > * {
+    border-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+body.theme-light .bg-black\/40 {
+    background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+body.theme-light .bg-nhdark-900 {
+    background-color: #F1F5F9 !important;
+}
+
+body.theme-light .bg-slate-900 {
+    background-color: #FFFFFF !important;
+}
+
+body.theme-light #admin-audit-log-box {
+    background-color: #0F172A !important;
+    color: #F8FAFC !important;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--nh-bg-primary);
+    color: var(--nh-text-primary);
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+/* ==========================================================================
+   FUNDO ANIMADO KEN BURNS COM MÁQUINAS NEW HOLLAND
+   ========================================================================== */
+.nh-animated-bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.nh-machinery-pan {
+    position: absolute;
+    inset: -60px;
+    background-size: cover;
+    background-position: center 35%;
+    animation: nhKenBurns 30s ease-in-out infinite alternate;
+    filter: brightness(0.85) contrast(1.1);
+    transition: filter 0.4s ease;
+}
+
+body.theme-light .nh-machinery-pan {
+    filter: brightness(0.95) contrast(1.05);
+}
+
+@keyframes nhKenBurns {
+    0% {
+        transform: scale(1.0) translate(0%, 0%);
+    }
+    50% {
+        transform: scale(1.08) translate(-2%, -1.5%);
+    }
+    100% {
+        transform: scale(1.03) translate(1.5%, -1%);
+    }
+}
+
+.nh-bg-overlay-gradient {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 30%, rgba(255, 204, 0, 0.08) 0%, var(--nh-overlay-start) 45%, var(--nh-overlay-end) 100%);
+    transition: background 0.4s ease;
+}
+
+.nh-bg-tech-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(to right, rgba(255, 204, 0, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 204, 0, 0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.7;
+}
+
+/* ==========================================================================
+   COMPONENTES UI & CARDS
+   ========================================================================== */
+.nh-view-wrapper {
+    position: relative;
+    z-index: 10;
+}
+
+.nh-glass-card {
+    background: var(--nh-bg-card);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--nh-border-gold);
+    box-shadow: var(--nh-shadow-card);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nh-glass-card-subtle {
+    background: var(--nh-bg-card-subtle);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--nh-border);
+}
+
+.nh-input {
+    background-color: var(--nh-input-bg);
+    border: 1px solid var(--nh-input-border);
+    color: var(--nh-input-text);
+    transition: all 0.2s ease;
+}
+
+.nh-input:focus {
+    border-color: var(--nh-yellow);
+    box-shadow: 0 0 0 3px var(--nh-yellow-glow);
+    outline: none;
+}
+
+.nh-btn-primary {
+    background: linear-gradient(135deg, var(--nh-yellow) 0%, var(--nh-yellow-hover) 100%);
+    color: #070A0F;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 18px rgba(255, 204, 0, 0.28);
+}
+
+.nh-btn-primary:hover {
+    background: linear-gradient(135deg, var(--nh-yellow-light) 0%, var(--nh-yellow) 100%);
+    box-shadow: 0 6px 24px rgba(255, 204, 0, 0.45);
+    transform: translateY(-2px);
+}
+
+.nh-btn-primary:active {
+    transform: translateY(0);
+}
+
+.nh-btn-secondary {
+    background: var(--nh-bg-card-subtle);
+    color: var(--nh-text-primary);
+    border: 1px solid var(--nh-border);
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.nh-btn-secondary:hover {
+    border-color: var(--nh-yellow);
+    color: var(--nh-yellow);
+    background: rgba(255, 204, 0, 0.08);
+}
+
+/* Switches e Pílulas */
+.nh-lang-btn {
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    color: var(--nh-text-muted);
+}
+.nh-lang-btn.active {
+    background: var(--nh-yellow);
+    color: #070A0F;
+    box-shadow: 0 2px 8px rgba(255, 204, 0, 0.35);
+}
+.nh-lang-btn:hover:not(.active) {
+    color: var(--nh-text-primary);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.nh-theme-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: var(--nh-bg-card-subtle);
+    border: 1px solid var(--nh-border);
+    color: var(--nh-yellow);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.nh-theme-btn:hover {
+    transform: scale(1.08);
+    border-color: var(--nh-yellow);
+    box-shadow: 0 0 12px var(--nh-yellow-glow);
+}
+
+/* Badges de Status */
+.nh-badge-pending {
+    background-color: rgba(245, 158, 11, 0.15);
+    color: #F59E0B;
+    border: 1px solid rgba(245, 158, 11, 0.35);
+}
+.nh-badge-approved {
+    background-color: rgba(16, 185, 129, 0.15);
+    color: #10B981;
+    border: 1px solid rgba(16, 185, 129, 0.35);
+}
+.nh-badge-blocked {
+    background-color: rgba(239, 68, 68, 0.15);
+    color: #EF4444;
+    border: 1px solid rgba(239, 68, 68, 0.35);
+}
+.nh-badge-rejected {
+    background-color: rgba(107, 114, 128, 0.15);
+    color: #9CA3AF;
+    border: 1px solid rgba(107, 114, 128, 0.35);
+}
+
+/* Animações de Entrada Suave */
+.nh-fade-in {
+    animation: nhFadeIn 0.35s ease-out forwards;
+}
+@keyframes nhFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
