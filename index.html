@@ -3151,19 +3151,189 @@ body.theme-light .nh-machinery-pan {
   }
 
   // Cadastro de Novo UsuÃ¡rio e Reenvio de SolicitaÃ§Ã£o
+    // UtilitÃ¡rios de Token de AprovaÃ§Ã£o 1-Clique (UTF-8 seguro)
+  function encodeApprovalToken(obj) {
+    const json = JSON.stringify(obj);
+    return btoa(encodeURIComponent(json).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+      return String.fromCharCode('0x' + p1);
+    }));
+  }
+
+  function decodeApprovalToken(tokenStr) {
+    try {
+      const json = decodeURIComponent(Array.prototype.map.call(atob(tokenStr), function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+      return JSON.parse(json);
+    } catch (e) {
+      console.error('Erro ao decodificar token de aprovaÃ§Ã£o:', e);
+      return null;
+    }
+  }
+
+  let currentCadApprovalUrl = '';
+
+  function openCadSuccessModal(name, email, dealer, role, approvalUrl, mailtoLink) {
+    currentCadApprovalUrl = approvalUrl;
+    const modal = document.getElementById('modal-cad-success');
+    if (!modal) return;
+    
+    const nameEl = document.getElementById('cad-succ-name');
+    const emailEl = document.getElementById('cad-succ-email');
+    const dealerEl = document.getElementById('cad-succ-dealer');
+    const roleEl = document.getElementById('cad-succ-role');
+    const mailtoBtn = document.getElementById('btn-cad-mailto');
+
+    if (nameEl) nameEl.innerText = name;
+    if (emailEl) emailEl.innerText = email;
+    if (dealerEl) dealerEl.innerText = dealer;
+    if (roleEl) roleEl.innerText = role;
+    if (mailtoBtn) mailtoBtn.href = mailtoLink;
+
+    modal.classList.remove('hidden');
+    
+    // Tenta disparar o mailto automaticamente no cliente
+    try {
+      window.location.href = mailtoLink;
+    } catch(e) {}
+  }
+
+  function closeCadSuccessModal() {
+    const modal = document.getElementById('modal-cad-success');
+    if (modal) modal.classList.add('hidden');
+    showView('view-login');
+  }
+
+  function copyCadApprovalLink() {
+    if (!currentCadApprovalUrl) return;
+    navigator.clipboard.writeText(currentCadApprovalUrl).then(() => {
+      alert('Link de aprovaÃ§Ã£o copiado com sucesso! VocÃª pode enviÃ¡-lo ao administrador via e-mail, Teams ou WhatsApp.');
+    }).catch(() => {
+      prompt('Copie o link de aprovaÃ§Ã£o abaixo:', currentCadApprovalUrl);
+    });
+  }
+
+  // VerificaÃ§Ã£o e processamento de aprovaÃ§Ã£o em 1 clique via URL (?approve_token=...)
+  async function checkOneClickApproval() {
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const approveToken = urlParams.get('approve_token');
+      if (!approveToken) return;
+
+      const payload = decodeApprovalToken(approveToken);
+      if (!payload || !payload.email) {
+        alert('Link de aprovaÃ§Ã£o invÃ¡lido ou corrompido.');
+        return;
+      }
+
+      const users = getStoredUsers();
+      const existingIdx = users.findIndex(u => u.email.toLowerCase() === payload.email.toLowerCase());
+      
+      const approvedUser = normalizeUser({
+        id: payload.id || ('usr_' + Date.now()),
+        name: payload.name || 'UsuÃ¡rio Aprovado',
+        email: payload.email.toLowerCase(),
+        dealership: payload.dealership || 'CNH Industrial / Rede',
+        roleTitle: payload.roleTitle || 'Colaborador',
+        role: payload.role || 'USER',
+        status: 'APROVADO',
+        passwordHash: payload.passwordHash,
+        senhaHash: payload.passwordHash,
+        createdAt: payload.createdAt || new Date().toISOString(),
+        approvedAt: new Date().toISOString(),
+        lastLogin: null
+      });
+
+      if (existingIdx !== -1) {
+        users[existingIdx] = { ...users[existingIdx], ...approvedUser, status: 'APROVADO', approvedAt: new Date().toISOString() };
+      } else {
+        users.push(approvedUser);
+      }
+
+      // Limpar eventuais tentativas bloqueadas
+      const attempts = JSON.parse(localStorage.getItem(STORAGE_KEYS.ATTEMPTS) || '{}');
+      delete attempts[approvedUser.email];
+      localStorage.setItem(STORAGE_KEYS.ATTEMPTS, JSON.stringify(attempts));
+
+      saveStoredUsers(users);
+      addAuditLog('ONE_CLICK_APPROVE', approvedUser.email, `Acesso APROVADO em 1-clique pelo administrador para ${approvedUser.name} (${approvedUser.dealership}).`);
+
+      // Limpar parÃ¢metro da URL sem recarregar
+      const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+      window.history.replaceState({ path: cleanUrl }, '', cleanUrl);
+
+      alert(`ðŸŽ‰ SUCESSO: ACESSO APROVADO!\n\nO usuÃ¡rio "${approvedUser.name}" (${approvedUser.email}) da concessionÃ¡ria "${approvedUser.dealership}" foi APROVADO com sucesso!\n\nO acesso ao Treinamento PAN jÃ¡ estÃ¡ liberado.`);
+
+      if (typeof loadAdminData === 'function') {
+        loadAdminData();
+      }
+    } catch (err) {
+      console.error('Erro ao processar aprovaÃ§Ã£o 1-clique:', err);
+    }
+  }
+
+  // FunÃ§Ã£o para aprovar manualmente colando o link ou token no painel ADM
+  function promptApproveByToken() {
+    const input = prompt('Cole aqui o Link de AprovaÃ§Ã£o ou Token de Acesso recebido do colaborador:');
+    if (!input) return;
+    
+    let token = input.trim();
+    if (token.includes('approve_token=')) {
+      const match = token.match(/approve_token=([^&]+)/);
+      if (match) token = decodeURIComponent(match[1]);
+    }
+
+    const payload = decodeApprovalToken(token);
+    if (!payload || !payload.email) {
+      alert('Token ou link invÃ¡lido. Certifique-se de colar o link completo recebido por e-mail.');
+      return;
+    }
+
+    const users = getStoredUsers();
+    const existingIdx = users.findIndex(u => u.email.toLowerCase() === payload.email.toLowerCase());
+    const approvedUser = normalizeUser({
+      id: payload.id || ('usr_' + Date.now()),
+      name: payload.name || 'UsuÃ¡rio Aprovado',
+      email: payload.email.toLowerCase(),
+      dealership: payload.dealership || 'CNH Industrial / Rede',
+      roleTitle: payload.roleTitle || 'Colaborador',
+      role: payload.role || 'USER',
+      status: 'APROVADO',
+      passwordHash: payload.passwordHash,
+      senhaHash: payload.passwordHash,
+      createdAt: payload.createdAt || new Date().toISOString(),
+      approvedAt: new Date().toISOString(),
+      lastLogin: null
+    });
+
+    if (existingIdx !== -1) {
+      users[existingIdx] = { ...users[existingIdx], ...approvedUser, status: 'APROVADO', approvedAt: new Date().toISOString() };
+    } else {
+      users.push(approvedUser);
+    }
+
+    saveStoredUsers(users);
+    addAuditLog('MANUAL_TOKEN_APPROVE', approvedUser.email, `Acesso APROVADO via cÃ³digo pelo administrador para ${approvedUser.name}.`);
+    loadAdminData();
+    alert(`âœ… UsuÃ¡rio "${approvedUser.name}" (${approvedUser.email}) aprovado com sucesso!`);
+  }
+
   async function handleCadastroSubmit(event) {
     event.preventDefault();
-    hideAlert('cad');
-
     const name = document.getElementById('cad-name').value.trim();
-    const dealer = document.getElementById('cad-dealer').value.trim();
-    const role = document.getElementById('cad-role').value.trim();
     const email = document.getElementById('cad-email').value.trim().toLowerCase();
+    const dealer = document.getElementById('cad-dealership').value.trim();
+    const role = document.getElementById('cad-role').value.trim();
     const password = document.getElementById('cad-password').value;
-    const confirm = document.getElementById('cad-confirm').value;
+    const confirm = document.getElementById('cad-confirm-password').value;
 
-    if (!name || !dealer || !email || !password || !confirm) {
-      showAlert('cad', t('errFillFields'), true);
+    if (!name || !email || !dealer || !role || !password || !confirm) {
+      showAlert('cad', t('errFillAll'), true);
+      return;
+    }
+
+    if (!email.includes('@') || !email.includes('.')) {
+      showAlert('cad', t('errInvalidEmail'), true);
       return;
     }
 
@@ -3183,8 +3353,14 @@ body.theme-light .nh-machinery-pan {
 
     if (existingIndex !== -1) {
       const existingUser = users[existingIndex];
-      // Permite reenviar / atualizar dados se estiver PENDENTE ou REPROVADO
-      if (existingUser.status === 'PENDENTE' || existingUser.status === 'REPROVADO') {
+      if (existingUser.status === 'APROVADO') {
+        showAlert('cad', 'Este e-mail j\u00E1 possui cadastro APROVADO. Por favor, fa\u00E7a login ou use "Esqueceu a senha" se precisar redefinir suas credenciais.', true);
+        return;
+      } else if (existingUser.status === 'BLOQUEADO') {
+        showAlert('cad', 'Esta conta est\u00E1 temporariamente bloqueada. Utilize a op\u00E7\u00E3o "Esqueceu a senha" na tela de login para redefinir sua senha e reativar o acesso.', true);
+        return;
+      } else {
+        // PENDENTE ou REPROVADO: atualiza e reenvia
         existingUser.name = name;
         existingUser.nome = name;
         existingUser.dealership = dealer;
@@ -3195,47 +3371,66 @@ body.theme-light .nh-machinery-pan {
         existingUser.senhaHash = passwordHash;
         existingUser.status = 'PENDENTE';
         existingUser.createdAt = new Date().toISOString();
-        existingUser.created_at = existingUser.createdAt;
-
         saveStoredUsers(users);
-        syncUsersToCloud();
-        addAuditLog('REGISTER_RESUBMIT', email, `Solicita\u00E7\u00E3o de acesso atualizada e reenviada para ${dealer} (${name}).`);
-
-        alert('Solicita\u00E7\u00E3o de acesso atualizada e reenviada com sucesso! Seu cadastro est\u00E1 em an\u00E1lise pela equipe de Desenvolvimento de Rede NHCE.');
-        document.getElementById('form-cadastro').reset();
-        showView('view-login');
-        return;
-      } else if (existingUser.status === 'BLOQUEADO') {
-        showAlert('cad', 'Esta conta est\u00E1 temporariamente bloqueada. Utilize a op\u00E7\u00E3o "Esqueceu a senha" na tela de login para redefinir sua senha e reativar o acesso.', true);
-        return;
-      } else if (existingUser.status === 'APROVADO') {
-        showAlert('cad', 'Este e-mail j\u00E1 possui cadastro APROVADO. Por favor, fa\u00E7a login ou use "Esqueceu a senha" se precisar redefinir suas credenciais.', true);
-        return;
+        addAuditLog('REGISTER_RESUBMIT', email, `Solicita\u00E7\u00E3o de acesso atualizada para ${dealer} (${name}).`);
       }
+    } else {
+      const newUser = normalizeUser({
+        id: 'usr_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+        name,
+        dealership: dealer,
+        roleTitle: role,
+        email,
+        passwordHash,
+        role: 'USER',
+        status: 'PENDENTE',
+        createdAt: new Date().toISOString(),
+        approvedAt: null,
+        lastLogin: null
+      });
+      users.push(newUser);
+      saveStoredUsers(users);
+      addAuditLog('REGISTER_REQUEST', email, `Nova solicita\u00E7\u00E3o de acesso para ${dealer} (${name}).`);
     }
 
-    const newUser = normalizeUser({
-      id: 'usr_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+    // Gerar link e e-mail de aprovaÃ§Ã£o em 1-clique
+    const approvalPayload = {
+      id: 'usr_' + Date.now(),
       name,
+      email,
       dealership: dealer,
       roleTitle: role,
-      email,
       passwordHash,
       role: 'USER',
-      status: 'PENDENTE',
-      createdAt: new Date().toISOString(),
-      approvedAt: null,
-      lastLogin: null
-    });
+      status: 'APROVADO',
+      createdAt: new Date().toISOString()
+    };
+    const token = encodeApprovalToken(approvalPayload);
+    const baseUrl = window.location.href.split('?')[0].split('#')[0];
+    const approvalUrl = baseUrl + '?approve_token=' + encodeURIComponent(token);
 
-    users.push(newUser);
-    saveStoredUsers(users);
-    syncUsersToCloud();
-    addAuditLog('REGISTER_REQUEST', email, `Nova solicita\u00E7\u00E3o de acesso para ${dealer} (${name}).`);
+    const adminEmail = 'admin@newholland.com; geisiane.celestino@external.cnh.com';
+    const emailSubject = encodeURIComponent(`[Treinamento PAN NHCE] Solicitacao de Acesso - ${name} (${dealer})`);
+    const emailBody = encodeURIComponent(
+      `Ola Administrador(a) NHCE LATAM,\n\n` +
+      `Uma nova solicitacao de acesso foi realizada na Plataforma de Treinamento PAN:\n\n` +
+      `Nome: ${name}\n` +
+      `E-mail: ${email}\n` +
+      `Concessionaria: ${dealer}\n` +
+      `Cargo: ${role}\n` +
+      `Data: ${new Date().toLocaleString('pt-BR')}\n\n` +
+      `--------------------------------------------------\n` +
+      `CLIQUE NO LINK ABAIXO PARA APROVAR EM 1-CLIQUE:\n` +
+      `${approvalUrl}\n` +
+      `--------------------------------------------------\n\n` +
+      `Atenciosamente,\n` +
+      `Plataforma de Treinamento PAN - New Holland Construction LATAM`
+    );
 
-    alert(t('msgCadSuccess'));
+    const mailtoLink = `mailto:${adminEmail}?subject=${emailSubject}&body=${emailBody}`;
+
     document.getElementById('form-cadastro').reset();
-    showView('view-login');
+    openCadSuccessModal(name, email, dealer, role, approvalUrl, mailtoLink);
   }
 
   function handleLogout() {
@@ -3825,8 +4020,16 @@ body.theme-light .nh-machinery-pan {
   window.renderAdminTable = renderAdminTable;
   window.syncUsersFromCloud = syncUsersFromCloud;
   window.syncUsersToCloud = syncUsersToCloud;
+  window.openCadSuccessModal = openCadSuccessModal;
+  window.closeCadSuccessModal = closeCadSuccessModal;
+  window.copyCadApprovalLink = copyCadApprovalLink;
+  window.checkOneClickApproval = checkOneClickApproval;
+  window.promptApproveByToken = promptApproveByToken;
+  window.encodeApprovalToken = encodeApprovalToken;
+  window.decodeApprovalToken = decodeApprovalToken;
   // InicializaÃ§Ã£o
   document.addEventListener('DOMContentLoaded', async function() {
+    await checkOneClickApproval();
     await initDatabase();
     applyTheme(currentAppTheme);
     setLanguage(currentAppLang);
