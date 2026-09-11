@@ -463,13 +463,13 @@ body.theme-light .nh-machinery-pan {
 
         <!-- Seletor de Idioma TrilÃ­ngue (PT / ES / EN) -->
         <div class="flex items-center p-1 rounded-lg bg-black/40 border border-white/10 backdrop-blur-sm" id="lang-selector-group">
-            <button type="button" class="nh-lang-btn active" onclick="setLanguage('pt')" id="btn-lang-pt" title="PortuguÃªs">ðŸ‡§ðŸ‡· PT</button>
-            <button type="button" class="nh-lang-btn" onclick="setLanguage('es')" id="btn-lang-es" title="EspaÃ±ol">ðŸ‡ªðŸ‡¸ ES</button>
-            <button type="button" class="nh-lang-btn" onclick="setLanguage('en')" id="btn-lang-en" title="English">ðŸ‡ºðŸ‡¸ EN</button>
+            <button type="button" class="nh-lang-btn active" onclick="window.setLanguage('pt')" id="btn-lang-pt" title="PortuguÃªs">ðŸ‡§ðŸ‡· PT</button>
+            <button type="button" class="nh-lang-btn" onclick="window.setLanguage('es')" id="btn-lang-es" title="EspaÃ±ol">ðŸ‡ªðŸ‡¸ ES</button>
+            <button type="button" class="nh-lang-btn" onclick="window.setLanguage('en')" id="btn-lang-en" title="English">ðŸ‡ºðŸ‡¸ EN</button>
         </div>
 
         <!-- BotÃ£o de AlternÃ¢ncia de Tema -->
-        <button type="button" class="nh-theme-btn" onclick="toggleTheme()" id="theme-toggle-btn" title="Alternar Modo Claro/Escuro" data-i18n-title="themeToggle">
+        <button type="button" class="nh-theme-btn" onclick="window.toggleTheme()" id="theme-toggle-btn" title="Alternar Modo Claro/Escuro" data-i18n-title="themeToggle">
             <i class="fa-solid fa-moon" id="theme-icon"></i>
         </button>
     </div>
@@ -497,7 +497,7 @@ body.theme-light .nh-machinery-pan {
             <div id="login-alert-text" class="flex-1 leading-relaxed"></div>
         </div>
 
-        <form id="form-login" onsubmit="handleLoginSubmit(event)" class="space-y-4">
+        <form id="form-login" onsubmit="window.handleLoginSubmit(event)" class="space-y-4">
             <div>
                 <label for="login-email" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5" data-i18n="emailLabel">
                     E-mail Corporativo
@@ -517,7 +517,7 @@ body.theme-light .nh-machinery-pan {
                     <label for="login-password" class="block text-xs font-semibold uppercase tracking-wider text-slate-300" data-i18n="passwordLabel">
                         Senha de Acesso
                     </label>
-                    <a href="javascript:void(0)" onclick="openForgotPasswordModal()" class="text-xs text-nhyellow-500 hover:text-nhyellow-400 transition-colors font-medium" data-i18n="forgotPassword">
+                    <a href="javascript:void(0)" onclick="window.openForgotPasswordModal()" class="text-xs text-nhyellow-500 hover:text-nhyellow-400 transition-colors font-medium" data-i18n="forgotPassword">
                         Esqueceu a senha?
                     </a>
                 </div>
@@ -528,7 +528,7 @@ body.theme-light .nh-machinery-pan {
                     <input type="password" id="login-password" required
                         class="nh-input w-full pl-10 pr-11 py-3 rounded-xl text-sm placeholder-slate-500 font-mono"
                         placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" data-i18n-placeholder="passwordPlaceholder" autocomplete="current-password">
-                    <button type="button" onclick="togglePasswordVisibility('login-password', this)" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-200">
+                    <button type="button" onclick="window.togglePasswordVisibility('login-password', this)" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-200">
                         <i class="fa-regular fa-eye text-sm"></i>
                     </button>
                 </div>
@@ -556,7 +556,7 @@ body.theme-light .nh-machinery-pan {
             </span>
         </div>
 
-        <button type="button" onclick="showView('view-cadastro')" class="nh-btn-secondary w-full py-3 rounded-xl flex items-center justify-center space-x-2 text-xs uppercase tracking-wider">
+        <button type="button" onclick="window.showView('view-cadastro')" class="nh-btn-secondary w-full py-3 rounded-xl flex items-center justify-center space-x-2 text-xs uppercase tracking-wider">
             <i class="fa-solid fa-user-plus text-xs"></i>
             <span data-i18n="btnRequestAccess">Solicitar Cadastro de Acesso</span>
         </button>
@@ -590,7 +590,7 @@ body.theme-light .nh-machinery-pan {
             <div id="cad-alert-text" class="flex-1 leading-relaxed"></div>
         </div>
 
-        <form id="form-cadastro" onsubmit="handleCadastroSubmit(event)" class="space-y-4">
+        <form id="form-cadastro" onsubmit="window.handleCadastroSubmit(event)" class="space-y-4">
             <div>
                 <label for="cad-name" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1" data-i18n="nameLabel">
                     Nome Completo
@@ -658,10 +658,10 @@ body.theme-light .nh-machinery-pan {
                         <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                             <i class="fa-solid fa-lock text-sm"></i>
                         </span>
-                        <input type="password" id="cad-password" required minlength="8" oninput="checkPasswordStrength(this.value)"
+                        <input type="password" id="cad-password" required minlength="8" oninput="window.checkPasswordStrength(this.value)"
                             class="nh-input w-full pl-10 pr-10 py-2.5 rounded-xl text-sm placeholder-slate-500 font-mono"
                             placeholder="MÃ­nimo 8 caracteres" data-i18n-placeholder="cadPasswordPlaceholder">
-                        <button type="button" onclick="togglePasswordVisibility('cad-password', this)" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-200">
+                        <button type="button" onclick="window.togglePasswordVisibility('cad-password', this)" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-200">
                             <i class="fa-regular fa-eye text-xs"></i>
                         </button>
                     </div>
@@ -678,7 +678,7 @@ body.theme-light .nh-machinery-pan {
                         <input type="password" id="cad-confirm" required minlength="8"
                             class="nh-input w-full pl-10 pr-10 py-2.5 rounded-xl text-sm placeholder-slate-500 font-mono"
                             placeholder="Repita sua senha" data-i18n-placeholder="cadConfirmPlaceholder">
-                        <button type="button" onclick="togglePasswordVisibility('cad-confirm', this)" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-200">
+                        <button type="button" onclick="window.togglePasswordVisibility('cad-confirm', this)" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-200">
                             <i class="fa-regular fa-eye text-xs"></i>
                         </button>
                     </div>
@@ -704,7 +704,7 @@ body.theme-light .nh-machinery-pan {
 
         <div class="mt-6 pt-4 border-t border-white/10 text-center">
             <span class="text-xs text-slate-400" data-i18n="alreadyHaveAccount">JÃ¡ possui acesso?</span>
-            <a href="javascript:void(0)" onclick="showView('view-login')" class="ml-1 text-xs font-semibold text-nhyellow-500 hover:text-nhyellow-400 transition-colors" data-i18n="btnBackLogin">
+            <a href="javascript:void(0)" onclick="window.showView('view-login')" class="ml-1 text-xs font-semibold text-nhyellow-500 hover:text-nhyellow-400 transition-colors" data-i18n="btnBackLogin">
                 Voltar para o Login
             </a>
         </div>
@@ -729,11 +729,11 @@ body.theme-light .nh-machinery-pan {
         </div>
 
         <div class="flex items-center gap-3 w-full md:w-auto">
-            <button type="button" onclick="showView('view-training')" class="nh-btn-primary px-4 py-2.5 rounded-xl text-xs flex items-center gap-2">
+            <button type="button" onclick="window.showView('view-training')" class="nh-btn-primary px-4 py-2.5 rounded-xl text-xs flex items-center gap-2">
                 <i class="fa-solid fa-graduation-cap"></i>
                 <span data-i18n="btnGoTraining">Ir para o Treinamento &rarr;</span>
             </button>
-            <button type="button" onclick="handleLogout()" class="nh-btn-secondary px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 text-rose-400 border-rose-500/30 hover:bg-rose-500/10">
+            <button type="button" onclick="window.handleLogout()" class="nh-btn-secondary px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 text-rose-400 border-rose-500/30 hover:bg-rose-500/10">
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
                 <span data-i18n="btnLogout">Sair do Sistema</span>
             </button>
@@ -758,107 +758,124 @@ body.theme-light .nh-machinery-pan {
             <div class="text-[11px] text-rose-400 font-medium uppercase" data-i18n="kpiBlocked">Contas Bloqueadas</div>
             <div class="text-2xl font-bold font-heading text-rose-400 mt-1" id="kpi-blocked-users">0</div>
         </div>
-        <div class="nh-glass-card rounded-xl p-4 border border-nhyellow-500/20">
-            <div class="text-[11px] text-nhyellow-500 font-medium uppercase" data-i18n="kpiLogins">Total de Acessos</div>
-            <div class="text-2xl font-bold font-heading text-nhyellow-500 mt-1" id="kpi-total-logins">0</div>
+        <div class="nh-glass-card rounded-xl p-4 border border-cyan-500/20">
+            <div class="text-[11px] text-cyan-400 font-medium uppercase" data-i18n="kpiLogins">Total de Acessos</div>
+            <div class="text-2xl font-bold font-heading text-cyan-400 mt-1" id="kpi-total-logins">0</div>
         </div>
-        <div class="nh-glass-card rounded-xl p-4 border border-white/10">
-            <div class="text-[11px] text-slate-400 font-medium uppercase" data-i18n="kpiAlerts">Incidentes / Bloqueios</div>
-            <div class="text-2xl font-bold font-heading text-slate-300 mt-1" id="kpi-security-alerts">0</div>
+        <div class="nh-glass-card rounded-xl p-4 border border-purple-500/20">
+            <div class="text-[11px] text-purple-400 font-medium uppercase" data-i18n="kpiAlerts">Alertas de SeguranÃ§a</div>
+            <div class="text-2xl font-bold font-heading text-purple-400 mt-1" id="kpi-security-alerts">0</div>
         </div>
     </div>
 
-    <!-- Tabela e GestÃ£o -->
-    <div class="w-full max-w-7xl mx-auto nh-glass-card rounded-2xl p-6 relative">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4 mb-6">
-            <div class="flex items-center space-x-2">
-                <button type="button" onclick="switchAdminTab('users')" id="tab-btn-users" class="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-nhyellow-500 text-nhdark-950 font-heading">
-                    <span data-i18n="tabUsers">GestÃ£o de UsuÃ¡rios</span>
-                </button>
-                <button type="button" onclick="switchAdminTab('audit')" id="tab-btn-audit" class="px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-white font-heading">
-                    <span data-i18n="tabMetrics">MÃ©tricas & Auditoria</span>
-                </button>
-                <button type="button" onclick="switchAdminTab('backup')" id="tab-btn-backup" class="px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-white font-heading">
-                    <span data-i18n="tabSecurity">SeguranÃ§a & Backup</span>
-                </button>
+    <!-- NavegaÃ§Ã£o de Abas do ADM -->
+    <div class="w-full max-w-7xl mx-auto mb-6 flex items-center space-x-2 border-b border-white/10 pb-3">
+        <button type="button" onclick="window.switchAdminTab('users')" id="tab-btn-users" class="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-nhyellow-500 text-nhdark-950 font-heading">
+            <i class="fa-solid fa-users mr-1.5"></i> <span data-i18n="tabUsers">GestÃ£o de UsuÃ¡rios</span>
+        </button>
+        <button type="button" onclick="window.switchAdminTab('audit')" id="tab-btn-audit" class="px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-white font-heading">
+            <i class="fa-solid fa-list-check mr-1.5"></i> <span data-i18n="tabAudit">Trilha de Auditoria & Monitoramento</span>
+        </button>
+        <button type="button" onclick="window.switchAdminTab('backup')" id="tab-btn-backup" class="px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-white font-heading">
+            <i class="fa-solid fa-database mr-1.5"></i> <span data-i18n="tabBackup">Banco de Dados & Backup</span>
+        </button>
+    </div>
+
+    <!-- ABA 1: TABELA DE GESTÃƒO DE USUÃRIOS -->
+    <div id="admin-tab-users-content" class="w-full max-w-7xl mx-auto space-y-4">
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-slate-900/60 p-4 rounded-xl border border-white/10">
+            <div class="relative flex-1">
+                <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                    <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                </span>
+                <input type="text" id="admin-search-input" oninput="window.filterAdminUsers()"
+                    class="nh-input w-full pl-9 pr-4 py-2 rounded-lg text-xs"
+                    placeholder="Buscar por nome, e-mail ou concessionÃ¡ria..." data-i18n-placeholder="searchPlaceholder">
             </div>
 
-            <div class="flex items-center gap-2.5 flex-1 max-w-md">
-                <div class="relative flex-1">
-                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                        <i class="fa-solid fa-magnifying-glass text-xs"></i>
-                    </span>
-                    <input type="text" id="admin-search-input" oninput="filterAdminUsers()"
-                        class="nh-input w-full pl-9 pr-3 py-1.5 rounded-lg text-xs placeholder-slate-500"
-                        placeholder="Buscar por nome, e-mail ou concessionÃ¡ria..." data-i18n-placeholder="searchPlaceholder">
-                </div>
-                <select id="admin-status-filter" onchange="filterAdminUsers()" class="nh-input py-1.5 px-3 rounded-lg text-xs">
-                    <option value="ALL" data-i18n="filterStatusAll">Todos os Status</option>
-                    <option value="PENDENTE" data-i18n="filterStatusPending">Pendentes</option>
-                    <option value="APROVADO" data-i18n="filterStatusApproved">Aprovados</option>
-                    <option value="BLOQUEADO" data-i18n="filterStatusBlocked">Bloqueados</option>
-                    <option value="REPROVADO" data-i18n="filterStatusRejected">Reprovados</option>
+            <div class="flex items-center space-x-2">
+                <select id="admin-status-filter" onchange="window.filterAdminUsers()" class="nh-input px-3 py-2 rounded-lg text-xs font-medium">
+                    <option value="ALL" data-i18n="filterAll">Todos os Status</option>
+                    <option value="PENDENTE" data-i18n="filterPending">Pendentes</option>
+                    <option value="APROVADO" data-i18n="filterApproved">Aprovados</option>
+                    <option value="BLOQUEADO" data-i18n="filterBlocked">Bloqueados</option>
+                    <option value="REPROVADO" data-i18n="filterRejected">Reprovados</option>
                 </select>
             </div>
         </div>
 
-        <div id="admin-tab-users-content" class="overflow-x-auto">
-            <table class="w-full text-left text-xs">
-                <thead>
-                    <tr class="border-b border-white/10 text-slate-400 uppercase font-semibold">
-                        <th class="pb-3 px-3" data-i18n="colUser">UsuÃ¡rio</th>
-                        <th class="pb-3 px-3" data-i18n="colDealer">ConcessionÃ¡ria</th>
-                        <th class="pb-3 px-3" data-i18n="colDate">Data de Cadastro</th>
-                        <th class="pb-3 px-3" data-i18n="colRole">Perfil</th>
-                        <th class="pb-3 px-3" data-i18n="colStatus">Status</th>
-                        <th class="pb-3 px-3 text-right" data-i18n="colActions">AÃ§Ãµes</th>
-                    </tr>
-                </thead>
-                <tbody id="admin-users-table-body" class="divide-y divide-white/5"></tbody>
-            </table>
-        </div>
-
-        <div id="admin-tab-audit-content" class="hidden space-y-4">
-            <div class="flex items-center justify-between">
-                <h3 class="text-sm font-bold text-white uppercase font-heading">Registro de Auditoria de Acessos</h3>
-                <div class="flex gap-2">
-                    <button type="button" onclick="exportAuditCsv()" class="nh-btn-secondary px-3 py-1.5 rounded-lg text-xs flex items-center gap-1.5">
-                        <i class="fa-solid fa-file-csv"></i> Exportar CSV
-                    </button>
-                    <button type="button" onclick="clearAuditLogs()" class="nh-btn-secondary px-3 py-1.5 rounded-lg text-xs text-rose-400 border-rose-500/30">
-                        <i class="fa-solid fa-trash-can"></i> Limpar Logs
-                    </button>
-                </div>
+        <div class="nh-glass-card rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs text-slate-300">
+                    <thead class="bg-black/40 text-slate-400 uppercase tracking-wider font-semibold border-b border-white/10">
+                        <tr>
+                            <th class="py-3.5 px-4" data-i18n="thUser">UsuÃ¡rio</th>
+                            <th class="py-3.5 px-4" data-i18n="thDealer">ConcessionÃ¡ria / Cargo</th>
+                            <th class="py-3.5 px-4" data-i18n="thStatus">Status</th>
+                            <th class="py-3.5 px-4" data-i18n="thCreated">Data Cadastro</th>
+                            <th class="py-3.5 px-4" data-i18n="thLastAccess">Ãšltimo Acesso</th>
+                            <th class="py-3.5 px-4 text-center" data-i18n="thActions">AÃ§Ãµes Administrativas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-users-table-body" class="divide-y divide-white/5">
+                        <!-- Renderizado Dinamicamente -->
+                    </tbody>
+                </table>
             </div>
-            <div class="max-h-96 overflow-y-auto rounded-xl border border-white/10 p-3 bg-black/40 font-mono text-[11px] space-y-1.5" id="admin-audit-log-box"></div>
+        </div>
+    </div>
+
+    <!-- ABA 2: AUDITORIA E LOGS -->
+    <div id="admin-tab-audit-content" class="w-full max-w-7xl mx-auto space-y-4 hidden">
+        <div class="flex items-center justify-between bg-slate-900/60 p-4 rounded-xl border border-white/10">
+            <span class="text-xs text-slate-300 font-medium" data-i18n="auditDescription">Trilha de eventos de seguranÃ§a e acessos em tempo real</span>
+            <div class="flex items-center space-x-2">
+                <button type="button" onclick="window.exportAuditCsv()" class="nh-btn-secondary px-3 py-1.5 rounded-lg text-xs flex items-center space-x-1.5">
+                    <i class="fa-solid fa-file-csv text-emerald-400"></i>
+                    <span data-i18n="btnExportCsv">Exportar CSV</span>
+                </button>
+                <button type="button" onclick="window.clearAuditLogs()" class="nh-btn-secondary px-3 py-1.5 rounded-lg text-xs text-rose-400 border-rose-500/30 hover:bg-rose-500/10 flex items-center space-x-1.5">
+                    <i class="fa-solid fa-trash-can"></i>
+                    <span data-i18n="btnClearLogs">Limpar Logs</span>
+                </button>
+            </div>
         </div>
 
-        <div id="admin-tab-backup-content" class="hidden space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="p-5 rounded-xl border border-white/10 bg-white/5 space-y-3">
-                    <h3 class="text-sm font-bold text-white uppercase font-heading flex items-center gap-2">
-                        <i class="fa-solid fa-download text-nhyellow-500"></i> Exportar Base de Dados
-                    </h3>
-                    <p class="text-xs text-slate-400">
-                        Baixe um arquivo JSON com todos os usuÃ¡rios cadastrados, senhas com salt criptogrÃ¡fico e logs de acesso para cÃ³pia de seguranÃ§a.
-                    </p>
-                    <button type="button" onclick="exportFullDatabaseJson()" class="nh-btn-primary px-4 py-2.5 rounded-xl text-xs flex items-center gap-2">
-                        <i class="fa-solid fa-file-arrow-down"></i> Baixar Backup JSON
-                    </button>
-                </div>
+        <div class="nh-glass-card rounded-2xl p-4 border border-white/10 font-mono text-xs max-h-[500px] overflow-y-auto space-y-2" id="admin-audit-log-box">
+            <!-- Logs em tempo real -->
+        </div>
+    </div>
 
-                <div class="p-5 rounded-xl border border-white/10 bg-white/5 space-y-3">
-                    <h3 class="text-sm font-bold text-white uppercase font-heading flex items-center gap-2">
-                        <i class="fa-solid fa-upload text-nhyellow-500"></i> Restaurar Base de Dados
-                    </h3>
-                    <p class="text-xs text-slate-400">
-                        Restaure a base de usuÃ¡rios e permissÃµes a partir de um backup prÃ©vio em formato JSON.
-                    </p>
-                    <label class="nh-btn-secondary px-4 py-2.5 rounded-xl text-xs inline-flex items-center gap-2 cursor-pointer">
-                        <i class="fa-solid fa-file-arrow-up"></i> Selecionar Arquivo JSON
-                        <input type="file" accept=".json" onchange="importFullDatabaseJson(event)" class="hidden">
-                    </label>
+    <!-- ABA 3: BACKUP E BANCO DE DADOS -->
+    <div id="admin-tab-backup-content" class="w-full max-w-7xl mx-auto space-y-6 hidden">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="nh-glass-card rounded-2xl p-6 border border-white/10 space-y-4">
+                <div class="flex items-center space-x-3 text-nhyellow-500">
+                    <i class="fa-solid fa-file-export text-xl"></i>
+                    <h3 class="text-base font-bold font-heading text-white" data-i18n="backupExportTitle">Exportar Base Completa</h3>
                 </div>
+                <p class="text-xs text-slate-400 leading-relaxed" data-i18n="backupExportDesc">
+                    Gere uma cÃ³pia de seguranÃ§a em formato JSON com todos os cadastros, status de aprovaÃ§Ã£o e histÃ³rico de auditoria.
+                </p>
+                <button type="button" onclick="window.exportFullDatabaseJson()" class="nh-btn-primary px-5 py-2.5 rounded-xl text-xs flex items-center space-x-2">
+                    <i class="fa-solid fa-download"></i>
+                    <span data-i18n="btnDownloadJson">Baixar Backup JSON</span>
+                </button>
+            </div>
+
+            <div class="nh-glass-card rounded-2xl p-6 border border-white/10 space-y-4">
+                <div class="flex items-center space-x-3 text-cyan-400">
+                    <i class="fa-solid fa-file-import text-xl"></i>
+                    <h3 class="text-base font-bold font-heading text-white" data-i18n="backupImportTitle">Restaurar Base de Dados</h3>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed" data-i18n="backupImportDesc">
+                    Carregue um arquivo JSON de backup previamente exportado para restaurar ou sincronizar o banco de dados.
+                </p>
+                <label class="nh-btn-secondary px-5 py-2.5 rounded-xl text-xs flex items-center space-x-2 cursor-pointer w-fit">
+                    <i class="fa-solid fa-upload"></i>
+                    <span data-i18n="btnUploadJson">Selecionar Arquivo JSON</span>
+                    <input type="file" accept=".json" onchange="window.importFullDatabaseJson(event)" class="hidden">
+                </label>
             </div>
         </div>
     </div>
@@ -2078,1063 +2095,1161 @@ body.theme-light .nh-machinery-pan {
 
 </div>
 
-<!-- MODAL: RECUPERAÃ‡ÃƒO DE SENHA -->
-<div id="modal-forgot-password" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="w-full max-w-md nh-glass-card rounded-2xl p-6 border border-nhyellow-500/30 relative">
-        <button type="button" onclick="closeForgotPasswordModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+<!-- MODAL DE RECUPERAÃ‡ÃƒO DE SENHA -->
+<div id="modal-forgot-password" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden nh-fade-in">
+    <div class="w-full max-w-md nh-glass-card rounded-2xl p-6 relative">
+        <button type="button" onclick="window.closeForgotPasswordModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
             <i class="fa-solid fa-xmark text-lg"></i>
         </button>
 
-        <div class="w-12 h-12 rounded-xl bg-nhyellow-500/10 border border-nhyellow-500/30 flex items-center justify-center text-nhyellow-500 mb-4">
-            <i class="fa-solid fa-key text-xl"></i>
+        <div class="text-center mb-5">
+            <div class="w-12 h-12 mx-auto mb-2.5 rounded-xl bg-nhyellow-500/10 border border-nhyellow-500/30 flex items-center justify-center text-nhyellow-500">
+                <i class="fa-solid fa-key text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold font-heading text-white" data-i18n="modalForgotTitle">RecuperaÃ§Ã£o de Senha</h3>
+            <p class="text-xs text-slate-400 mt-1" data-i18n="modalForgotSubtitle">Informe seu e-mail corporativo cadastrado para receber as instruÃ§Ãµes do administrador</p>
         </div>
 
-        <h3 class="text-lg font-bold font-heading text-white" data-i18n="forgotTitle">RecuperaÃ§Ã£o de Acesso Corporativo</h3>
-        <p class="text-xs text-slate-400 mt-1" data-i18n="forgotDesc">
-            Digite seu e-mail corporativo para solicitar a redefiniÃ§Ã£o de senha ao administrador.
-        </p>
-
-        <form id="form-forgot-password" onsubmit="handleForgotPasswordSubmit(event)" class="mt-4 space-y-3">
+        <form onsubmit="window.handleForgotPasswordSubmit(event)" class="space-y-4">
             <div>
-                <label for="forgot-email" class="block text-xs font-semibold uppercase text-slate-300 mb-1" data-i18n="emailLabel">
-                    E-mail Corporativo
-                </label>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1" data-i18n="emailLabel">E-mail Corporativo</label>
                 <input type="email" id="forgot-email" required
-                    class="nh-input w-full px-3 py-2.5 rounded-xl text-xs"
+                    class="nh-input w-full px-3.5 py-2.5 rounded-xl text-xs"
                     placeholder="seu.nome@concessionaria.com" data-i18n-placeholder="emailPlaceholder">
             </div>
-            <div class="flex justify-end gap-2 pt-2">
-                <button type="button" onclick="closeForgotPasswordModal()" class="nh-btn-secondary px-3 py-2 rounded-xl text-xs" data-i18n="btnClose">
-                    Cancelar
-                </button>
-                <button type="submit" class="nh-btn-primary px-4 py-2 rounded-xl text-xs" data-i18n="btnSendRecovery">
-                    Enviar SolicitaÃ§Ã£o
-                </button>
+
+            <div class="flex items-center space-x-2 pt-2">
+                <button type="button" onclick="window.closeForgotPasswordModal()" class="nh-btn-secondary flex-1 py-2.5 rounded-xl text-xs" data-i18n="btnCancel">Cancelar</button>
+                <button type="submit" class="nh-btn-primary flex-1 py-2.5 rounded-xl text-xs" data-i18n="btnSend">Enviar SolicitaÃ§Ã£o</button>
             </div>
         </form>
     </div>
 </div>
 
 <script>
-/* ==========================================================================
-   SISTEMA DE INTERNACIONALIZAÃ‡ÃƒO (I18N)
-   ========================================================================== */
-const I18N = {
-  pt: {
-    brandSubtitle: "Desenvolvimento de Rede NHCE LATAM",
-    secureHttps: "Ambiente Seguro HTTPS",
-    shaActive: "ProteÃ§Ã£o SHA-256 Ativa",
-    themeToggle: "Alternar Modo Claro/Escuro",
-    loginTitle: "CapacitaÃ§Ã£o PAN LATAM",
-    loginSubtitle: "Guia Interativo de AtualizaÃ§Ã£o do Plano Anual de NegÃ³cios",
-    emailLabel: "E-MAIL CORPORATIVO",
-    emailPlaceholder: "seu.nome@concessionaria.com",
-    passwordLabel: "SENHA DE ACESSO",
-    passwordPlaceholder: "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢",
-    forgotPassword: "Esqueceu a senha?",
-    rememberEmail: "Lembrar meu e-mail",
-    maxAttempts: "MÃ¡x. 5 tentativas",
-    btnLogin: "ACESSAR TREINAMENTO â†’",
-    newHere: "NOVO NA PLATAFORMA?",
-    btnRequestAccess: "Solicitar Cadastro de Acesso",
-    footerCopyright: "Â© 2026 CNH Industrial â€¢ New Holland Construction. Todos os direitos reservados.",
-    footerDev: "Desenvolvimento de Rede NHCE LATAM â€¢ Plataforma de CapacitaÃ§Ã£o Corporativa",
-    cadTitle: "Solicitar Acesso",
-    cadSubtitle: "Preencha os dados abaixo para solicitar autorizaÃ§Ã£o de acesso ao treinamento PAN",
-    nameLabel: "NOME COMPLETO",
-    namePlaceholder: "Ex: Roberto Carlos da Silva",
-    dealerLabel: "CONCESSIONÃRIA / FILIAL",
-    dealerPlaceholder: "Ex: Shark MÃ¡quinas / Brasif / Paveca",
-    roleLabel: "FUNÃ‡ÃƒO / CARGO",
-    rolePlaceholder: "Ex: Gerente Geral / Diretor",
-    cadPasswordLabel: "CRIAR SENHA",
-    cadPasswordPlaceholder: "MÃ­nimo 8 caracteres",
-    cadConfirmLabel: "CONFIRMAR SENHA",
-    cadConfirmPlaceholder: "Repita sua senha",
-    pwdStrengthText: "ForÃ§a da senha:",
-    strengthWeak: "Fraca",
-    strengthMedium: "MÃ©dia",
-    strengthStrong: "Forte",
-    btnSubmitCad: "Enviar SolicitaÃ§Ã£o de Acesso â†’",
-    alreadyHaveAccount: "JÃ¡ possui acesso?",
-    btnBackLogin: "Voltar para o Login",
-    adminHeaderTitle: "Painel de GovernanÃ§a & Acessos",
-    adminHeaderSubtitle: "Desenvolvimento de Rede NHCE LATAM â€¢ GestÃ£o de UsuÃ¡rios e Auditoria",
-    btnGoTraining: "Ir para o Treinamento â†’",
-    btnLogout: "Sair do Sistema",
-    tabUsers: "GestÃ£o de UsuÃ¡rios",
-    tabMetrics: "MÃ©tricas & Auditoria",
-    tabSecurity: "SeguranÃ§a & Backup",
-    kpiTotal: "Total de UsuÃ¡rios",
-    kpiActive: "UsuÃ¡rios Aprovados",
-    kpiPending: "Pendentes de AnÃ¡lise",
-    kpiBlocked: "Contas Bloqueadas",
-    kpiLogins: "Total de Acessos",
-    kpiAlerts: "Incidentes / Bloqueios",
-    searchPlaceholder: "Buscar por nome, e-mail ou concessionÃ¡ria...",
-    filterStatusAll: "Todos os Status",
-    filterStatusPending: "Pendentes",
-    filterStatusApproved: "Aprovados",
-    filterStatusBlocked: "Bloqueados",
-    filterStatusRejected: "Reprovados",
-    btnAddUser: "+ Novo UsuÃ¡rio",
-    colUser: "UsuÃ¡rio",
-    colDealer: "ConcessionÃ¡ria",
-    colDate: "Data de Cadastro",
-    colRole: "Perfil",
-    colStatus: "Status",
-    colActions: "AÃ§Ãµes",
-    btnApprove: "Aprovar",
-    btnReject: "Reprovar",
-    btnUnblock: "Desbloquear",
-    btnBlock: "Bloquear",
-    btnDelete: "Excluir",
-    errFillFields: "Por favor, preencha todos os campos obrigatÃ³rios.",
-    errInvalidEmail: "Por favor, insira um e-mail corporativo vÃ¡lido.",
-    errPasswordLength: "A senha deve ter pelo menos 8 caracteres.",
-    errPasswordMismatch: "As senhas digitadas nÃ£o coincidem.",
-    errEmailRegistered: "Este e-mail jÃ¡ estÃ¡ cadastrado no sistema.",
-    msgCadSuccess: "SolicitaÃ§Ã£o enviada com sucesso! Seu acesso estÃ¡ em anÃ¡lise pelo Dealer Development.",
-    msgPendingAccount: "Seu cadastro estÃ¡ em anÃ¡lise pela equipe de Dealer Development. Aguarde a aprovaÃ§Ã£o.",
-    msgBlockedAccount: "Conta temporariamente bloqueada por excesso de tentativas. Contate o administrador.",
-    msgRejectedAccount: "Sua solicitaÃ§Ã£o de acesso nÃ£o foi aprovada. Contate o suporte corporativo.",
-    msgWrongPassword: "Senha incorreta. Tentativa {current} de {max}.",
-    msgWarningLastChance: "ATENÃ‡ÃƒO: Ãšltima tentativa antes do bloqueio da conta!",
-    msgUserNotFound: "UsuÃ¡rio nÃ£o encontrado. Verifique o e-mail ou solicite cadastro.",
-    msgLoginSuccess: "Acesso autorizado! Redirecionando...",
-    forgotTitle: "RecuperaÃ§Ã£o de Acesso Corporativo",
-    forgotDesc: "Digite seu e-mail corporativo para solicitar a redefiniÃ§Ã£o de senha ao administrador.",
-    btnSendRecovery: "Enviar SolicitaÃ§Ã£o",
-    btnClose: "Fechar",
-    msgForgotSent: "SolicitaÃ§Ã£o enviada! O administrador do sistema foi notificado para redefinir sua senha."
-  },
-  es: {
-    brandSubtitle: "Desarrollo de Red NHCE LATAM",
-    secureHttps: "Ambiente Seguro HTTPS",
-    shaActive: "ProtecciÃ³n SHA-256 Activa",
-    themeToggle: "Alternar Modo Claro/Oscuro",
-    loginTitle: "CapacitaciÃ³n PAN LATAM",
-    loginSubtitle: "GuÃ­a Interactiva de ActualizaciÃ³n del Plan Anual de Negocios",
-    emailLabel: "CORREO CORPORATIVO",
-    emailPlaceholder: "su.nombre@concesionario.com",
-    passwordLabel: "CONTRASEÃ‘A DE ACCESO",
-    passwordPlaceholder: "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢",
-    forgotPassword: "Â¿OlvidÃ³ su contraseÃ±a?",
-    rememberEmail: "Recordar mi correo",
-    maxAttempts: "MÃ¡x. 5 intentos",
-    btnLogin: "ACCEDER A LA CAPACITACIÃ“N â†’",
-    newHere: "Â¿NUEVO EN LA PLATAFORMA?",
-    btnRequestAccess: "Solicitar Registro de Acceso",
-    footerCopyright: "Â© 2026 CNH Industrial â€¢ New Holland Construction. Todos los derechos reservados.",
-    footerDev: "Desarrollo de Red NHCE LATAM â€¢ Plataforma de CapacitaciÃ³n Corporativa",
-    cadTitle: "Solicitar Acceso",
-    cadSubtitle: "Complete los datos a continuaciÃ³n para solicitar autorizaciÃ³n de acceso a la capacitaciÃ³n PAN",
-    nameLabel: "NOMBRE COMPLETO",
-    namePlaceholder: "Ej: Carlos Alberto GÃ³mez",
-    dealerLabel: "CONCESIONARIO / SUCURSAL",
-    dealerPlaceholder: "Ej: Paveca - CÃ³rdoba / Gruma",
-    roleLabel: "FUNCIÃ“N / CARGO",
-    rolePlaceholder: "Ej: Gerente General / Director",
-    cadPasswordLabel: "CREAR CONTRASEÃ‘A",
-    cadPasswordPlaceholder: "MÃ­nimo 8 caracteres",
-    cadConfirmLabel: "CONFIRMAR CONTRASEÃ‘A",
-    cadConfirmPlaceholder: "Repita su contraseÃ±a",
-    pwdStrengthText: "Seguridad de contraseÃ±a:",
-    strengthWeak: "DÃ©bil",
-    strengthMedium: "Media",
-    strengthStrong: "Fuerte",
-    btnSubmitCad: "Enviar Solicitud de Acceso â†’",
-    alreadyHaveAccount: "Â¿Ya tiene acceso?",
-    btnBackLogin: "Volver al Inicio de SesiÃ³n",
-    adminHeaderTitle: "Panel de Gobernanza & Accesos",
-    adminHeaderSubtitle: "Desarrollo de Red NHCE LATAM â€¢ GestiÃ³n de Usuarios y AuditorÃ­a",
-    btnGoTraining: "Ir a la CapacitaciÃ³n â†’",
-    btnLogout: "Cerrar SesiÃ³n",
-    tabUsers: "GestiÃ³n de Usuarios",
-    tabMetrics: "MÃ©tricas & AuditorÃ­a",
-    tabSecurity: "Seguridad & Respaldo",
-    kpiTotal: "Total de Usuarios",
-    kpiActive: "Usuarios Aprobados",
-    kpiPending: "Pendientes de AnÃ¡lisis",
-    kpiBlocked: "Cuentas Bloqueadas",
-    kpiLogins: "Total de Accesos",
-    kpiAlerts: "Incidentes / Bloqueos",
-    searchPlaceholder: "Buscar por nombre, correo o concesionario...",
-    filterStatusAll: "Todos los Estados",
-    filterStatusPending: "Pendientes",
-    filterStatusApproved: "Aprobados",
-    filterStatusBlocked: "Bloqueados",
-    filterStatusRejected: "Rechazados",
-    btnAddUser: "+ Nuevo Usuario",
-    colUser: "Usuario",
-    colDealer: "Concesionario",
-    colDate: "Fecha de Registro",
-    colRole: "Perfil",
-    colStatus: "Estado",
-    colActions: "Acciones",
-    btnApprove: "Aprobar",
-    btnReject: "Rechazar",
-    btnUnblock: "Desbloquear",
-    btnBlock: "Bloquear",
-    btnDelete: "Eliminar",
-    errFillFields: "Por favor, complete todos los campos obligatorios.",
-    errInvalidEmail: "Por favor, ingrese un correo corporativo vÃ¡lido.",
-    errPasswordLength: "La contraseÃ±a debe tener al menos 8 caracteres.",
-    errPasswordMismatch: "Las contraseÃ±as ingresadas no coinciden.",
-    errEmailRegistered: "Este correo ya estÃ¡ registrado en el sistema.",
-    msgCadSuccess: "Â¡Solicitud enviada con Ã©xito! Su acceso estÃ¡ en revisiÃ³n por Dealer Development.",
-    msgPendingAccount: "Su cuenta estÃ¡ en proceso de revisiÃ³n por Dealer Development. Por favor, aguarde.",
-    msgBlockedAccount: "Cuenta temporalmente bloqueada por exceso de intentos. Contacte al administrador.",
-    msgRejectedAccount: "Su solicitud de acceso no fue aprobada. Contacte a soporte corporativo.",
-    msgWrongPassword: "ContraseÃ±a incorrecta. Intento {current} de {max}.",
-    msgWarningLastChance: "ATENCIÃ“N: Â¡Ãšltimo intento antes del bloqueo de seguridad!",
-    msgUserNotFound: "Usuario no encontrado. Verifique el correo o solicite su registro.",
-    msgLoginSuccess: "Â¡Acceso autorizado! Redirigiendo...",
-    forgotTitle: "RecuperaciÃ³n de Acceso Corporativo",
-    forgotDesc: "Ingrese su correo corporativo para solicitar el restablecimiento de contraseÃ±a al administrador.",
-    btnSendRecovery: "Enviar Solicitud",
-    btnClose: "Cerrar",
-    msgForgotSent: "Â¡Solicitud enviada! El administrador ha sido notificado para restablecer su contraseÃ±a."
-  },
-  en: {
-    brandSubtitle: "Dealer Development NHCE LATAM",
-    secureHttps: "Secure HTTPS Environment",
-    shaActive: "Active SHA-256 Protection",
-    themeToggle: "Toggle Light/Dark Theme",
-    loginTitle: "PAN LATAM Training",
-    loginSubtitle: "Interactive Annual Business Plan Update Guide",
-    emailLabel: "CORPORATE EMAIL",
-    emailPlaceholder: "your.name@dealership.com",
-    passwordLabel: "ACCESS PASSWORD",
-    passwordPlaceholder: "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢",
-    forgotPassword: "Forgot password?",
-    rememberEmail: "Remember my email",
-    maxAttempts: "Max 5 attempts",
-    btnLogin: "ACCESS TRAINING â†’",
-    newHere: "NEW TO THE PLATFORM?",
-    btnRequestAccess: "Request Access Registration",
-    footerCopyright: "Â© 2026 CNH Industrial â€¢ New Holland Construction. All rights reserved.",
-    footerDev: "Dealer Development NHCE LATAM â€¢ Corporate Training Platform",
-    cadTitle: "Request Access",
-    cadSubtitle: "Fill in the details below to request authorization to access the PAN training",
-    nameLabel: "FULL NAME",
-    namePlaceholder: "e.g. Carlos Silva",
-    dealerLabel: "DEALERSHIP / BRANCH",
-    dealerPlaceholder: "e.g. Paveca - Cordoba",
-    roleLabel: "ROLE / POSITION",
-    rolePlaceholder: "e.g. General Manager / Director",
-    cadPasswordLabel: "CREATE PASSWORD",
-    cadPasswordPlaceholder: "Minimum 8 characters",
-    cadConfirmLabel: "CONFIRM PASSWORD",
-    cadConfirmPlaceholder: "Repeat your password",
-    pwdStrengthText: "Password strength:",
-    strengthWeak: "Weak",
-    strengthMedium: "Medium",
-    strengthStrong: "Strong",
-    btnSubmitCad: "Submit Access Request â†’",
-    alreadyHaveAccount: "Already have an account?",
-    btnBackLogin: "Back to Login",
-    adminHeaderTitle: "Governance & Access Panel",
-    adminHeaderSubtitle: "Dealer Development NHCE LATAM â€¢ User Management & Audit",
-    btnGoTraining: "Go to Training â†’",
-    btnLogout: "Sign Out",
-    tabUsers: "User Management",
-    tabMetrics: "Metrics & Audit",
-    tabSecurity: "Security & Backup",
-    kpiTotal: "Total Users",
-    kpiActive: "Approved Users",
-    kpiPending: "Pending Review",
-    kpiBlocked: "Blocked Accounts",
-    kpiLogins: "Total Logins",
-    kpiAlerts: "Security Incidents",
-    searchPlaceholder: "Search by name, email or dealership...",
-    filterStatusAll: "All Statuses",
-    filterStatusPending: "Pending",
-    filterStatusApproved: "Approved",
-    filterStatusBlocked: "Blocked",
-    filterStatusRejected: "Rejected",
-    btnAddUser: "+ Add User",
-    colUser: "User",
-    colDealer: "Dealership",
-    colDate: "Registration Date",
-    colRole: "Role",
-    colStatus: "Status",
-    colActions: "Actions",
-    btnApprove: "Approve",
-    btnReject: "Reject",
-    btnUnblock: "Unblock",
-    btnBlock: "Block",
-    btnDelete: "Delete",
-    errFillFields: "Please fill in all required fields.",
-    errInvalidEmail: "Please enter a valid corporate email.",
-    errPasswordLength: "Password must be at least 8 characters long.",
-    errPasswordMismatch: "Entered passwords do not match.",
-    errEmailRegistered: "This email is already registered in the system.",
-    msgCadSuccess: "Request sent successfully! Your access is under review by Dealer Development.",
-    msgPendingAccount: "Your account is under review by Dealer Development. Please await approval.",
-    msgBlockedAccount: "Account temporarily locked due to excessive failed attempts. Contact admin.",
-    msgRejectedAccount: "Your access request was not approved. Please contact support.",
-    msgWrongPassword: "Incorrect password. Attempt {current} of {max}.",
-    msgWarningLastChance: "WARNING: Last attempt before security account lockout!",
-    msgUserNotFound: "User not found. Check your email or request registration.",
-    msgLoginSuccess: "Login successful! Redirecting...",
-    forgotTitle: "Corporate Access Recovery",
-    forgotDesc: "Enter your corporate email to request a password reset from the administrator.",
-    btnSendRecovery: "Send Request",
-    btnClose: "Close",
-    msgForgotSent: "Request sent! The system administrator has been notified to reset your password."
-  }
-};
+(function(window, document) {
+  'use strict';
 
-let currentLang = localStorage.getItem('nh_lang') || 'pt';
-let currentTheme = localStorage.getItem('nh_theme') || 'dark';
-
-function t(key, params = {}) {
-  const dict = I18N[currentLang] || I18N['pt'];
-  let text = dict[key] || I18N['pt'][key] || key;
-  for (const [k, v] of Object.entries(params)) {
-    text = text.replace(new RegExp(`{${k}}`, 'g'), v);
-  }
-  return text;
-}
-
-function setLanguage(lang) {
-  if (!I18N[lang]) lang = 'pt';
-  currentLang = lang;
-  localStorage.setItem('nh_lang', lang);
-
-  ['pt', 'es', 'en'].forEach(l => {
-    const btn = document.getElementById(`btn-lang-${l}`);
-    if (btn) {
-      if (l === lang) btn.classList.add('active');
-      else btn.classList.remove('active');
+  /* ==========================================================================
+     SISTEMA DE INTERNACIONALIZAÃ‡ÃƒO UNIFICADO (I18N)
+     ========================================================================== */
+  const I18N = {
+    pt: {
+      brandSubtitle: "Desenvolvimento de Rede NHCE LATAM",
+      secureHttps: "Ambiente Seguro HTTPS",
+      shaActive: "ProteÃ§Ã£o SHA-256 Ativa",
+      themeToggle: "Alternar Modo Claro/Escuro",
+      loginTitle: "CapacitaÃ§Ã£o PAN LATAM",
+      loginSubtitle: "Guia Interativo de AtualizaÃ§Ã£o do Plano Anual de NegÃ³cios",
+      emailLabel: "E-mail Corporativo",
+      emailPlaceholder: "seu.nome@concessionaria.com",
+      passwordLabel: "Senha de Acesso",
+      passwordPlaceholder: "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢",
+      forgotPassword: "Esqueceu a senha?",
+      rememberEmail: "Lembrar meu e-mail",
+      maxAttempts: "MÃ¡x. 5 tentativas",
+      btnLogin: "Acessar Treinamento â†’",
+      newHere: "Novo na plataforma?",
+      btnRequestAccess: "Solicitar Cadastro de Acesso",
+      footerCopyright: "Â© 2026 CNH Industrial â€¢ New Holland Construction. Todos os direitos reservados.",
+      footerDev: "Desenvolvimento de Rede NHCE LATAM â€¢ Plataforma de CapacitaÃ§Ã£o Corporativa",
+      cadTitle: "Solicitar Acesso",
+      cadSubtitle: "Preencha os dados abaixo para solicitar autorizaÃ§Ã£o de acesso ao treinamento PAN",
+      nameLabel: "Nome Completo",
+      namePlaceholder: "Ex: Carlos Silva",
+      dealerLabel: "ConcessionÃ¡ria / Filial",
+      dealerPlaceholder: "Ex: Paveca - CÃ³rdoba",
+      roleLabel: "FunÃ§Ã£o / Cargo",
+      rolePlaceholder: "Ex: Gerente Geral",
+      cadPasswordLabel: "Criar Senha",
+      cadPasswordPlaceholder: "MÃ­nimo 8 caracteres",
+      cadConfirmLabel: "Confirmar Senha",
+      cadConfirmPlaceholder: "Repita sua senha",
+      pwdStrengthText: "ForÃ§a da senha:",
+      btnSubmitCad: "Enviar SolicitaÃ§Ã£o de Acesso â†’",
+      alreadyHaveAccount: "JÃ¡ possui acesso?",
+      btnBackLogin: "Voltar para o Login",
+      adminHeaderTitle: "Painel de GovernanÃ§a & Acessos",
+      adminHeaderSubtitle: "Desenvolvimento de Rede NHCE LATAM â€¢ GestÃ£o de UsuÃ¡rios e Auditoria",
+      btnGoTraining: "Ir para o Treinamento â†’",
+      btnLogout: "Sair do Sistema",
+      kpiTotal: "Total de UsuÃ¡rios",
+      kpiActive: "UsuÃ¡rios Aprovados",
+      kpiPending: "Pendentes de AnÃ¡lise",
+      kpiBlocked: "Contas Bloqueadas",
+      kpiLogins: "Total de Acessos",
+      kpiAlerts: "Alertas de SeguranÃ§a",
+      tabUsers: "GestÃ£o de UsuÃ¡rios",
+      tabAudit: "Trilha de Auditoria & Monitoramento",
+      tabBackup: "Banco de Dados & Backup",
+      searchPlaceholder: "Buscar por nome, e-mail ou concessionÃ¡ria...",
+      filterAll: "Todos os Status",
+      filterPending: "Pendentes",
+      filterApproved: "Aprovados",
+      filterBlocked: "Bloqueados",
+      filterRejected: "Reprovados",
+      thUser: "UsuÃ¡rio",
+      thDealer: "ConcessionÃ¡ria / Cargo",
+      thStatus: "Status",
+      thCreated: "Data Cadastro",
+      thLastAccess: "Ãšltimo Acesso",
+      thActions: "AÃ§Ãµes Administrativas",
+      auditDescription: "Trilha de eventos de seguranÃ§a e acessos em tempo real",
+      btnExportCsv: "Exportar CSV",
+      btnClearLogs: "Limpar Logs",
+      backupExportTitle: "Exportar Base Completa",
+      backupExportDesc: "Gere uma cÃ³pia de seguranÃ§a em formato JSON com todos os cadastros e histÃ³rico de auditoria.",
+      btnDownloadJson: "Baixar Backup JSON",
+      backupImportTitle: "Restaurar Base de Dados",
+      backupImportDesc: "Carregue um arquivo JSON de backup previamente exportado para restaurar a base.",
+      btnUploadJson: "Selecionar Arquivo JSON",
+      modalForgotTitle: "RecuperaÃ§Ã£o de Senha",
+      modalForgotSubtitle: "Informe seu e-mail corporativo cadastrado para receber instruÃ§Ãµes do administrador",
+      btnCancel: "Cancelar",
+      btnSend: "Enviar SolicitaÃ§Ã£o",
+      statusPending: "Pendente",
+      statusApproved: "Aprovado",
+      statusBlocked: "Bloqueado",
+      statusRejected: "Reprovado",
+      btnApprove: "Aprovar",
+      btnReject: "Reprovar",
+      btnBlock: "Bloquear",
+      btnUnblock: "Desbloquear",
+      btnDelete: "Excluir",
+      neverAccessed: "Nunca acessou",
+      strengthWeak: "Fraca",
+      strengthMedium: "MÃ©dia",
+      strengthStrong: "Forte",
+      errFillFields: "Por favor, preencha todos os campos obrigatÃ³rios.",
+      errPasswordLength: "A senha deve ter pelo menos 8 caracteres.",
+      errPasswordMismatch: "As senhas nÃ£o coincidem. Verifique a confirmaÃ§Ã£o.",
+      errEmailRegistered: "Este e-mail corporativo jÃ¡ estÃ¡ registrado no sistema.",
+      msgCadSuccess: "SolicitaÃ§Ã£o de cadastro enviada com sucesso! Seu acesso estÃ¡ PENDENTE e serÃ¡ liberado apÃ³s a aprovaÃ§Ã£o do administrador.",
+      msgUserNotFound: "UsuÃ¡rio nÃ£o encontrado. Verifique o e-mail ou solicite cadastro.",
+      msgWrongPassword: "Senha incorreta. Tentativa {current} de {max}.",
+      msgWarningLastChance: "AtenÃ§Ã£o: sua conta serÃ¡ BLOQUEADA na prÃ³xima tentativa incorreta.",
+      msgBlockedAccount: "Sua conta estÃ¡ BLOQUEADA por excesso de tentativas ou polÃ­tica de seguranÃ§a. Contate o administrador.",
+      msgPendingAccount: "Seu cadastro ainda estÃ¡ PENDENTE de aprovaÃ§Ã£o pelo administrador.",
+      msgRejectedAccount: "Seu cadastro foi REPROVADO pelo administrador. Contate o suporte de rede.",
+      msgForgotSent: "SolicitaÃ§Ã£o enviada. Um administrador entrarÃ¡ em contato para fornecer suas novas credenciais."
+    },
+    es: {
+      brandSubtitle: "Desarrollo de Red NHCE LATAM",
+      secureHttps: "Ambiente Seguro HTTPS",
+      shaActive: "ProtecciÃ³n SHA-256 Activa",
+      themeToggle: "Alternar Modo Claro/Oscuro",
+      loginTitle: "CapacitaciÃ³n PAN LATAM",
+      loginSubtitle: "GuÃ­a Interactiva de ActualizaciÃ³n del Plan Anual de Negocios",
+      emailLabel: "Correo Corporativo",
+      emailPlaceholder: "su.nombre@concesionario.com",
+      passwordLabel: "ContraseÃ±a de Acceso",
+      passwordPlaceholder: "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢",
+      forgotPassword: "Â¿OlvidÃ³ su contraseÃ±a?",
+      rememberEmail: "Recordar mi correo",
+      maxAttempts: "MÃ¡x. 5 intentos",
+      btnLogin: "Acceder al Entrenamiento â†’",
+      newHere: "Â¿Nuevo en la plataforma?",
+      btnRequestAccess: "Solicitar Registro de Acceso",
+      footerCopyright: "Â© 2026 CNH Industrial â€¢ New Holland Construction. Todos los derechos reservados.",
+      footerDev: "Desarrollo de Red NHCE LATAM â€¢ Plataforma de CapacitaciÃ³n Corporativa",
+      cadTitle: "Solicitar Acceso",
+      cadSubtitle: "Complete los datos a continuaciÃ³n para solicitar autorizaciÃ³n de acceso al entrenamiento PAN",
+      nameLabel: "Nombre Completo",
+      namePlaceholder: "Ej: Carlos Silva",
+      dealerLabel: "Concesionario / Sucursal",
+      dealerPlaceholder: "Ej: Paveca - CÃ³rdoba",
+      roleLabel: "FunciÃ³n / Cargo",
+      rolePlaceholder: "Ej: Gerente General",
+      cadPasswordLabel: "Crear ContraseÃ±a",
+      cadPasswordPlaceholder: "MÃ­nimo 8 caracteres",
+      cadConfirmLabel: "Confirmar ContraseÃ±a",
+      cadConfirmPlaceholder: "Repita su contraseÃ±a",
+      pwdStrengthText: "Fuerza de la contraseÃ±a:",
+      btnSubmitCad: "Enviar Solicitud de Acceso â†’",
+      alreadyHaveAccount: "Â¿Ya tiene acceso?",
+      btnBackLogin: "Volver al Login",
+      adminHeaderTitle: "Panel de Gobernanza & Accesos",
+      adminHeaderSubtitle: "Desarrollo de Red NHCE LATAM â€¢ GestiÃ³n de Usuarios y AuditorÃ­a",
+      btnGoTraining: "Ir al Entrenamiento â†’",
+      btnLogout: "Cerrar SesiÃ³n",
+      kpiTotal: "Total de Usuarios",
+      kpiActive: "Usuarios Aprobados",
+      kpiPending: "Pendientes de AnÃ¡lisis",
+      kpiBlocked: "Cuentas Bloqueadas",
+      kpiLogins: "Total de Accesos",
+      kpiAlerts: "Alertas de Seguridad",
+      tabUsers: "GestiÃ³n de Usuarios",
+      tabAudit: "Pista de AuditorÃ­a & Monitoreo",
+      tabBackup: "Base de Datos & Copia de Seguridad",
+      searchPlaceholder: "Buscar por nombre, correo o concesionario...",
+      filterAll: "Todos los Estados",
+      filterPending: "Pendientes",
+      filterApproved: "Aprobados",
+      filterBlocked: "Bloqueados",
+      filterRejected: "Rechazados",
+      thUser: "Usuario",
+      thDealer: "Concesionario / Cargo",
+      thStatus: "Estado",
+      thCreated: "Fecha de Registro",
+      thLastAccess: "Ãšltimo Acceso",
+      thActions: "Acciones Administrativas",
+      auditDescription: "Pista de eventos de seguridad y accesos en tiempo real",
+      btnExportCsv: "Exportar CSV",
+      btnClearLogs: "Limpiar Registros",
+      backupExportTitle: "Exportar Base Completa",
+      backupExportDesc: "Genere una copia de seguridad en formato JSON con todos los registros e historial.",
+      btnDownloadJson: "Descargar Backup JSON",
+      backupImportTitle: "Restaurar Base de Datos",
+      backupImportDesc: "Cargue un archivo JSON de respaldo previamente exportado para restaurar la base.",
+      btnUploadJson: "Seleccionar Archivo JSON",
+      modalForgotTitle: "RecuperaciÃ³n de ContraseÃ±a",
+      modalForgotSubtitle: "Ingrese su correo corporativo registrado para recibir instrucciones del administrador",
+      btnCancel: "Cancelar",
+      btnSend: "Enviar Solicitud",
+      statusPending: "Pendiente",
+      statusApproved: "Aprobado",
+      statusBlocked: "Bloqueado",
+      statusRejected: "Rechazado",
+      btnApprove: "Aprobar",
+      btnReject: "Rechazar",
+      btnBlock: "Bloquear",
+      btnUnblock: "Desbloquear",
+      btnDelete: "Eliminar",
+      neverAccessed: "Nunca ingresÃ³",
+      strengthWeak: "DÃ©bil",
+      strengthMedium: "Media",
+      strengthStrong: "Fuerte",
+      errFillFields: "Por favor, complete todos los campos obligatorios.",
+      errPasswordLength: "La contraseÃ±a debe tener al menos 8 caracteres.",
+      errPasswordMismatch: "Las contraseÃ±as no coinciden. Verifique la confirmaciÃ³n.",
+      errEmailRegistered: "Este correo corporativo ya estÃ¡ registrado en el sistema.",
+      msgCadSuccess: "Â¡Solicitud de registro enviada con Ã©xito! Su acceso estÃ¡ PENDIENTE y serÃ¡ habilitado tras la aprobaciÃ³n del administrador.",
+      msgUserNotFound: "Usuario no encontrado. Verifique el correo o solicite registro.",
+      msgWrongPassword: "ContraseÃ±a incorrecta. Intento {current} de {max}.",
+      msgWarningLastChance: "AtenciÃ³n: su cuenta serÃ¡ BLOQUEADA en el prÃ³ximo intento incorrecto.",
+      msgBlockedAccount: "Su cuenta estÃ¡ BLOQUEADA por exceso de intentos o polÃ­tica de seguridad. Contacte al administrador.",
+      msgPendingAccount: "Su registro aÃºn estÃ¡ PENDIENTE de aprobaciÃ³n por el administrador.",
+      msgRejectedAccount: "Su registro fue RECHAZADO por el administrador. Contacte al soporte de red.",
+      msgForgotSent: "Solicitud enviada. Un administrador se comunicarÃ¡ para proporcionarle nuevas credenciales."
+    },
+    en: {
+      brandSubtitle: "Dealer Development NHCE LATAM",
+      secureHttps: "Secure HTTPS Environment",
+      shaActive: "Active SHA-256 Protection",
+      themeToggle: "Toggle Light/Dark Mode",
+      loginTitle: "PAN LATAM Training",
+      loginSubtitle: "Annual Business Plan Interactive Update Guide",
+      emailLabel: "Corporate Email",
+      emailPlaceholder: "your.name@dealership.com",
+      passwordLabel: "Access Password",
+      passwordPlaceholder: "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢",
+      forgotPassword: "Forgot password?",
+      rememberEmail: "Remember my email",
+      maxAttempts: "Max 5 attempts",
+      btnLogin: "Access Training â†’",
+      newHere: "New to the platform?",
+      btnRequestAccess: "Request Access Registration",
+      footerCopyright: "Â© 2026 CNH Industrial â€¢ New Holland Construction. All rights reserved.",
+      footerDev: "Dealer Development NHCE LATAM â€¢ Corporate Training Platform",
+      cadTitle: "Request Access",
+      cadSubtitle: "Fill in the details below to request authorization to access the PAN training",
+      nameLabel: "Full Name",
+      namePlaceholder: "E.g.: Charles Smith",
+      dealerLabel: "Dealership / Branch",
+      dealerPlaceholder: "E.g.: Paveca - CÃ³rdoba",
+      roleLabel: "Role / Job Title",
+      rolePlaceholder: "E.g.: General Manager",
+      cadPasswordLabel: "Create Password",
+      cadPasswordPlaceholder: "Minimum 8 characters",
+      cadConfirmLabel: "Confirm Password",
+      cadConfirmPlaceholder: "Repeat your password",
+      pwdStrengthText: "Password strength:",
+      btnSubmitCad: "Submit Access Request â†’",
+      alreadyHaveAccount: "Already have access?",
+      btnBackLogin: "Back to Login",
+      adminHeaderTitle: "Governance & Access Panel",
+      adminHeaderSubtitle: "Dealer Development NHCE LATAM â€¢ User Management and Audit",
+      btnGoTraining: "Go to Training â†’",
+      btnLogout: "Sign Out",
+      kpiTotal: "Total Users",
+      kpiActive: "Approved Users",
+      kpiPending: "Pending Analysis",
+      kpiBlocked: "Blocked Accounts",
+      kpiLogins: "Total Logins",
+      kpiAlerts: "Security Alerts",
+      tabUsers: "User Management",
+      tabAudit: "Audit Trail & Monitoring",
+      tabBackup: "Database & Backup",
+      searchPlaceholder: "Search by name, email, or dealership...",
+      filterAll: "All Statuses",
+      filterPending: "Pending",
+      filterApproved: "Approved",
+      filterBlocked: "Blocked",
+      filterRejected: "Rejected",
+      thUser: "User",
+      thDealer: "Dealership / Role",
+      thStatus: "Status",
+      thCreated: "Registration Date",
+      thLastAccess: "Last Access",
+      thActions: "Administrative Actions",
+      auditDescription: "Real-time security events and access trail",
+      btnExportCsv: "Export CSV",
+      btnClearLogs: "Clear Logs",
+      backupExportTitle: "Export Full Database",
+      backupExportDesc: "Generate a JSON backup file with all users and audit logs.",
+      btnDownloadJson: "Download JSON Backup",
+      backupImportTitle: "Restore Database",
+      backupImportDesc: "Upload a previously exported JSON backup file to restore data.",
+      btnUploadJson: "Select JSON File",
+      modalForgotTitle: "Password Recovery",
+      modalForgotSubtitle: "Enter your registered corporate email to receive instructions from the administrator",
+      btnCancel: "Cancel",
+      btnSend: "Send Request",
+      statusPending: "Pending",
+      statusApproved: "Approved",
+      statusBlocked: "Blocked",
+      statusRejected: "Rejected",
+      btnApprove: "Approve",
+      btnReject: "Reject",
+      btnBlock: "Block",
+      btnUnblock: "Unblock",
+      btnDelete: "Delete",
+      neverAccessed: "Never accessed",
+      strengthWeak: "Weak",
+      strengthMedium: "Medium",
+      strengthStrong: "Strong",
+      errFillFields: "Please fill in all required fields.",
+      errPasswordLength: "Password must be at least 8 characters long.",
+      errPasswordMismatch: "Passwords do not match. Please verify.",
+      errEmailRegistered: "This corporate email is already registered in the system.",
+      msgCadSuccess: "Registration request submitted successfully! Your access is PENDING and will be granted after administrator approval.",
+      msgUserNotFound: "User not found. Check the email or request registration.",
+      msgWrongPassword: "Incorrect password. Attempt {current} of {max}.",
+      msgWarningLastChance: "Warning: your account will be BLOCKED on the next incorrect attempt.",
+      msgBlockedAccount: "Your account is BLOCKED due to excessive attempts or security policy. Contact the administrator.",
+      msgPendingAccount: "Your registration is still PENDING approval by the administrator.",
+      msgRejectedAccount: "Your registration was REJECTED by the administrator. Contact dealer support.",
+      msgForgotSent: "Request submitted. An administrator will contact you with new credentials."
     }
-  });
+  };
 
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (key) el.innerHTML = t(key);
-  });
+  let currentAppLang = localStorage.getItem('nh_platform_lang') || 'pt';
+  let currentAppTheme = localStorage.getItem('nh_platform_theme') || 'dark';
 
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-    const key = el.getAttribute('data-i18n-placeholder');
-    if (key) el.placeholder = t(key);
-  });
-
-  document.querySelectorAll('[data-i18n-title]').forEach(el => {
-    const key = el.getAttribute('data-i18n-title');
-    if (key) el.title = t(key);
-  });
-
-  if (currentViewId === 'view-admin') {
-    renderAdminTable();
+  function t(key, params = {}) {
+    const dict = I18N[currentAppLang] || I18N.pt;
+    let str = dict[key] || (I18N.pt[key] || key);
+    Object.keys(params).forEach(p => {
+      str = str.replace(new RegExp(`\\{${p}\\}`, 'g'), params[p]);
+    });
+    return str;
   }
 
-  if (window.selectNarrationLang && (lang === 'pt' || lang === 'es' || lang === 'en')) {
-    window.selectNarrationLang(lang);
+  function setLanguage(lang) {
+    if (!I18N[lang]) lang = 'pt';
+    currentAppLang = lang;
+    localStorage.setItem('nh_platform_lang', lang);
+
+    // Atualizar botÃµes de idioma
+    ['pt', 'es', 'en'].forEach(l => {
+      const btn = document.getElementById(`btn-lang-${l}`);
+      if (btn) {
+        if (l === lang) btn.classList.add('active');
+        else btn.classList.remove('active');
+      }
+    });
+
+    // Atualizar textos com data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (key) el.innerHTML = t(key);
+    });
+
+    // Atualizar placeholders com data-i18n-placeholder
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (key) el.placeholder = t(key);
+    });
+
+    // Atualizar titles com data-i18n-title
+    document.querySelectorAll('[data-i18n-title]').forEach(el => {
+      const key = el.getAttribute('data-i18n-title');
+      if (key) el.title = t(key);
+    });
+
+    // Sincronizar com o script interno do treinamento se estiver disponÃ­vel
+    if (typeof window.switchLanguage === 'function') {
+      try { window.switchLanguage(lang); } catch (e) {}
+    }
+
+    if (currentViewId === 'view-admin') {
+      renderAdminTable();
+    }
   }
-}
 
-function toggleTheme() {
-  currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  applyTheme(currentTheme);
-}
+  function applyTheme(theme) {
+    currentAppTheme = theme;
+    localStorage.setItem('nh_platform_theme', theme);
+    const body = document.body;
+    const themeIcon = document.getElementById('theme-icon');
 
-function applyTheme(theme) {
-  currentTheme = theme;
-  localStorage.setItem('nh_theme', theme);
-  const icon = document.getElementById('theme-icon');
-  
-  if (theme === 'light') {
-    document.body.classList.remove('theme-dark');
-    document.body.classList.add('theme-light');
-    if (icon) icon.className = 'fa-solid fa-sun';
-  } else {
-    document.body.classList.remove('theme-light');
-    document.body.classList.add('theme-dark');
-    if (icon) icon.className = 'fa-solid fa-moon';
+    if (theme === 'light') {
+      body.classList.remove('theme-dark');
+      body.classList.add('theme-light');
+      if (themeIcon) {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      }
+    } else {
+      body.classList.remove('theme-light');
+      body.classList.add('theme-dark');
+      if (themeIcon) {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+      }
+    }
   }
-}
 
-/* ==========================================================================
-   SEGURANÃ‡A DO FRONT-END (ANTI-INSPEÃ‡ÃƒO & PROTEÃ‡ÃƒO DE CÃ“DIGO FONTE)
-   ========================================================================== */
-// 1. Bloquear botÃ£o direito (contextmenu)
-document.addEventListener('contextmenu', function(e) {
-  e.preventDefault();
-  return false;
-});
+  function toggleTheme() {
+    applyTheme(currentAppTheme === 'dark' ? 'light' : 'dark');
+  }
 
-// 2. Bloquear F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C, Ctrl+Shift+K, Ctrl+U, Ctrl+S
-document.addEventListener('keydown', function(e) {
-  // F12
-  if (e.key === 'F12' || e.keyCode === 123) {
+  /* ==========================================================================
+     SEGURANÃ‡A DE FRONT-END (ITEM 9)
+     ========================================================================== */
+  document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
-    e.stopPropagation();
     return false;
-  }
-  
-  // Ctrl + Shift + I / J / C / K
-  if (e.ctrlKey && e.shiftKey) {
-    const k = e.key ? e.key.toUpperCase() : '';
-    if (k === 'I' || k === 'J' || k === 'C' || k === 'K' || e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67 || e.keyCode === 75) {
+  });
+
+  document.addEventListener('keydown', function(e) {
+    // F12
+    if (e.key === 'F12' || e.keyCode === 123) {
       e.preventDefault();
       e.stopPropagation();
       return false;
     }
-  }
+    
+    // Ctrl + Shift + I / J / C / K
+    if (e.ctrlKey && e.shiftKey) {
+      const k = e.key ? e.key.toUpperCase() : '';
+      if (k === 'I' || k === 'J' || k === 'C' || k === 'K' || e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67 || e.keyCode === 75) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+    }
 
-  // Mac OS: Cmd + Alt + I / J / C / U
-  if (e.metaKey && e.altKey) {
-    const k = e.key ? e.key.toUpperCase() : '';
-    if (k === 'I' || k === 'J' || k === 'C' || k === 'U' || e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67 || e.keyCode === 85) {
+    // Mac OS: Cmd + Alt + I / J / C / U
+    if (e.metaKey && e.altKey) {
+      const k = e.key ? e.key.toUpperCase() : '';
+      if (k === 'I' || k === 'J' || k === 'C' || k === 'U' || e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67 || e.keyCode === 85) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+    }
+
+    // Ctrl + U (Ver CÃ³digo Fonte) / Cmd + U
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'U' || e.key === 'u' || e.keyCode === 85)) {
       e.preventDefault();
       e.stopPropagation();
       return false;
     }
-  }
 
-  // Ctrl + U (Ver CÃ³digo Fonte) / Cmd + U
-  if ((e.ctrlKey || e.metaKey) && (e.key === 'U' || e.key === 'u' || e.keyCode === 85)) {
-    e.preventDefault();
-    e.stopPropagation();
-    return false;
-  }
+    // Ctrl + S (Salvar PÃ¡gina) / Cmd + S
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'S' || e.key === 's' || e.keyCode === 83)) {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+  });
 
-  // Ctrl + S (Salvar PÃ¡gina) / Cmd + S
-  if ((e.ctrlKey || e.metaKey) && (e.key === 'S' || e.key === 's' || e.keyCode === 83)) {
-    e.preventDefault();
-    e.stopPropagation();
-    return false;
-  }
-});
+  /* ==========================================================================
+     ROTEADOR SPA & GERENCIAMENTO DE VIEWS
+     ========================================================================== */
+  let currentViewId = 'view-login';
 
-/* ==========================================================================
-   ROTEADOR SPA & GERENCIAMENTO DE VIEWS
-   ========================================================================== */
-let currentViewId = 'view-login';
-
-function showView(viewId) {
-  currentViewId = viewId;
-  const views = ['view-login', 'view-cadastro', 'view-admin', 'view-training'];
-  
-  views.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
-      if (id === viewId) {
-        el.classList.remove('hidden');
-        if (id === 'view-training') {
-          el.style.display = 'flex';
-          const gHeader = document.getElementById('platform-global-header');
-          if (gHeader) gHeader.style.display = 'none';
-          const animBg = document.getElementById('nh-animated-bg');
-          if (animBg) animBg.style.display = 'none';
+  function showView(viewId) {
+    currentViewId = viewId;
+    const views = ['view-login', 'view-cadastro', 'view-admin', 'view-training'];
+    
+    views.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        if (id === viewId) {
+          el.classList.remove('hidden');
+          if (id === 'view-training') {
+            el.style.display = 'flex';
+            const gHeader = document.getElementById('platform-global-header');
+            if (gHeader) gHeader.style.display = 'none';
+            const animBg = document.getElementById('nh-animated-bg');
+            if (animBg) animBg.style.display = 'none';
+            
+            // Garantir que a renderizaÃ§Ã£o do treinamento aconteÃ§a
+            setTimeout(() => {
+              window.dispatchEvent(new Event('resize'));
+            }, 100);
+          } else {
+            el.style.display = '';
+            const gHeader = document.getElementById('platform-global-header');
+            if (gHeader) gHeader.style.display = '';
+            const animBg = document.getElementById('nh-animated-bg');
+            if (animBg) animBg.style.display = '';
+          }
         } else {
-          el.style.display = '';
-          const gHeader = document.getElementById('platform-global-header');
-          if (gHeader) gHeader.style.display = '';
-          const animBg = document.getElementById('nh-animated-bg');
-          if (animBg) animBg.style.display = '';
-        }
-      } else {
-        el.classList.add('hidden');
-        if (id === 'view-training') {
-          el.style.display = 'none';
+          el.classList.add('hidden');
+          if (id === 'view-training') {
+            el.style.display = 'none';
+          }
         }
       }
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (viewId === 'view-admin') {
+      loadAdminData();
     }
-  });
-
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  if (viewId === 'view-admin') {
-    loadAdminData();
-  }
-}
-
-/* ==========================================================================
-   SERVIÃ‡O DE AUTENTICAÃ‡ÃƒO E BANCO DE DADOS CLIENT-SIDE (SHA-256)
-   ========================================================================== */
-const STORAGE_KEYS = {
-  USERS: 'nh_auth_users',
-  SESSION: 'nh_auth_session',
-  ATTEMPTS: 'nh_auth_failed_attempts',
-  AUDIT: 'nh_auth_audit_logs'
-};
-
-const MASTER_SALT = 'NHCE_LATAM_DEALER_NETWORK_2026_SALT';
-const MAX_FAILED_ATTEMPTS = 5;
-
-async function sha256(text) {
-  const enc = new TextEncoder();
-  const data = enc.encode(text + MASTER_SALT);
-  const hash = await crypto.subtle.digest('SHA-256', data);
-  const hashArray = Array.from(new Uint8Array(hash));
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-}
-
-function initDatabase() {
-  let users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || 'null');
-  if (!users || !Array.isArray(users) || users.length === 0) {
-    users = [
-      {
-        id: 'usr_admin_master',
-        name: 'Administrador Master NHCE',
-        email: 'admin@newholland.com',
-        dealership: 'CNH Industrial - Curitiba',
-        role: 'ADMIN',
-        status: 'APROVADO',
-        passwordHash: 'e6c2e399581f440538a79a32dc4fbca1456209b50e0544520973686f0c60965e', // Admin@NHCE2026!
-        createdAt: new Date().toISOString(),
-        approvedAt: new Date().toISOString(),
-        lastLogin: null
-      }
-    ];
-    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
   }
 
-  let audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || 'null');
-  if (!audit) {
-    audit = [
-      {
-        timestamp: new Date().toISOString(),
-        type: 'SYSTEM_INIT',
-        email: 'admin@newholland.com',
-        details: 'Plataforma inicializada com sucesso.'
-      }
-    ];
+  /* ==========================================================================
+     SERVIÃ‡O DE AUTENTICAÃ‡ÃƒO E BANCO DE DADOS CLIENT-SIDE (SHA-256)
+     ========================================================================== */
+  const STORAGE_KEYS = {
+    USERS: 'nh_auth_users',
+    SESSION: 'nh_auth_session',
+    ATTEMPTS: 'nh_auth_failed_attempts',
+    AUDIT: 'nh_auth_audit_logs'
+  };
+
+  const MASTER_SALT = 'NHCE_LATAM_DEALER_NETWORK_2026_SALT';
+  const MAX_FAILED_ATTEMPTS = 5;
+
+  async function sha256(text) {
+    const enc = new TextEncoder();
+    const data = enc.encode(text + MASTER_SALT);
+    const hash = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hash));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  function initDatabase() {
+    let users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || 'null');
+    if (!users || !Array.isArray(users) || users.length === 0) {
+      users = [
+        {
+          id: 'usr_admin_master',
+          name: 'Administrador Master NHCE',
+          email: 'admin@newholland.com',
+          dealership: 'CNH Industrial - Curitiba',
+          role: 'ADMIN',
+          status: 'APROVADO',
+          passwordHash: 'e6c2e399581f440538a79a32dc4fbca1456209b50e0544520973686f0c60965e', // Admin@NHCE2026!
+          createdAt: new Date().toISOString(),
+          approvedAt: new Date().toISOString(),
+          lastLogin: null
+        }
+      ];
+      localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+    }
+
+    let audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || 'null');
+    if (!audit) {
+      audit = [
+        {
+          timestamp: new Date().toISOString(),
+          type: 'SYSTEM_INIT',
+          email: 'admin@newholland.com',
+          details: 'Plataforma inicializada com sucesso.'
+        }
+      ];
+      localStorage.setItem(STORAGE_KEYS.AUDIT, JSON.stringify(audit));
+    }
+  }
+
+  function addAuditLog(type, email, details) {
+    const audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || '[]');
+    audit.unshift({
+      timestamp: new Date().toISOString(),
+      type,
+      email,
+      details
+    });
+    if (audit.length > 200) audit.pop();
     localStorage.setItem(STORAGE_KEYS.AUDIT, JSON.stringify(audit));
   }
-}
 
-function addAuditLog(type, email, details) {
-  const audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || '[]');
-  audit.unshift({
-    timestamp: new Date().toISOString(),
-    type,
-    email,
-    details
-  });
-  if (audit.length > 200) audit.pop();
-  localStorage.setItem(STORAGE_KEYS.AUDIT, JSON.stringify(audit));
-}
+  function showAlert(prefix, message, isError = true) {
+    const alertBox = document.getElementById(`${prefix}-alert`);
+    const alertText = document.getElementById(`${prefix}-alert-text`);
+    const alertIcon = document.getElementById(`${prefix}-alert-icon`);
+    if (!alertBox || !alertText) return;
 
-function showAlert(prefix, message, isError = true) {
-  const alertBox = document.getElementById(`${prefix}-alert`);
-  const alertText = document.getElementById(`${prefix}-alert-text`);
-  const alertIcon = document.getElementById(`${prefix}-alert-icon`);
-  if (!alertBox || !alertText) return;
+    alertText.innerText = message;
+    alertBox.className = isError
+      ? 'mb-5 p-3.5 rounded-xl text-xs font-medium border flex items-start space-x-2.5 bg-rose-500/10 text-rose-300 border-rose-500/30'
+      : 'mb-5 p-3.5 rounded-xl text-xs font-medium border flex items-start space-x-2.5 bg-emerald-500/10 text-emerald-300 border-emerald-500/30';
 
-  alertText.innerText = message;
-  alertBox.className = isError
-    ? 'mb-5 p-3.5 rounded-xl text-xs font-medium border flex items-start space-x-2.5 bg-rose-500/10 text-rose-300 border-rose-500/30'
-    : 'mb-5 p-3.5 rounded-xl text-xs font-medium border flex items-start space-x-2.5 bg-emerald-500/10 text-emerald-300 border-emerald-500/30';
-
-  if (alertIcon) {
-    alertIcon.className = isError ? 'fa-solid fa-circle-exclamation mt-0.5 flex-shrink-0 text-sm' : 'fa-solid fa-circle-check mt-0.5 flex-shrink-0 text-sm';
-  }
-  alertBox.classList.remove('hidden');
-}
-
-function hideAlert(prefix) {
-  const alertBox = document.getElementById(`${prefix}-alert`);
-  if (alertBox) alertBox.classList.add('hidden');
-}
-
-async function handleLoginSubmit(event) {
-  event.preventDefault();
-  hideAlert('login');
-
-  const emailInput = document.getElementById('login-email');
-  const passwordInput = document.getElementById('login-password');
-  const rememberCheckbox = document.getElementById('remember-email');
-
-  const email = emailInput.value.trim().toLowerCase();
-  const password = passwordInput.value;
-
-  if (!email || !password) {
-    showAlert('login', t('errFillFields'), true);
-    return;
-  }
-
-  if (rememberCheckbox && rememberCheckbox.checked) {
-    localStorage.setItem('nh_remembered_email', email);
-  } else {
-    localStorage.removeItem('nh_remembered_email');
-  }
-
-  const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
-  const user = users.find(u => u.email.toLowerCase() === email);
-
-  const attempts = JSON.parse(localStorage.getItem(STORAGE_KEYS.ATTEMPTS) || '{}');
-  const currentAttempts = attempts[email] || 0;
-
-  if (user && user.status === 'BLOQUEADO') {
-    showAlert('login', t('msgBlockedAccount'), true);
-    addAuditLog('LOGIN_BLOCKED_ATTEMPT', email, 'Tentativa de login em conta bloqueada.');
-    return;
-  }
-
-  if (currentAttempts >= MAX_FAILED_ATTEMPTS) {
-    if (user) {
-      user.status = 'BLOQUEADO';
-      localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+    if (alertIcon) {
+      alertIcon.className = isError ? 'fa-solid fa-circle-exclamation mt-0.5 flex-shrink-0 text-sm' : 'fa-solid fa-circle-check mt-0.5 flex-shrink-0 text-sm';
     }
-    showAlert('login', t('msgBlockedAccount'), true);
-    addAuditLog('ACCOUNT_LOCKED', email, 'Bloqueio de seguranÃ§a automÃ¡tico ativado.');
-    return;
+    alertBox.classList.remove('hidden');
   }
 
-  if (!user) {
-    showAlert('login', t('msgUserNotFound'), true);
-    addAuditLog('LOGIN_USER_NOT_FOUND', email, 'E-mail nÃ£o cadastrado.');
-    return;
+  function hideAlert(prefix) {
+    const alertBox = document.getElementById(`${prefix}-alert`);
+    if (alertBox) alertBox.classList.add('hidden');
   }
 
-  const inputHash = await sha256(password);
-  if (inputHash !== user.passwordHash) {
-    const newCount = currentAttempts + 1;
-    attempts[email] = newCount;
-    localStorage.setItem(STORAGE_KEYS.ATTEMPTS, JSON.stringify(attempts));
+  async function handleLoginSubmit(event) {
+    event.preventDefault();
+    hideAlert('login');
 
-    if (newCount >= MAX_FAILED_ATTEMPTS) {
-      user.status = 'BLOQUEADO';
-      localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
-      showAlert('login', t('msgBlockedAccount'), true);
-      addAuditLog('ACCOUNT_LOCKED', email, 'Excedeu 5 tentativas de senha.');
-    } else if (newCount === MAX_FAILED_ATTEMPTS - 1) {
-      showAlert('login', `${t('msgWrongPassword', { current: newCount, max: MAX_FAILED_ATTEMPTS })} - ${t('msgWarningLastChance')}`, true);
-      addAuditLog('LOGIN_FAILED_WARN', email, `Falha ${newCount}/5.`);
-    } else {
-      showAlert('login', t('msgWrongPassword', { current: newCount, max: MAX_FAILED_ATTEMPTS }), true);
-      addAuditLog('LOGIN_FAILED', email, `Falha ${newCount}/5.`);
-    }
-    return;
-  }
-
-  if (user.status === 'PENDENTE') {
-    showAlert('login', t('msgPendingAccount'), true);
-    addAuditLog('LOGIN_PENDING', email, 'Acesso tentado em conta pendente.');
-    return;
-  }
-
-  if (user.status === 'REPROVADO') {
-    showAlert('login', t('msgRejectedAccount'), true);
-    addAuditLog('LOGIN_REJECTED', email, 'Acesso tentado em conta reprovada.');
-    return;
-  }
-
-  attempts[email] = 0;
-  localStorage.setItem(STORAGE_KEYS.ATTEMPTS, JSON.stringify(attempts));
-
-  user.lastLogin = new Date().toISOString();
-  localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
-
-  const sessionData = {
-    id: user.id,
-    name: user.name,
-    email: user.email,
-    role: user.role,
-    dealership: user.dealership,
-    status: user.status,
-    loginTime: new Date().toISOString()
-  };
-  sessionStorage.setItem(STORAGE_KEYS.SESSION, JSON.stringify(sessionData));
-  addAuditLog('LOGIN_SUCCESS', email, `Login efetuado com perfil ${user.role}.`);
-
-  if (user.role === 'ADMIN') {
-    showView('view-admin');
-  } else {
-    showView('view-training');
-  }
-}
-
-async function handleCadastroSubmit(event) {
-  event.preventDefault();
-  hideAlert('cad');
-
-  const name = document.getElementById('cad-name').value.trim();
-  const dealer = document.getElementById('cad-dealer').value.trim();
-  const role = document.getElementById('cad-role').value.trim();
-  const email = document.getElementById('cad-email').value.trim().toLowerCase();
-  const password = document.getElementById('cad-password').value;
-  const confirm = document.getElementById('cad-confirm').value;
-
-  if (!name || !dealer || !email || !password || !confirm) {
-    showAlert('cad', t('errFillFields'), true);
-    return;
-  }
-
-  if (password.length < 8) {
-    showAlert('cad', t('errPasswordLength'), true);
-    return;
-  }
-
-  if (password !== confirm) {
-    showAlert('cad', t('errPasswordMismatch'), true);
-    return;
-  }
-
-  const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
-  if (users.some(u => u.email.toLowerCase() === email)) {
-    showAlert('cad', t('errEmailRegistered'), true);
-    return;
-  }
-
-  const passwordHash = await sha256(password);
-  const newUser = {
-    id: 'usr_' + Date.now(),
-    name,
-    dealership: dealer,
-    roleTitle: role,
-    email,
-    passwordHash,
-    role: 'USER',
-    status: 'PENDENTE',
-    createdAt: new Date().toISOString(),
-    approvedAt: null,
-    lastLogin: null
-  };
-
-  users.push(newUser);
-  localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
-  addAuditLog('REGISTER_REQUEST', email, `Nova solicitaÃ§Ã£o de acesso para ${dealer}.`);
-
-  alert(t('msgCadSuccess'));
-  document.getElementById('form-cadastro').reset();
-  showView('view-login');
-}
-
-function handleLogout() {
-  const session = JSON.parse(sessionStorage.getItem(STORAGE_KEYS.SESSION) || '{}');
-  if (session.email) {
-    addAuditLog('LOGOUT', session.email, 'SessÃ£o finalizada pelo usuÃ¡rio.');
-  }
-  sessionStorage.removeItem(STORAGE_KEYS.SESSION);
-  showView('view-login');
-}
-
-function togglePasswordVisibility(inputId, btn) {
-  const input = document.getElementById(inputId);
-  if (!input) return;
-  const isPass = input.type === 'password';
-  input.type = isPass ? 'text' : 'password';
-  const icon = btn.querySelector('i');
-  if (icon) {
-    icon.className = isPass ? 'fa-regular fa-eye-slash text-xs' : 'fa-regular fa-eye text-xs';
-  }
-}
-
-function checkPasswordStrength(val) {
-  const bar1 = document.getElementById('bar-strength-1');
-  const bar2 = document.getElementById('bar-strength-2');
-  const bar3 = document.getElementById('bar-strength-3');
-  const label = document.getElementById('pwd-strength-label');
-  if (!bar1 || !bar2 || !bar3 || !label) return;
-
-  if (!val) {
-    bar1.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
-    bar2.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
-    bar3.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
-    label.innerText = '-';
-    label.className = 'font-semibold text-slate-500';
-    return;
-  }
-
-  let score = 0;
-  if (val.length >= 8) score++;
-  if (/[A-Z]/.test(val) && /[a-z]/.test(val)) score++;
-  if (/[0-9]/.test(val) || /[^A-Za-z0-9]/.test(val)) score++;
-
-  if (score <= 1) {
-    bar1.className = 'h-full w-1/3 bg-rose-500 transition-all duration-300';
-    bar2.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
-    bar3.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
-    label.innerText = t('strengthWeak');
-    label.className = 'font-semibold text-rose-400';
-  } else if (score === 2) {
-    bar1.className = 'h-full w-1/3 bg-amber-500 transition-all duration-300';
-    bar2.className = 'h-full w-1/3 bg-amber-500 transition-all duration-300';
-    bar3.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
-    label.innerText = t('strengthMedium');
-    label.className = 'font-semibold text-amber-400';
-  } else {
-    bar1.className = 'h-full w-1/3 bg-emerald-500 transition-all duration-300';
-    bar2.className = 'h-full w-1/3 bg-emerald-500 transition-all duration-300';
-    bar3.className = 'h-full w-1/3 bg-emerald-500 transition-all duration-300';
-    label.innerText = t('strengthStrong');
-    label.className = 'font-semibold text-emerald-400';
-  }
-}
-
-function switchAdminTab(tab) {
-  const tabs = ['users', 'audit', 'backup'];
-  tabs.forEach(t => {
-    const btn = document.getElementById(`tab-btn-${t}`);
-    const content = document.getElementById(`admin-tab-${t}-content`);
-    if (btn && content) {
-      if (t === tab) {
-        btn.className = 'px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-nhyellow-500 text-nhdark-950 font-heading';
-        content.classList.remove('hidden');
-      } else {
-        btn.className = 'px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-white font-heading';
-        content.classList.add('hidden');
-      }
-    }
-  });
-
-  if (tab === 'audit') renderAuditLogs();
-}
-
-function loadAdminData() {
-  const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
-  const audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || '[]');
-
-  document.getElementById('kpi-total-users').innerText = users.length;
-  document.getElementById('kpi-active-users').innerText = users.filter(u => u.status === 'APROVADO').length;
-  document.getElementById('kpi-pending-users').innerText = users.filter(u => u.status === 'PENDENTE').length;
-  document.getElementById('kpi-blocked-users').innerText = users.filter(u => u.status === 'BLOQUEADO').length;
-  document.getElementById('kpi-total-logins').innerText = audit.filter(a => a.type === 'LOGIN_SUCCESS').length;
-  document.getElementById('kpi-security-alerts').innerText = audit.filter(a => a.type === 'ACCOUNT_LOCKED' || a.type === 'LOGIN_BLOCKED_ATTEMPT').length;
-
-  renderAdminTable();
-}
-
-function filterAdminUsers() {
-  renderAdminTable();
-}
-
-function renderAdminTable() {
-  const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
-  const search = (document.getElementById('admin-search-input')?.value || '').toLowerCase();
-  const statusFilter = document.getElementById('admin-status-filter')?.value || 'ALL';
-  const tbody = document.getElementById('admin-users-table-body');
-  if (!tbody) return;
-
-  const filtered = users.filter(u => {
-    const matchSearch = u.name.toLowerCase().includes(search) || u.email.toLowerCase().includes(search) || (u.dealership || '').toLowerCase().includes(search);
-    const matchStatus = statusFilter === 'ALL' || u.status === statusFilter;
-    return matchSearch && matchStatus;
-  });
-
-  if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-slate-500 text-xs">Nenhum usuÃ¡rio encontrado com os filtros atuais.</td></tr>`;
-    return;
-  }
-
-  tbody.innerHTML = filtered.map(u => {
-    let statusBadge = '';
-    if (u.status === 'APROVADO') statusBadge = `<span class="nh-badge nh-badge-approved">Aprovado</span>`;
-    else if (u.status === 'PENDENTE') statusBadge = `<span class="nh-badge nh-badge-pending">Pendente</span>`;
-    else if (u.status === 'BLOQUEADO') statusBadge = `<span class="nh-badge nh-badge-blocked">Bloqueado</span>`;
-    else statusBadge = `<span class="nh-badge nh-badge-rejected">Reprovado</span>`;
-
-    const isAdmin = u.role === 'ADMIN';
-    const isMaster = u.email === 'admin@newholland.com';
-
-    let actionButtons = '';
-    if (!isMaster) {
-      if (u.status === 'PENDENTE') {
-        actionButtons += `<button onclick="setUserStatus('${u.id}', 'APROVADO')" class="px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 text-[11px] font-semibold mr-1.5">${t('btnApprove')}</button>`;
-        actionButtons += `<button onclick="setUserStatus('${u.id}', 'REPROVADO')" class="px-2 py-1 rounded bg-slate-700 text-slate-300 hover:bg-slate-600 text-[11px] font-semibold mr-1.5">${t('btnReject')}</button>`;
-      } else if (u.status === 'BLOQUEADO') {
-        actionButtons += `<button onclick="setUserStatus('${u.id}', 'APROVADO')" class="px-2 py-1 rounded bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 text-[11px] font-semibold mr-1.5">${t('btnUnblock')}</button>`;
-      } else if (u.status === 'APROVADO') {
-        actionButtons += `<button onclick="setUserStatus('${u.id}', 'BLOQUEADO')" class="px-2 py-1 rounded bg-rose-500/20 text-rose-400 hover:bg-rose-500/30 text-[11px] font-semibold mr-1.5">${t('btnBlock')}</button>`;
-      }
-
-      actionButtons += `<button onclick="deleteUser('${u.id}')" class="p-1 text-slate-400 hover:text-rose-400 text-xs" title="${t('btnDelete')}"><i class="fa-solid fa-trash"></i></button>`;
-    } else {
-      actionButtons = `<span class="text-[11px] text-slate-500 italic">Master Root</span>`;
-    }
-
-    const regDate = u.createdAt ? new Date(u.createdAt).toLocaleDateString(currentLang === 'en' ? 'en-US' : (currentLang === 'es' ? 'es-ES' : 'pt-BR')) : '-';
-
-    return `
-      <tr class="hover:bg-white/5 transition-colors">
-        <td class="py-3 px-3">
-          <div class="font-semibold text-white">${escapeHtml(u.name)}</div>
-          <div class="text-[11px] text-slate-400">${escapeHtml(u.email)}</div>
-        </td>
-        <td class="py-3 px-3 text-slate-300">${escapeHtml(u.dealership || '-')}</td>
-        <td class="py-3 px-3 text-slate-400">${regDate}</td>
-        <td class="py-3 px-3">${isAdmin ? '<span class="nh-badge nh-badge-admin">ADMIN</span>' : '<span class="text-slate-400">USER</span>'}</td>
-        <td class="py-3 px-3">${statusBadge}</td>
-        <td class="py-3 px-3 text-right whitespace-nowrap">${actionButtons}</td>
-      </tr>
-    `;
-  }).join('');
-}
-
-function setUserStatus(userId, newStatus) {
-  const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
-  const user = users.find(u => u.id === userId);
-  if (!user) return;
-
-  user.status = newStatus;
-  if (newStatus === 'APROVADO') {
-    user.approvedAt = new Date().toISOString();
-    const attempts = JSON.parse(localStorage.getItem(STORAGE_KEYS.ATTEMPTS) || '{}');
-    delete attempts[user.email.toLowerCase()];
-    localStorage.setItem(STORAGE_KEYS.ATTEMPTS, JSON.stringify(attempts));
-  }
-
-  localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
-  addAuditLog('USER_STATUS_CHANGE', user.email, `Status alterado para ${newStatus} pelo administrador.`);
-  loadAdminData();
-}
-
-function deleteUser(userId) {
-  if (!confirm('Tem certeza de que deseja excluir permanentemente este usuÃ¡rio?')) return;
-  let users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
-  const user = users.find(u => u.id === userId);
-  if (user) {
-    addAuditLog('USER_DELETED', user.email, `UsuÃ¡rio ${user.name} excluÃ­do.`);
-  }
-  users = users.filter(u => u.id !== userId);
-  localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
-  loadAdminData();
-}
-
-function renderAuditLogs() {
-  const audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || '[]');
-  const box = document.getElementById('admin-audit-log-box');
-  if (!box) return;
-
-  if (audit.length === 0) {
-    box.innerHTML = `<div class="text-slate-500 text-center py-4">Nenhum evento registrado.</div>`;
-    return;
-  }
-
-  box.innerHTML = audit.map(a => {
-    const time = new Date(a.timestamp).toLocaleString(currentLang === 'en' ? 'en-US' : (currentLang === 'es' ? 'es-ES' : 'pt-BR'));
-    let color = 'text-slate-300';
-    if (a.type.includes('SUCCESS') || a.type.includes('APROVADO')) color = 'text-emerald-400';
-    else if (a.type.includes('FAILED') || a.type.includes('LOCKED') || a.type.includes('BLOCKED')) color = 'text-rose-400';
-    else if (a.type.includes('WARN') || a.type.includes('PENDING')) color = 'text-amber-400';
-
-    return `<div class="flex items-start space-x-2 py-0.5 border-b border-white/5">
-      <span class="text-slate-500 shrink-0">[${time}]</span>
-      <span class="font-bold shrink-0 ${color}">[${escapeHtml(a.type)}]</span>
-      <span class="text-slate-400 shrink-0">&lt;${escapeHtml(a.email || 'system')}&gt;:</span>
-      <span class="text-slate-200">${escapeHtml(a.details || '')}</span>
-    </div>`;
-  }).join('');
-}
-
-function exportAuditCsv() {
-  const audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || '[]');
-  const csvRows = ['"Data/Hora","Tipo","Email","Detalhes"'];
-  audit.forEach(a => {
-    csvRows.push(`"${a.timestamp}","${a.type}","${a.email}","${(a.details || '').replace(/"/g, '""')}"`);
-  });
-  downloadFile('nhce_audit_logs.csv', 'text/csv;charset=utf-8;', csvRows.join('\n'));
-}
-
-function clearAuditLogs() {
-  if (!confirm('Deseja limpar todos os registros de auditoria?')) return;
-  localStorage.setItem(STORAGE_KEYS.AUDIT, JSON.stringify([]));
-  renderAuditLogs();
-}
-
-function exportFullDatabaseJson() {
-  const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
-  const audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || '[]');
-  const data = {
-    exportDate: new Date().toISOString(),
-    system: 'NHCE LATAM PAN Training Platform',
-    version: '2.0.0',
-    users,
-    audit
-  };
-  downloadFile('nhce_pan_database_backup.json', 'application/json;charset=utf-8;', JSON.stringify(data, null, 2));
-}
-
-function importFullDatabaseJson(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    try {
-      const data = JSON.parse(e.target.result);
-      if (data.users && Array.isArray(data.users)) {
-        localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(data.users));
-        if (data.audit) localStorage.setItem(STORAGE_KEYS.AUDIT, JSON.stringify(data.audit));
-        alert('Base de dados restaurada com sucesso!');
-        loadAdminData();
-      } else {
-        alert('Formato de arquivo JSON invÃ¡lido.');
-      }
-    } catch(err) {
-      alert('Erro ao processar o arquivo: ' + err.message);
-    }
-  };
-  reader.readAsText(file);
-}
-
-function downloadFile(filename, type, content) {
-  const blob = new Blob([content], { type });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
-
-function openForgotPasswordModal() {
-  const modal = document.getElementById('modal-forgot-password');
-  if (modal) modal.classList.remove('hidden');
-}
-
-function closeForgotPasswordModal() {
-  const modal = document.getElementById('modal-forgot-password');
-  if (modal) modal.classList.add('hidden');
-}
-
-function handleForgotPasswordSubmit(event) {
-  event.preventDefault();
-  const email = document.getElementById('forgot-email').value.trim();
-  if (!email) return;
-
-  addAuditLog('FORGOT_PASSWORD_REQUEST', email, 'SolicitaÃ§Ã£o de recuperaÃ§Ã£o de senha enviada.');
-  alert(t('msgForgotSent'));
-  closeForgotPasswordModal();
-}
-
-function escapeHtml(str) {
-  if (!str) return '';
-  return String(str).replace(/[&<>"']/g, function(m) {
-    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
-  });
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  initDatabase();
-  applyTheme(currentTheme);
-  setLanguage(currentLang);
-
-  const savedEmail = localStorage.getItem('nh_remembered_email');
-  if (savedEmail) {
     const emailInput = document.getElementById('login-email');
+    const passwordInput = document.getElementById('login-password');
     const rememberCheckbox = document.getElementById('remember-email');
-    if (emailInput) emailInput.value = savedEmail;
-    if (rememberCheckbox) rememberCheckbox.checked = true;
-  }
 
-  const session = JSON.parse(sessionStorage.getItem(STORAGE_KEYS.SESSION) || 'null');
-  if (session && session.status === 'APROVADO') {
-    if (session.role === 'ADMIN') {
+    const email = emailInput.value.trim().toLowerCase();
+    const password = passwordInput.value;
+
+    if (!email || !password) {
+      showAlert('login', t('errFillFields'), true);
+      return;
+    }
+
+    if (rememberCheckbox && rememberCheckbox.checked) {
+      localStorage.setItem('nh_remembered_email', email);
+    } else {
+      localStorage.removeItem('nh_remembered_email');
+    }
+
+    const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
+    const user = users.find(u => u.email.toLowerCase() === email);
+
+    const attempts = JSON.parse(localStorage.getItem(STORAGE_KEYS.ATTEMPTS) || '{}');
+    const currentAttempts = attempts[email] || 0;
+
+    if (user && user.status === 'BLOQUEADO') {
+      showAlert('login', t('msgBlockedAccount'), true);
+      addAuditLog('LOGIN_BLOCKED_ATTEMPT', email, 'Tentativa de login em conta bloqueada.');
+      return;
+    }
+
+    if (currentAttempts >= MAX_FAILED_ATTEMPTS) {
+      if (user) {
+        user.status = 'BLOQUEADO';
+        localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+      }
+      showAlert('login', t('msgBlockedAccount'), true);
+      addAuditLog('ACCOUNT_LOCKED', email, 'Bloqueio de seguranÃ§a automÃ¡tico ativado.');
+      return;
+    }
+
+    if (!user) {
+      showAlert('login', t('msgUserNotFound'), true);
+      addAuditLog('LOGIN_USER_NOT_FOUND', email, 'E-mail nÃ£o cadastrado.');
+      return;
+    }
+
+    const inputHash = await sha256(password);
+    if (inputHash !== user.passwordHash) {
+      const newCount = currentAttempts + 1;
+      attempts[email] = newCount;
+      localStorage.setItem(STORAGE_KEYS.ATTEMPTS, JSON.stringify(attempts));
+
+      if (newCount >= MAX_FAILED_ATTEMPTS) {
+        user.status = 'BLOQUEADO';
+        localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+        showAlert('login', t('msgBlockedAccount'), true);
+        addAuditLog('ACCOUNT_LOCKED', email, 'Excedeu 5 tentativas de senha.');
+      } else if (newCount === MAX_FAILED_ATTEMPTS - 1) {
+        showAlert('login', `${t('msgWrongPassword', { current: newCount, max: MAX_FAILED_ATTEMPTS })} - ${t('msgWarningLastChance')}`, true);
+        addAuditLog('LOGIN_FAILED_WARN', email, `Falha ${newCount}/5.`);
+      } else {
+        showAlert('login', t('msgWrongPassword', { current: newCount, max: MAX_FAILED_ATTEMPTS }), true);
+        addAuditLog('LOGIN_FAILED', email, `Falha ${newCount}/5.`);
+      }
+      return;
+    }
+
+    if (user.status === 'PENDENTE') {
+      showAlert('login', t('msgPendingAccount'), true);
+      addAuditLog('LOGIN_PENDING', email, 'Acesso tentado em conta pendente.');
+      return;
+    }
+
+    if (user.status === 'REPROVADO') {
+      showAlert('login', t('msgRejectedAccount'), true);
+      addAuditLog('LOGIN_REJECTED', email, 'Acesso tentado em conta reprovada.');
+      return;
+    }
+
+    attempts[email] = 0;
+    localStorage.setItem(STORAGE_KEYS.ATTEMPTS, JSON.stringify(attempts));
+
+    user.lastLogin = new Date().toISOString();
+    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+
+    const sessionData = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      dealership: user.dealership,
+      status: user.status,
+      loginTime: new Date().toISOString()
+    };
+    sessionStorage.setItem(STORAGE_KEYS.SESSION, JSON.stringify(sessionData));
+    addAuditLog('LOGIN_SUCCESS', email, `Login efetuado com perfil ${user.role}.`);
+
+    if (user.role === 'ADMIN') {
       showView('view-admin');
     } else {
       showView('view-training');
     }
-  } else {
+  }
+
+  async function handleCadastroSubmit(event) {
+    event.preventDefault();
+    hideAlert('cad');
+
+    const name = document.getElementById('cad-name').value.trim();
+    const dealer = document.getElementById('cad-dealer').value.trim();
+    const role = document.getElementById('cad-role').value.trim();
+    const email = document.getElementById('cad-email').value.trim().toLowerCase();
+    const password = document.getElementById('cad-password').value;
+    const confirm = document.getElementById('cad-confirm').value;
+
+    if (!name || !dealer || !email || !password || !confirm) {
+      showAlert('cad', t('errFillFields'), true);
+      return;
+    }
+
+    if (password.length < 8) {
+      showAlert('cad', t('errPasswordLength'), true);
+      return;
+    }
+
+    if (password !== confirm) {
+      showAlert('cad', t('errPasswordMismatch'), true);
+      return;
+    }
+
+    const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
+    if (users.some(u => u.email.toLowerCase() === email)) {
+      showAlert('cad', t('errEmailRegistered'), true);
+      return;
+    }
+
+    const passwordHash = await sha256(password);
+    const newUser = {
+      id: 'usr_' + Date.now(),
+      name,
+      dealership: dealer,
+      roleTitle: role,
+      email,
+      passwordHash,
+      role: 'USER',
+      status: 'PENDENTE',
+      createdAt: new Date().toISOString(),
+      approvedAt: null,
+      lastLogin: null
+    };
+
+    users.push(newUser);
+    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+    addAuditLog('REGISTER_REQUEST', email, `Nova solicitaÃ§Ã£o de acesso para ${dealer}.`);
+
+    alert(t('msgCadSuccess'));
+    document.getElementById('form-cadastro').reset();
     showView('view-login');
   }
-});
+
+  function handleLogout() {
+    const session = JSON.parse(sessionStorage.getItem(STORAGE_KEYS.SESSION) || '{}');
+    if (session.email) {
+      addAuditLog('LOGOUT', session.email, 'SessÃ£o finalizada pelo usuÃ¡rio.');
+    }
+    sessionStorage.removeItem(STORAGE_KEYS.SESSION);
+    showView('view-login');
+  }
+
+  function togglePasswordVisibility(inputId, btn) {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    const isPass = input.type === 'password';
+    input.type = isPass ? 'text' : 'password';
+    const icon = btn.querySelector('i');
+    if (icon) {
+      icon.className = isPass ? 'fa-regular fa-eye-slash text-xs' : 'fa-regular fa-eye text-xs';
+    }
+  }
+
+  function checkPasswordStrength(val) {
+    const bar1 = document.getElementById('bar-strength-1');
+    const bar2 = document.getElementById('bar-strength-2');
+    const bar3 = document.getElementById('bar-strength-3');
+    const label = document.getElementById('pwd-strength-label');
+    if (!bar1 || !bar2 || !bar3 || !label) return;
+
+    if (!val) {
+      bar1.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
+      bar2.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
+      bar3.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
+      label.innerText = '-';
+      label.className = 'font-semibold text-slate-500';
+      return;
+    }
+
+    let score = 0;
+    if (val.length >= 8) score++;
+    if (/[A-Z]/.test(val) && /[a-z]/.test(val)) score++;
+    if (/[0-9]/.test(val) || /[^A-Za-z0-9]/.test(val)) score++;
+
+    if (score <= 1) {
+      bar1.className = 'h-full w-1/3 bg-rose-500 transition-all duration-300';
+      bar2.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
+      bar3.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
+      label.innerText = t('strengthWeak');
+      label.className = 'font-semibold text-rose-400';
+    } else if (score === 2) {
+      bar1.className = 'h-full w-1/3 bg-amber-500 transition-all duration-300';
+      bar2.className = 'h-full w-1/3 bg-amber-500 transition-all duration-300';
+      bar3.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
+      label.innerText = t('strengthMedium');
+      label.className = 'font-semibold text-amber-400';
+    } else {
+      bar1.className = 'h-full w-1/3 bg-emerald-500 transition-all duration-300';
+      bar2.className = 'h-full w-1/3 bg-emerald-500 transition-all duration-300';
+      bar3.className = 'h-full w-1/3 bg-emerald-500 transition-all duration-300';
+      label.innerText = t('strengthStrong');
+      label.className = 'font-semibold text-emerald-400';
+    }
+  }
+
+  function switchAdminTab(tab) {
+    const tabs = ['users', 'audit', 'backup'];
+    tabs.forEach(tName => {
+      const btn = document.getElementById(`tab-btn-${tName}`);
+      const content = document.getElementById(`admin-tab-${tName}-content`);
+      if (btn && content) {
+        if (tName === tab) {
+          btn.className = 'px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-nhyellow-500 text-nhdark-950 font-heading';
+          content.classList.remove('hidden');
+        } else {
+          btn.className = 'px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-white font-heading';
+          content.classList.add('hidden');
+        }
+      }
+    });
+
+    if (tab === 'audit') renderAuditLogs();
+  }
+
+  function loadAdminData() {
+    const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
+    const audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || '[]');
+
+    const totalEl = document.getElementById('kpi-total-users');
+    const activeEl = document.getElementById('kpi-active-users');
+    const pendingEl = document.getElementById('kpi-pending-users');
+    const blockedEl = document.getElementById('kpi-blocked-users');
+    const loginsEl = document.getElementById('kpi-total-logins');
+    const alertsEl = document.getElementById('kpi-security-alerts');
+
+    if (totalEl) totalEl.innerText = users.length;
+    if (activeEl) activeEl.innerText = users.filter(u => u.status === 'APROVADO').length;
+    if (pendingEl) pendingEl.innerText = users.filter(u => u.status === 'PENDENTE').length;
+    if (blockedEl) blockedEl.innerText = users.filter(u => u.status === 'BLOQUEADO').length;
+    if (loginsEl) loginsEl.innerText = audit.filter(a => a.type === 'LOGIN_SUCCESS').length;
+    if (alertsEl) alertsEl.innerText = audit.filter(a => a.type === 'ACCOUNT_LOCKED' || a.type === 'LOGIN_BLOCKED_ATTEMPT').length;
+
+    renderAdminTable();
+  }
+
+  function filterAdminUsers() {
+    renderAdminTable();
+  }
+
+  function renderAdminTable() {
+    const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
+    const searchInput = document.getElementById('admin-search-input');
+    const statusFilterEl = document.getElementById('admin-status-filter');
+    const search = (searchInput ? searchInput.value : '').toLowerCase();
+    const statusFilter = statusFilterEl ? statusFilterEl.value : 'ALL';
+    const tbody = document.getElementById('admin-users-table-body');
+    if (!tbody) return;
+
+    const filtered = users.filter(u => {
+      const matchSearch = (u.name || '').toLowerCase().includes(search) || 
+                          (u.email || '').toLowerCase().includes(search) || 
+                          (u.dealership || '').toLowerCase().includes(search);
+      const matchStatus = statusFilter === 'ALL' || u.status === statusFilter;
+      return matchSearch && matchStatus;
+    });
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-slate-500">${t('filterAll')}: Nenhum usuÃ¡rio encontrado.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = filtered.map(u => {
+      let statusBadge = '';
+      if (u.status === 'PENDENTE') statusBadge = `<span class="nh-badge nh-badge-pending"><i class="fa-solid fa-clock"></i> ${t('statusPending')}</span>`;
+      else if (u.status === 'APROVADO') statusBadge = `<span class="nh-badge nh-badge-approved"><i class="fa-solid fa-check"></i> ${t('statusApproved')}</span>`;
+      else if (u.status === 'BLOQUEADO') statusBadge = `<span class="nh-badge nh-badge-blocked"><i class="fa-solid fa-ban"></i> ${t('statusBlocked')}</span>`;
+      else statusBadge = `<span class="nh-badge nh-badge-rejected"><i class="fa-solid fa-xmark"></i> ${t('statusRejected')}</span>`;
+
+      const roleBadge = u.role === 'ADMIN' ? `<span class="nh-badge nh-badge-admin ml-2">ADMIN</span>` : '';
+      const createdDate = u.createdAt ? new Date(u.createdAt).toLocaleDateString(currentAppLang === 'en' ? 'en-US' : (currentAppLang === 'es' ? 'es-ES' : 'pt-BR')) : '-';
+      const lastLoginDate = u.lastLogin ? new Date(u.lastLogin).toLocaleString(currentAppLang === 'en' ? 'en-US' : (currentAppLang === 'es' ? 'es-ES' : 'pt-BR')) : `<span class="text-slate-500 italic">${t('neverAccessed')}</span>`;
+
+      let actionsHtml = '';
+      if (u.role !== 'ADMIN') {
+        if (u.status === 'PENDENTE') {
+          actionsHtml = `
+            <button onclick="window.setUserStatus('${u.id}', 'APROVADO')" class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 font-semibold mr-1.5 transition-colors">
+              <i class="fa-solid fa-check mr-1"></i>${t('btnApprove')}
+            </button>
+            <button onclick="window.setUserStatus('${u.id}', 'REPROVADO')" class="px-2.5 py-1 rounded bg-slate-700 text-slate-300 hover:bg-slate-600 mr-1.5 transition-colors">
+              <i class="fa-solid fa-xmark mr-1"></i>${t('btnReject')}
+            </button>
+          `;
+        } else if (u.status === 'APROVADO') {
+          actionsHtml = `
+            <button onclick="window.setUserStatus('${u.id}', 'BLOQUEADO')" class="px-2.5 py-1 rounded bg-rose-500/20 text-rose-300 hover:bg-rose-500/30 font-semibold mr-1.5 transition-colors">
+              <i class="fa-solid fa-lock mr-1"></i>${t('btnBlock')}
+            </button>
+          `;
+        } else if (u.status === 'BLOQUEADO' || u.status === 'REPROVADO') {
+          actionsHtml = `
+            <button onclick="window.setUserStatus('${u.id}', 'APROVADO')" class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 font-semibold mr-1.5 transition-colors">
+              <i class="fa-solid fa-unlock mr-1"></i>${t('btnUnblock')}
+            </button>
+          `;
+        }
+        actionsHtml += `
+          <button onclick="window.deleteUser('${u.id}')" class="px-2 py-1 rounded text-rose-400 hover:bg-rose-500/10 transition-colors" title="${t('btnDelete')}">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
+        `;
+      } else {
+        actionsHtml = `<span class="text-slate-500 italic text-[11px]">Protegido (Master)</span>`;
+      }
+
+      return `
+        <tr class="hover:bg-white/[0.02] transition-colors">
+          <td class="py-3 px-4">
+            <div class="font-bold text-white flex items-center">${escapeHtml(u.name)} ${roleBadge}</div>
+            <div class="text-slate-400 text-[11px] font-mono">${escapeHtml(u.email)}</div>
+          </td>
+          <td class="py-3 px-4">
+            <div class="text-slate-200">${escapeHtml(u.dealership || '-')}</div>
+            <div class="text-slate-400 text-[11px]">${escapeHtml(u.roleTitle || '-')}</div>
+          </td>
+          <td class="py-3 px-4">${statusBadge}</td>
+          <td class="py-3 px-4 text-slate-400">${createdDate}</td>
+          <td class="py-3 px-4 text-slate-400">${lastLoginDate}</td>
+          <td class="py-3 px-4 text-center whitespace-nowrap">${actionsHtml}</td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function setUserStatus(userId, newStatus) {
+    const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
+    const user = users.find(u => u.id === userId);
+    if (!user) return;
+
+    user.status = newStatus;
+    if (newStatus === 'APROVADO') {
+      user.approvedAt = new Date().toISOString();
+      const attempts = JSON.parse(localStorage.getItem(STORAGE_KEYS.ATTEMPTS) || '{}');
+      delete attempts[user.email.toLowerCase()];
+      localStorage.setItem(STORAGE_KEYS.ATTEMPTS, JSON.stringify(attempts));
+    }
+
+    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+    addAuditLog('USER_STATUS_CHANGE', user.email, `Status alterado para ${newStatus} pelo administrador.`);
+    loadAdminData();
+  }
+
+  function deleteUser(userId) {
+    if (!confirm('Tem certeza de que deseja excluir este usuÃ¡rio?')) return;
+    let users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
+    const user = users.find(u => u.id === userId);
+    if (user) {
+      addAuditLog('USER_DELETED', user.email, `UsuÃ¡rio ${user.name} excluÃ­do.`);
+    }
+    users = users.filter(u => u.id !== userId);
+    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+    loadAdminData();
+  }
+
+  function renderAuditLogs() {
+    const audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || '[]');
+    const box = document.getElementById('admin-audit-log-box');
+    if (!box) return;
+
+    if (audit.length === 0) {
+      box.innerHTML = `<div class="text-slate-500 text-center py-4">Nenhum evento registrado.</div>`;
+      return;
+    }
+
+    box.innerHTML = audit.map(a => {
+      const time = new Date(a.timestamp).toLocaleString(currentAppLang === 'en' ? 'en-US' : (currentAppLang === 'es' ? 'es-ES' : 'pt-BR'));
+      let color = 'text-slate-300';
+      if (a.type.includes('SUCCESS') || a.type.includes('APROVADO')) color = 'text-emerald-400';
+      else if (a.type.includes('FAILED') || a.type.includes('LOCKED') || a.type.includes('BLOCKED')) color = 'text-rose-400';
+      else if (a.type.includes('WARN') || a.type.includes('PENDING')) color = 'text-amber-400';
+
+      return `<div class="flex items-start space-x-2 py-0.5 border-b border-white/5">
+        <span class="text-slate-500 shrink-0">[${time}]</span>
+        <span class="font-bold shrink-0 ${color}">[${escapeHtml(a.type)}]</span>
+        <span class="text-slate-400 shrink-0">&lt;${escapeHtml(a.email || 'system')}&gt;:</span>
+        <span class="text-slate-200">${escapeHtml(a.details || '')}</span>
+      </div>`;
+    }).join('');
+  }
+
+  function exportAuditCsv() {
+    const audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || '[]');
+    const csvRows = ['"Data/Hora","Tipo","Email","Detalhes"'];
+    audit.forEach(a => {
+      csvRows.push(`"${a.timestamp}","${a.type}","${a.email}","${(a.details || '').replace(/"/g, '""')}"`);
+    });
+    downloadFile('nhce_audit_logs.csv', 'text/csv;charset=utf-8;', csvRows.join('\n'));
+  }
+
+  function clearAuditLogs() {
+    if (!confirm('Deseja limpar todos os registros de auditoria?')) return;
+    localStorage.setItem(STORAGE_KEYS.AUDIT, JSON.stringify([]));
+    renderAuditLogs();
+  }
+
+  function exportFullDatabaseJson() {
+    const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
+    const audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || '[]');
+    const data = {
+      exportDate: new Date().toISOString(),
+      system: 'NHCE LATAM PAN Training Platform',
+      version: '2.0.0',
+      users,
+      audit
+    };
+    downloadFile('nhce_pan_database_backup.json', 'application/json;charset=utf-8;', JSON.stringify(data, null, 2));
+  }
+
+  function importFullDatabaseJson(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        const data = JSON.parse(e.target.result);
+        if (data.users && Array.isArray(data.users)) {
+          localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(data.users));
+          if (data.audit) localStorage.setItem(STORAGE_KEYS.AUDIT, JSON.stringify(data.audit));
+          alert('Base de dados restaurada com sucesso!');
+          loadAdminData();
+        } else {
+          alert('Formato de arquivo JSON invÃ¡lido.');
+        }
+      } catch(err) {
+        alert('Erro ao processar o arquivo: ' + err.message);
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  function downloadFile(filename, type, content) {
+    const blob = new Blob([content], { type });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  function openForgotPasswordModal() {
+    const modal = document.getElementById('modal-forgot-password');
+    if (modal) modal.classList.remove('hidden');
+  }
+
+  function closeForgotPasswordModal() {
+    const modal = document.getElementById('modal-forgot-password');
+    if (modal) modal.classList.add('hidden');
+  }
+
+  function handleForgotPasswordSubmit(event) {
+    event.preventDefault();
+    const email = document.getElementById('forgot-email').value.trim();
+    if (!email) return;
+
+    addAuditLog('FORGOT_PASSWORD_REQUEST', email, 'SolicitaÃ§Ã£o de recuperaÃ§Ã£o de senha enviada.');
+    alert(t('msgForgotSent'));
+    closeForgotPasswordModal();
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/[&<>"']/g, function(m) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+    });
+  }
+
+  // Exportar todas as funÃ§Ãµes para o objeto global window
+  window.setLanguage = setLanguage;
+  window.toggleTheme = toggleTheme;
+  window.showView = showView;
+  window.handleLoginSubmit = handleLoginSubmit;
+  window.handleCadastroSubmit = handleCadastroSubmit;
+  window.handleLogout = handleLogout;
+  window.togglePasswordVisibility = togglePasswordVisibility;
+  window.checkPasswordStrength = checkPasswordStrength;
+  window.switchAdminTab = switchAdminTab;
+  window.filterAdminUsers = filterAdminUsers;
+  window.setUserStatus = setUserStatus;
+  window.deleteUser = deleteUser;
+  window.exportAuditCsv = exportAuditCsv;
+  window.clearAuditLogs = clearAuditLogs;
+  window.exportFullDatabaseJson = exportFullDatabaseJson;
+  window.importFullDatabaseJson = importFullDatabaseJson;
+  window.openForgotPasswordModal = openForgotPasswordModal;
+  window.closeForgotPasswordModal = closeForgotPasswordModal;
+  window.handleForgotPasswordSubmit = handleForgotPasswordSubmit;
+
+  // InicializaÃ§Ã£o no carregamento da pÃ¡gina
+  document.addEventListener('DOMContentLoaded', function() {
+    initDatabase();
+    applyTheme(currentAppTheme);
+    setLanguage(currentAppLang);
+
+    const savedEmail = localStorage.getItem('nh_remembered_email');
+    if (savedEmail) {
+      const emailInput = document.getElementById('login-email');
+      const rememberCheckbox = document.getElementById('remember-email');
+      if (emailInput) emailInput.value = savedEmail;
+      if (rememberCheckbox) rememberCheckbox.checked = true;
+    }
+
+    const session = JSON.parse(sessionStorage.getItem(STORAGE_KEYS.SESSION) || 'null');
+    if (session && session.status === 'APROVADO') {
+      if (session.role === 'ADMIN') {
+        showView('view-admin');
+      } else {
+        showView('view-training');
+      }
+    } else {
+      showView('view-login');
+    }
+  });
+
+})(window, document);
 </script>
 
 </body>
