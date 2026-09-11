@@ -207,7 +207,7 @@
     --nh-yellow-light: #FFE066;
     --nh-yellow-glow: rgba(255, 204, 0, 0.35);
     
-    /* Tema Escuro (Padrao) */
+    /* Tema Escuro (PadrÃ£o) */
     --nh-bg-primary: #070A0F;
     --nh-bg-surface: #0B0F17;
     --nh-bg-card: rgba(11, 15, 23, 0.88);
@@ -577,7 +577,7 @@ body.theme-light .nh-machinery-pan {
                 Solicitar Acesso
             </h2>
             <p class="text-xs sm:text-sm text-slate-400 mt-1 font-normal" data-i18n="cadSubtitle">
-                Preencha os dados abaixo para solicitar autorizaÃ§Ã£o de acesso ao treinamento PAN
+                Preencha os dados abaixo para solicitar autorizaÃ§Ã£o de acesso ao treinamento PAN.
             </p>
         </div>
 
@@ -808,7 +808,7 @@ body.theme-light .nh-machinery-pan {
                             <th class="py-3.5 px-4" data-i18n="thUser">UsuÃ¡rio</th>
                             <th class="py-3.5 px-4" data-i18n="thDealer">ConcessionÃ¡ria / Cargo</th>
                             <th class="py-3.5 px-4" data-i18n="thStatus">Status</th>
-                            <th class="py-3.5 px-4" data-i18n="thCreated">Data Cadastro</th>
+                            <th class="py-3.5 px-4" data-i18n="thCreated">Data de Cadastro</th>
                             <th class="py-3.5 px-4" data-i18n="thLastAccess">Ãšltimo Acesso</th>
                             <th class="py-3.5 px-4 text-center" data-i18n="thActions">AÃ§Ãµes Administrativas</th>
                         </tr>
@@ -824,7 +824,7 @@ body.theme-light .nh-machinery-pan {
     <!-- ABA 2: AUDITORIA E LOGS -->
     <div id="admin-tab-audit-content" class="w-full max-w-7xl mx-auto space-y-4 hidden">
         <div class="flex items-center justify-between bg-slate-900/60 p-4 rounded-xl border border-white/10">
-            <span class="text-xs text-slate-300 font-medium" data-i18n="auditDescription">Trilha de eventos de seguranÃ§a e acessos em tempo real</span>
+            <span class="text-xs text-slate-300 font-medium" data-i18n="auditDescription">Trilha de eventos de seguranÃ§a e acessos em tempo real.</span>
             <div class="flex items-center space-x-2">
                 <button type="button" onclick="window.exportAuditCsv()" class="nh-btn-secondary px-3 py-1.5 rounded-lg text-xs flex items-center space-x-1.5">
                     <i class="fa-solid fa-file-csv text-emerald-400"></i>
@@ -2103,7 +2103,7 @@ body.theme-light .nh-machinery-pan {
                 <i class="fa-solid fa-key text-xl"></i>
             </div>
             <h3 class="text-lg font-bold font-heading text-white" data-i18n="modalForgotTitle">RecuperaÃ§Ã£o de Senha</h3>
-            <p class="text-xs text-slate-400 mt-1" data-i18n="modalForgotSubtitle">Informe seu e-mail corporativo cadastrado para receber as instruÃ§Ãµes do administrador</p>
+            <p class="text-xs text-slate-400 mt-1" data-i18n="modalForgotSubtitle">Informe seu e-mail corporativo cadastrado para receber as instruÃ§Ãµes do administrador.</p>
         </div>
 
         <form onsubmit="window.handleForgotPasswordSubmit(event)" class="space-y-4">
@@ -2127,7 +2127,7 @@ body.theme-light .nh-machinery-pan {
   'use strict';
 
   /* ==========================================================================
-     SISTEMA DE INTERNACIONALIZAÃ‡ÃƒO UNIFICADO (I18N)
+     SISTEMA DE INTERNACIONALIZAÃ‡ÃƒO UNIFICADO (I18N) - REVISÃƒO ORTOGRÃFICA
      ========================================================================== */
   const I18N = {
     pt: {
@@ -2150,7 +2150,7 @@ body.theme-light .nh-machinery-pan {
       footerCopyright: "Â© 2026 CNH Industrial â€¢ New Holland Construction. Todos os direitos reservados.",
       footerDev: "Desenvolvimento de Rede NHCE LATAM â€¢ Plataforma de CapacitaÃ§Ã£o Corporativa",
       cadTitle: "Solicitar Acesso",
-      cadSubtitle: "Preencha os dados abaixo para solicitar autorizaÃ§Ã£o de acesso ao treinamento PAN",
+      cadSubtitle: "Preencha os dados abaixo para solicitar autorizaÃ§Ã£o de acesso ao treinamento PAN.",
       nameLabel: "Nome Completo",
       namePlaceholder: "Ex: Carlos Silva",
       dealerLabel: "ConcessionÃ¡ria / Filial",
@@ -2187,20 +2187,20 @@ body.theme-light .nh-machinery-pan {
       thUser: "UsuÃ¡rio",
       thDealer: "ConcessionÃ¡ria / Cargo",
       thStatus: "Status",
-      thCreated: "Data Cadastro",
+      thCreated: "Data de Cadastro",
       thLastAccess: "Ãšltimo Acesso",
       thActions: "AÃ§Ãµes Administrativas",
-      auditDescription: "Trilha de eventos de seguranÃ§a e acessos em tempo real",
+      auditDescription: "Trilha de eventos de seguranÃ§a e acessos em tempo real.",
       btnExportCsv: "Exportar CSV",
       btnClearLogs: "Limpar Logs",
       backupExportTitle: "Exportar Base Completa",
-      backupExportDesc: "Gere uma cÃ³pia de seguranÃ§a em formato JSON com todos os cadastros e histÃ³rico de auditoria.",
+      backupExportDesc: "Gere uma cÃ³pia de seguranÃ§a em formato JSON com todos os cadastros, status de aprovaÃ§Ã£o e histÃ³rico de auditoria.",
       btnDownloadJson: "Baixar Backup JSON",
       backupImportTitle: "Restaurar Base de Dados",
-      backupImportDesc: "Carregue um arquivo JSON de backup previamente exportado para restaurar a base.",
+      backupImportDesc: "Carregue um arquivo JSON de backup previamente exportado para restaurar ou sincronizar o banco de dados.",
       btnUploadJson: "Selecionar Arquivo JSON",
       modalForgotTitle: "RecuperaÃ§Ã£o de Senha",
-      modalForgotSubtitle: "Informe seu e-mail corporativo cadastrado para receber instruÃ§Ãµes do administrador",
+      modalForgotSubtitle: "Informe seu e-mail corporativo cadastrado para receber as instruÃ§Ãµes do administrador.",
       btnCancel: "Cancelar",
       btnSend: "Enviar SolicitaÃ§Ã£o",
       statusPending: "Pendente",
@@ -2217,17 +2217,17 @@ body.theme-light .nh-machinery-pan {
       strengthMedium: "MÃ©dia",
       strengthStrong: "Forte",
       errFillFields: "Por favor, preencha todos os campos obrigatÃ³rios.",
-      errPasswordLength: "A senha deve ter pelo menos 8 caracteres.",
-      errPasswordMismatch: "As senhas nÃ£o coincidem. Verifique a confirmaÃ§Ã£o.",
-      errEmailRegistered: "Este e-mail corporativo jÃ¡ estÃ¡ registrado no sistema.",
+      errPasswordLength: "A senha deve conter pelo menos 8 caracteres.",
+      errPasswordMismatch: "As senhas nÃ£o coincidem. Por favor, verifique a confirmaÃ§Ã£o.",
+      errEmailRegistered: "Este e-mail corporativo jÃ¡ se encontra registrado no sistema.",
       msgCadSuccess: "SolicitaÃ§Ã£o de cadastro enviada com sucesso! Seu acesso estÃ¡ PENDENTE e serÃ¡ liberado apÃ³s a aprovaÃ§Ã£o do administrador.",
-      msgUserNotFound: "UsuÃ¡rio nÃ£o encontrado. Verifique o e-mail ou solicite cadastro.",
+      msgUserNotFound: "UsuÃ¡rio nÃ£o encontrado. Verifique o e-mail ou solicite o cadastro.",
       msgWrongPassword: "Senha incorreta. Tentativa {current} de {max}.",
       msgWarningLastChance: "AtenÃ§Ã£o: sua conta serÃ¡ BLOQUEADA na prÃ³xima tentativa incorreta.",
-      msgBlockedAccount: "Sua conta estÃ¡ BLOQUEADA por excesso de tentativas ou polÃ­tica de seguranÃ§a. Contate o administrador.",
+      msgBlockedAccount: "Sua conta estÃ¡ BLOQUEADA por excesso de tentativas ou polÃ­tica de seguranÃ§a. Por favor, contate o administrador.",
       msgPendingAccount: "Seu cadastro ainda estÃ¡ PENDENTE de aprovaÃ§Ã£o pelo administrador.",
-      msgRejectedAccount: "Seu cadastro foi REPROVADO pelo administrador. Contate o suporte de rede.",
-      msgForgotSent: "SolicitaÃ§Ã£o enviada. Um administrador entrarÃ¡ em contato para fornecer suas novas credenciais."
+      msgRejectedAccount: "Seu cadastro foi REPROVADO pelo administrador. Contate o suporte da rede.",
+      msgForgotSent: "SolicitaÃ§Ã£o enviada com sucesso. Um administrador entrarÃ¡ em contato para fornecer suas novas credenciais de acesso."
     },
     es: {
       brandSubtitle: "Desarrollo de Red NHCE LATAM",
@@ -2243,13 +2243,13 @@ body.theme-light .nh-machinery-pan {
       forgotPassword: "Â¿OlvidÃ³ su contraseÃ±a?",
       rememberEmail: "Recordar mi correo",
       maxAttempts: "MÃ¡x. 5 intentos",
-      btnLogin: "Acceder al Entrenamiento â†’",
+      btnLogin: "Acceder a la CapacitaciÃ³n â†’",
       newHere: "Â¿Nuevo en la plataforma?",
       btnRequestAccess: "Solicitar Registro de Acceso",
       footerCopyright: "Â© 2026 CNH Industrial â€¢ New Holland Construction. Todos los derechos reservados.",
       footerDev: "Desarrollo de Red NHCE LATAM â€¢ Plataforma de CapacitaciÃ³n Corporativa",
       cadTitle: "Solicitar Acceso",
-      cadSubtitle: "Complete los datos a continuaciÃ³n para solicitar autorizaciÃ³n de acceso al entrenamiento PAN",
+      cadSubtitle: "Complete los datos a continuaciÃ³n para solicitar la autorizaciÃ³n de acceso a la capacitaciÃ³n del PAN.",
       nameLabel: "Nombre Completo",
       namePlaceholder: "Ej: Carlos Silva",
       dealerLabel: "Concesionario / Sucursal",
@@ -2266,7 +2266,7 @@ body.theme-light .nh-machinery-pan {
       btnBackLogin: "Volver al Login",
       adminHeaderTitle: "Panel de Gobernanza & Accesos",
       adminHeaderSubtitle: "Desarrollo de Red NHCE LATAM â€¢ GestiÃ³n de Usuarios y AuditorÃ­a",
-      btnGoTraining: "Ir al Entrenamiento â†’",
+      btnGoTraining: "Ir a la CapacitaciÃ³n â†’",
       btnLogout: "Cerrar SesiÃ³n",
       kpiTotal: "Total de Usuarios",
       kpiActive: "Usuarios Aprobados",
@@ -2289,17 +2289,17 @@ body.theme-light .nh-machinery-pan {
       thCreated: "Fecha de Registro",
       thLastAccess: "Ãšltimo Acceso",
       thActions: "Acciones Administrativas",
-      auditDescription: "Pista de eventos de seguridad y accesos en tiempo real",
+      auditDescription: "Pista de eventos de seguridad y accesos en tiempo real.",
       btnExportCsv: "Exportar CSV",
       btnClearLogs: "Limpiar Registros",
       backupExportTitle: "Exportar Base Completa",
-      backupExportDesc: "Genere una copia de seguridad en formato JSON con todos los registros e historial.",
+      backupExportDesc: "Genere una copia de seguridad en formato JSON con todos los registros, estados de aprobaciÃ³n e historial de auditorÃ­a.",
       btnDownloadJson: "Descargar Backup JSON",
       backupImportTitle: "Restaurar Base de Datos",
-      backupImportDesc: "Cargue un archivo JSON de respaldo previamente exportado para restaurar la base.",
+      backupImportDesc: "Cargue un archivo JSON de respaldo previamente exportado para restaurar o sincronizar la base de datos.",
       btnUploadJson: "Seleccionar Archivo JSON",
       modalForgotTitle: "RecuperaciÃ³n de ContraseÃ±a",
-      modalForgotSubtitle: "Ingrese su correo corporativo registrado para recibir instrucciones del administrador",
+      modalForgotSubtitle: "Ingrese su correo corporativo registrado para recibir las instrucciones del administrador.",
       btnCancel: "Cancelar",
       btnSend: "Enviar Solicitud",
       statusPending: "Pendiente",
@@ -2316,17 +2316,17 @@ body.theme-light .nh-machinery-pan {
       strengthMedium: "Media",
       strengthStrong: "Fuerte",
       errFillFields: "Por favor, complete todos los campos obligatorios.",
-      errPasswordLength: "La contraseÃ±a debe tener al menos 8 caracteres.",
-      errPasswordMismatch: "Las contraseÃ±as no coinciden. Verifique la confirmaciÃ³n.",
-      errEmailRegistered: "Este correo corporativo ya estÃ¡ registrado en el sistema.",
+      errPasswordLength: "La contraseÃ±a debe contener al menos 8 caracteres.",
+      errPasswordMismatch: "Las contraseÃ±as no coinciden. Por favor, verifique la confirmaciÃ³n.",
+      errEmailRegistered: "Este correo corporativo ya se encuentra registrado en el sistema.",
       msgCadSuccess: "Â¡Solicitud de registro enviada con Ã©xito! Su acceso estÃ¡ PENDIENTE y serÃ¡ habilitado tras la aprobaciÃ³n del administrador.",
-      msgUserNotFound: "Usuario no encontrado. Verifique el correo o solicite registro.",
+      msgUserNotFound: "Usuario no encontrado. Verifique el correo o solicite el registro.",
       msgWrongPassword: "ContraseÃ±a incorrecta. Intento {current} de {max}.",
       msgWarningLastChance: "AtenciÃ³n: su cuenta serÃ¡ BLOQUEADA en el prÃ³ximo intento incorrecto.",
-      msgBlockedAccount: "Su cuenta estÃ¡ BLOQUEADA por exceso de intentos o polÃ­tica de seguridad. Contacte al administrador.",
-      msgPendingAccount: "Su registro aÃºn estÃ¡ PENDIENTE de aprobaciÃ³n por el administrador.",
-      msgRejectedAccount: "Su registro fue RECHAZADO por el administrador. Contacte al soporte de red.",
-      msgForgotSent: "Solicitud enviada. Un administrador se comunicarÃ¡ para proporcionarle nuevas credenciales."
+      msgBlockedAccount: "Su cuenta estÃ¡ BLOQUEADA por exceso de intentos o por polÃ­tica de seguridad. Por favor, pÃ³ngase en contacto con el administrador.",
+      msgPendingAccount: "Su registro aÃºn estÃ¡ PENDIENTE de aprobaciÃ³n por parte del administrador.",
+      msgRejectedAccount: "Su registro fue RECHAZADO por el administrador. PÃ³ngase en contacto con el soporte de red.",
+      msgForgotSent: "Solicitud enviada con Ã©xito. Un administrador se comunicarÃ¡ para proporcionarle sus nuevas credenciales de acceso."
     },
     en: {
       brandSubtitle: "Dealer Development NHCE LATAM",
@@ -2348,7 +2348,7 @@ body.theme-light .nh-machinery-pan {
       footerCopyright: "Â© 2026 CNH Industrial â€¢ New Holland Construction. All rights reserved.",
       footerDev: "Dealer Development NHCE LATAM â€¢ Corporate Training Platform",
       cadTitle: "Request Access",
-      cadSubtitle: "Fill in the details below to request authorization to access the PAN training",
+      cadSubtitle: "Fill in the details below to request authorization to access the PAN training.",
       nameLabel: "Full Name",
       namePlaceholder: "E.g.: Charles Smith",
       dealerLabel: "Dealership / Branch",
@@ -2388,17 +2388,17 @@ body.theme-light .nh-machinery-pan {
       thCreated: "Registration Date",
       thLastAccess: "Last Access",
       thActions: "Administrative Actions",
-      auditDescription: "Real-time security events and access trail",
+      auditDescription: "Real-time security events and access audit trail.",
       btnExportCsv: "Export CSV",
       btnClearLogs: "Clear Logs",
       backupExportTitle: "Export Full Database",
-      backupExportDesc: "Generate a JSON backup file with all users and audit logs.",
+      backupExportDesc: "Generate a JSON backup file with all users, approval statuses, and audit history.",
       btnDownloadJson: "Download JSON Backup",
       backupImportTitle: "Restore Database",
-      backupImportDesc: "Upload a previously exported JSON backup file to restore data.",
+      backupImportDesc: "Upload a previously exported JSON backup file to restore or synchronize the database.",
       btnUploadJson: "Select JSON File",
       modalForgotTitle: "Password Recovery",
-      modalForgotSubtitle: "Enter your registered corporate email to receive instructions from the administrator",
+      modalForgotSubtitle: "Enter your registered corporate email to receive instructions from the administrator.",
       btnCancel: "Cancel",
       btnSend: "Send Request",
       statusPending: "Pending",
@@ -2416,16 +2416,16 @@ body.theme-light .nh-machinery-pan {
       strengthStrong: "Strong",
       errFillFields: "Please fill in all required fields.",
       errPasswordLength: "Password must be at least 8 characters long.",
-      errPasswordMismatch: "Passwords do not match. Please verify.",
+      errPasswordMismatch: "Passwords do not match. Please verify confirmation.",
       errEmailRegistered: "This corporate email is already registered in the system.",
       msgCadSuccess: "Registration request submitted successfully! Your access is PENDING and will be granted after administrator approval.",
-      msgUserNotFound: "User not found. Check the email or request registration.",
+      msgUserNotFound: "User not found. Check your email or request registration.",
       msgWrongPassword: "Incorrect password. Attempt {current} of {max}.",
       msgWarningLastChance: "Warning: your account will be BLOCKED on the next incorrect attempt.",
-      msgBlockedAccount: "Your account is BLOCKED due to excessive attempts or security policy. Contact the administrator.",
+      msgBlockedAccount: "Your account is BLOCKED due to excessive attempts or security policy. Please contact the administrator.",
       msgPendingAccount: "Your registration is still PENDING approval by the administrator.",
-      msgRejectedAccount: "Your registration was REJECTED by the administrator. Contact dealer support.",
-      msgForgotSent: "Request submitted. An administrator will contact you with new credentials."
+      msgRejectedAccount: "Your registration was REJECTED by the administrator. Please contact dealer support.",
+      msgForgotSent: "Request submitted successfully. An administrator will contact you with your new access credentials."
     }
   };
 
@@ -2634,7 +2634,6 @@ body.theme-light .nh-machinery-pan {
       ];
       localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
     } else {
-      // Sempre atualizar e garantir que o admin master tenha o hash e status corretos
       let adminUser = users.find(u => u.email.toLowerCase() === 'admin@newholland.com');
       if (adminUser) {
         adminUser.passwordHash = defaultAdminHash;
@@ -2656,7 +2655,6 @@ body.theme-light .nh-machinery-pan {
       localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
     }
 
-    // Resetar qualquer tentativa incorreta acumulada do admin master
     const attempts = JSON.parse(localStorage.getItem(STORAGE_KEYS.ATTEMPTS) || '{}');
     if (attempts['admin@newholland.com']) {
       delete attempts['admin@newholland.com'];
