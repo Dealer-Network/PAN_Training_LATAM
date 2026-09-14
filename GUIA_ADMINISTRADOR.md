@@ -1,24 +1,43 @@
-# 🚜 Manual do Administrador & Guia de Implantação
+# 🚜 Manual do Administrador & Guia de Implantação Supabase
 ## Plataforma Corporativa de Treinamento PAN — New Holland Construction (LATAM)
 
-Este documento contém todas as instruções para operação, segurança, governança de usuários, auditoria de acessos e publicação da nova arquitetura da plataforma.
+Este documento contém todas as instruções para operação, governança de usuários, aprovação de acessos, auditoria em tempo real e segurança via **Supabase**.
 
 ---
 
-## 1. 🔑 Credenciais Iniciais de Administrador
+## 1. 🔑 Credenciais e Conexão com o Supabase
 
-Ao acessar o sistema pela primeira vez, o banco de dados é inicializado automaticamente com o perfil de Administrador Master:
+A plataforma está conectada diretamente ao projeto Supabase corporativo utilizando autenticação e banco de dados relacional com **Row Level Security (RLS)**:
 
-- **URL de Acesso**: `index.html` ou `admin.html`
-- **E-mail**: `admin@newholland.com`
-- **Senha Padrão**: `Admin@NHCE2026!`
-- **Role**: `ADMIN` (Acesso irrestrito a todas as áreas)
+- **Supabase Project URL**: `https://tghzcprzjysrbdxhvdlu.supabase.co`
+- **Publishable Key**: `sb_publishable_Ef2Rn59cywyibuxSupS5XQ_TMXNu3T1`
+- **Dashboard do Supabase**: [https://supabase.com/dashboard/project/tghzcprzjysrbdxhvdlu](https://supabase.com/dashboard/project/tghzcprzjysrbdxhvdlu)
 
-> 💡 **Recomendação de Segurança**: Após o primeiro login no Painel ADM, você pode alterar a senha padrão ou cadastrar novos administradores através da aba **Gestão de Usuários > Novo Usuário** com perfil `ADMIN`.
+> 🛡️ **Segurança**: Somente a `Publishable Key` é utilizada no frontend. As permissões de acesso, aprovação e visualização de dados são validadas pelas políticas RLS no próprio banco PostgreSQL do Supabase.
 
 ---
 
-## 2. 🔄 Fluxo Operacional da Plataforma
+## 2. 🗄️ Execução do Script SQL no Supabase (Passo Obrigatório Inicial)
+
+Caso ainda não tenha executado a estrutura de tabelas e políticas de segurança no seu projeto Supabase, siga estes passos:
+
+1. Acesse o **SQL Editor** do Supabase no link: [https://supabase.com/dashboard/project/tghzcprzjysrbdxhvdlu/sql/new](https://supabase.com/dashboard/project/tghzcprzjysrbdxhvdlu/sql/new).
+2. Abra o arquivo [`supabase_schema.sql`](supabase_schema.sql) localizado na raiz deste projeto.
+3. Copie todo o conteúdo e cole no editor SQL do Supabase.
+4. Clique no botão verde **Run** para executar.
+5. As tabelas `public.profiles`, `public.access_logs`, a função `public.is_admin()`, as políticas **RLS** e o trigger de criação automática de perfil estarão ativas.
+
+### Como Promover um Usuário a Administrador no Supabase:
+Para definir uma conta existente como Administradora Master, execute no SQL Editor:
+```sql
+UPDATE public.profiles
+SET role = 'admin', status = 'approved', approved_at = NOW()
+WHERE email = 'admin@newholland.com'; -- Substitua pelo seu e-mail corporativo cadastrado
+```
+
+---
+
+## 3. 🔄 Fluxo de Autenticação e Controle de Acesso
 
 ```
 [Visitante / Colaborador]
@@ -26,114 +45,64 @@ Ao acessar o sistema pela primeira vez, o banco de dados é inicializado automat
          ▼
 [Página de Login (index.html)]
          │
-         ├─ Sem Cadastro ──────► [cadastro.html] ──► Status: "PENDENTE"
-         │                                                │
-         ├─ Senha Incorreta (até 4x) ──► Alerta e Contador│
-         │                                                │
-         ├─ 5ª Senha Incorreta ────────► Status: "BLOQUEADO"
-         │                                                │
-         ▼                                                ▼
-[Autenticado + Aprovado] ◄─────────────────── [ADMIN APROVA no Painel]
+         ├─ Novo Cadastro ────────► Status inicial: "pending" (Aguardando Aprovação)
+         │                                   │
+         ├─ Login com Senha Incorreta ──────► Mensagem de Erro e Log Registrado
+         │                                   │
+         ├─ Conta com Status "pending" ─────► Bloqueia acesso e exibe alerta de Análise
+         │                                   │
+         ├─ Conta com Status "blocked" ─────► Nega acesso com alerta de Bloqueio
+         │                                   │
+         ▼                                   ▼
+[Autenticado + "approved"] ◄──────── [ADMIN APROVA no Painel ou no Supabase]
          │
-         ▼
-[Treinamento Completo (treinamento.html)]
-  - Proteção por Guardião de Sessão
-  - Barra Superior com Identificação e Logout
-  - Bloqueio de F12 e Atalhos de Inspeção
+         ├─ Role: "user"  ────────► Acesso Liberado ao Treinamento PAN
+         │
+         └─ Role: "admin" ────────► Acesso Liberado ao Treinamento + Painel de Governança
 ```
 
 ---
 
-## 3. 🛡️ Funcionalidades de Segurança Implementadas
+## 4. 📊 Operação do Painel Administrativo
 
-1. **Criptografia SHA-256 com Salt Corporativo**: Nenhuma senha trafega ou é armazenada em texto puro. O hash é gerado diretamente pela **Web Crypto API** nativa.
-2. **Bloqueio Estrito após 5 Tentativas Consecutivas**:
-   - 1ª a 3ª falha: Exibe aviso e contador decrescente.
-   - 4ª falha: Alerta de última tentativa antes do bloqueio.
-   - 5ª falha: O status no banco é alterado imediatamente para `BLOQUEADO`.
-   - O desbloqueio só pode ser efetuado por um administrador no painel.
-3. **Guardião de Rotas em Tempo Real**:
-   - Tentativas de acessar diretamente `treinamento.html` ou `admin.html` sem sessão válida e status `APROVADO` são imediatamente interceptadas e redirecionadas para o login antes do carregamento do conteúdo.
-4. **Proteção Contra Inspeção Casual de Front-end**:
-   - Bloqueio do botão direito (menu de contexto).
-   - Bloqueio de atalhos de desenvolvedor: `F12`, `Ctrl+Shift+I`, `Ctrl+Shift+J`, `Ctrl+Shift+C`, `Ctrl+U` e `Ctrl+S`.
-5. **Auditoria e Monitoramento Contínuo**:
-   - Registro detalhado de cada evento com data, hora, usuário, e-mail, resultado e IP/sessão.
-   - Exportação de relatórios em `.CSV` (compatível com Excel) e `.JSON`.
-
----
-
-## 4. 📊 Como Operar o Painel Administrativo (`admin.html`)
+Ao fazer login com uma conta com perfil `ADMIN`, a opção de **Painel ADM** é liberada:
 
 ### A. Aprovação de Novos Cadastros
-1. No menu superior, clique em **Gestão de Usuários**.
+1. No menu superior da área administrativa, acesse **Gestão de Usuários**.
 2. Filtre por status **Pendentes**.
-3. Clique no botão verde de **Aprovar** (<i class="fa-solid fa-check"></i>) para liberar o acesso ou no botão vermelho de **Reprovar**.
+3. Na linha do colaborador, selecione o Perfil desejado (`Leitor` ou `Admin`).
+4. Clique no botão verde **Aprovar** para liberar o acesso imediatamente. O status no Supabase é atualizado para `approved`.
 
-### B. Desbloqueio de Usuários Bloqueados por Tentativas
-1. Usuários que atingiram 5 erros de senha exibirão o status `BLOQUEADO`.
-2. Na tabela, clique no botão **Desbloquear**.
-3. Uma janela se abrirá permitindo:
-   - Manter a senha atual e apenas zerar o contador de falhas; OU
-   - Definir uma **nova senha provisória** para o colaborador.
+### B. Bloqueio e Reativação de Usuários
+- Para suspender o acesso de um usuário: clique no botão vermelho **Bloquear**. O status passa para `blocked` e o usuário não conseguirá mais entrar.
+- Para reativar uma conta bloqueada: clique no botão amarelo **Desbloquear**. O status volta para `approved`.
 
-### C. Backup e Sincronização entre Dispositivos
-1. Acesse a aba **Banco de Dados & Backup**.
-2. Clique em **Baixar Backup Completo (.JSON)** para salvar um instantâneo de todos os usuários e logs.
-3. Para carregar o banco em outro computador/navegador, clique em **Restaurar Base de Dados** e selecione o arquivo gerado.
+### C. Auditoria e Monitoramento de Acessos em Tempo Real
+1. Acesse a aba **Métricas & Auditoria**.
+2. Visualize o histórico detalhado com data, hora, e-mail do usuário e tipo de evento (Logins com sucesso, falhas, bloqueios, aprovações).
+3. Clique em **Exportar CSV** para gerar um relatório em formato compatível com Excel.
+
+### D. Backup e Restauração
+- Na aba **Segurança & Backup**, clique em **Baixar Backup JSON** para salvar uma cópia completa dos registros de usuários e histórico de auditoria.
 
 ---
 
 ## 5. 🚀 Publicação no GitHub Pages (HTTPS)
 
-Como a aplicação é 100% autossuficiente e client-side com Web Crypto API:
+Como a plataforma é compatível com ambientes estáticos HTTPS e utiliza o SDK oficial do Supabase:
 
-1. Faça o commit e push dos arquivos para a branch principal (`main`):
+1. Verifique as alterações locais:
+   ```bash
+   git status
+   ```
+2. Realize o commit e push para o repositório:
    ```bash
    git add .
-   git commit -m "Evolução da plataforma: Login, Cadastro, Painel ADM e Controle de Acesso"
+   git commit -m "Integracao oficial Supabase: Auth, RLS, Perfis e Painel Administrativo"
    git push origin main
    ```
-2. O GitHub Pages atualizará automaticamente o site no endereço:
+3. O GitHub Pages publicará a versão atualizada automaticamente em:
    🔗 **`https://dealer-network.github.io/PAN_Training_LATAM/`**
-3. O ponto de entrada principal agora é a página de login corporativo `index.html`.
-
----
-
-## 6. 🌐 Arquitetura em Nuvem Multi-Device (Opcional - Supabase / Firebase)
-
-Se no futuro a CNH Industrial optar por um banco de dados relacional em nuvem centralizado multi-dispositivos (ex: Supabase / PostgreSQL), a estrutura de tabelas necessária é:
-
-```sql
--- TABELA DE USUÁRIOS
-CREATE TABLE users (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    nome TEXT NOT NULL,
-    email TEXT UNIQUE NOT NULL,
-    empresa TEXT NOT NULL,
-    senha_hash TEXT NOT NULL,
-    status TEXT DEFAULT 'PENDENTE', -- PENDENTE, APROVADO, BLOQUEADO, REPROVADO
-    role TEXT DEFAULT 'USER',       -- USER, ADMIN
-    failed_login_attempts INT DEFAULT 0,
-    blocked_at TIMESTAMP WITH TIME ZONE,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    approved_at TIMESTAMP WITH TIME ZONE,
-    last_login TIMESTAMP WITH TIME ZONE
-);
-
--- TABELA DE LOGS DE AUDITORIA
-CREATE TABLE access_logs (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id TEXT,
-    email TEXT,
-    nome TEXT,
-    evento TEXT NOT NULL,
-    resultado TEXT NOT NULL,
-    data_hora TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    sessao TEXT,
-    detalhes TEXT
-);
-```
 
 ---
 

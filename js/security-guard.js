@@ -10,38 +10,30 @@
 
     // 1. PROTEÇÃO CONTRA INSPEÇÃO CASUAL (F12, DevTools, Botão Direito)
     function applyCasualProtections() {
-        // Bloquear menu de contexto (botão direito)
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
             return false;
         }, { capture: true });
 
-        // Bloquear atalhos de teclado comuns de inspeção
         document.addEventListener('keydown', function(e) {
-            // F12
             if (e.key === 'F12' || e.keyCode === 123) {
                 e.preventDefault();
                 e.stopPropagation();
                 return false;
             }
 
-            // Ctrl + Shift + I (DevTools)
-            // Ctrl + Shift + J (Console)
-            // Ctrl + Shift + C (Element Inspector)
             if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c' || e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
                 e.preventDefault();
                 e.stopPropagation();
                 return false;
             }
 
-            // Ctrl + U (View Source)
             if (e.ctrlKey && (e.key === 'U' || e.key === 'u' || e.keyCode === 85)) {
                 e.preventDefault();
                 e.stopPropagation();
                 return false;
             }
 
-            // Ctrl + S (Save Page)
             if (e.ctrlKey && (e.key === 'S' || e.key === 's' || e.keyCode === 83)) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -49,51 +41,50 @@
             }
         }, { capture: true });
 
-        // Mensagem discreta no console corporativo
         try {
             console.clear();
             console.log(
-                '%c[NHCE LATAM - SEGURANÇA CORPORATIVA]%c Esta plataforma e seus conteúdos são protegidos por direitos autorais da CNH Industrial. O acesso não autorizado é monitorado e registrado.',
+                '%c[NHCE LATAM - SEGURANÇA CORPORATIVA]%c Plataforma corporativa protegida com autenticação e auditoria Supabase.',
                 'background: #FFCC00; color: #000; font-weight: bold; padding: 4px 8px; border-radius: 4px;',
                 'color: #94A3B8; font-size: 11px;'
             );
         } catch (err) {}
     }
 
-    // 2. GUARDIÃO DE ACESSO AO TREINAMENTO (treinamento.html)
-    function protectTrainingPage() {
-        if (!window.NHAuthService) {
+    // 2. GUARDIÃO DE ACESSO AO TREINAMENTO
+    async function protectTrainingPage() {
+        if (!window.NHSupabase) {
             window.location.href = 'index.html';
             return;
         }
 
-        const session = window.NHAuthService.getCurrentSession();
+        const sessionData = await window.NHSupabase.getCurrentSession();
 
-        // Se não houver sessão ou não estiver aprovado, redirecionar
-        if (!session || session.status !== 'APROVADO') {
+        if (!sessionData || !sessionData.isApproved) {
             window.location.href = 'index.html';
             return;
         }
 
-        // Registrar evento de acesso ao treinamento
-        window.NHAuthService.recordLog({
-            user_id: session.userId,
-            email: session.email,
-            nome: session.nome,
-            evento: 'ACESSO_TREINAMENTO',
-            resultado: 'SUCESSO',
-            detalhes: 'Usuário acessou o ambiente interativo de treinamento PAN.'
+        await window.NHSupabase.recordLog({
+            userId: sessionData.user.id,
+            email: sessionData.user.email,
+            fullName: sessionData.profile?.full_name || 'Colaborador',
+            event: 'ACESSO_TREINAMENTO',
+            details: 'Acesso liberado ao ambiente interativo de capacitação PAN.'
         });
 
-        // Injetar barra superior com informações do usuário logado e botão de Sair
         document.addEventListener('DOMContentLoaded', function() {
-            renderTrainingSessionBar(session);
+            renderTrainingSessionBar(sessionData);
         });
     }
 
-    // Injetar barra superior no treinamento
-    function renderTrainingSessionBar(session) {
+    function renderTrainingSessionBar(sessionData) {
         if (document.getElementById('nh-session-topbar')) return;
+
+        const profile = sessionData.profile || {};
+        const userName = profile.full_name || sessionData.user?.email || 'Usuário Conectado';
+        const userDealer = profile.dealership || 'Rede Concessionários';
+        const isAdmin = sessionData.isAdmin;
 
         const bar = document.createElement('div');
         bar.id = 'nh-session-topbar';
@@ -102,13 +93,13 @@
             <div style="display: flex; align-items: center; gap: 0.75rem;">
                 <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #10B981; box-shadow: 0 0 8px #10B981;"></span>
                 <span style="color: #94A3B8;">Usuário Conectado:</span>
-                <strong style="color: #F8FAFC;">${escapeHtml(session.nome)}</strong>
+                <strong style="color: #F8FAFC;">${escapeHtml(userName)}</strong>
                 <span style="color: #64748B;">•</span>
-                <span style="color: #FFCC00; font-size: 0.75rem;">${escapeHtml(session.empresa)}</span>
-                ${session.role === 'ADMIN' ? '<a href="admin.html" style="background: rgba(255,204,0,0.2); border: 1px solid #FFCC00; color: #FFCC00; font-size: 0.7rem; font-weight: bold; padding: 2px 8px; border-radius: 4px; text-decoration: none; margin-left: 8px;"><i class="fa-solid fa-shield-halved"></i> PAINEL ADM</a>' : ''}
+                <span style="color: #FFCC00; font-size: 0.75rem;">${escapeHtml(userDealer)}</span>
+                ${isAdmin ? '<button type="button" onclick="if(window.showView) window.showView(\'view-admin\');" style="background: rgba(255,204,0,0.2); border: 1px solid #FFCC00; color: #FFCC00; font-size: 0.7rem; font-weight: bold; padding: 2px 8px; border-radius: 4px; cursor: pointer; margin-left: 8px;"><i class="fa-solid fa-shield-halved"></i> PAINEL ADM</button>' : ''}
             </div>
             <div style="display: flex; align-items: center; gap: 1rem;">
-                <span style="color: #64748B; font-size: 0.75rem;"><i class="fa-regular fa-clock"></i> Sessão Segura Ativa</span>
+                <span style="color: #64748B; font-size: 0.75rem;"><i class="fa-solid fa-lock"></i> Supabase Auth Ativo</span>
                 <button id="nh-btn-logout-top" style="background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.4); color: #F87171; font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 0.35rem; transition: all 0.2s;">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i> Sair
                 </button>
@@ -119,25 +110,28 @@
 
         const logoutBtn = document.getElementById('nh-btn-logout-top');
         if (logoutBtn) {
-            logoutBtn.addEventListener('click', function() {
+            logoutBtn.addEventListener('click', async function() {
                 if (confirm('Deseja realmente encerrar sua sessão com segurança?')) {
-                    window.NHAuthService.logout('LOGOUT_USUARIO');
+                    if (window.handleLogout) {
+                        await window.handleLogout();
+                    } else if (window.NHSupabase) {
+                        await window.NHSupabase.signOut();
+                        window.location.href = 'index.html';
+                    }
                 }
             });
         }
     }
 
-    // 3. GUARDIÃO DO PAINEL ADMINISTRATIVO (admin.html)
-    function protectAdminPage() {
-        if (!window.NHAuthService) {
+    async function protectAdminPage() {
+        if (!window.NHSupabase) {
             window.location.href = 'index.html';
             return;
         }
 
-        const session = window.NHAuthService.getCurrentSession();
+        const sessionData = await window.NHSupabase.getCurrentSession();
 
-        // Exige autenticação + Role ADMIN + Status APROVADO
-        if (!session || session.role !== 'ADMIN' || session.status !== 'APROVADO') {
+        if (!sessionData || !sessionData.isAdmin) {
             alert('Acesso restrito: Esta área requer privilégios de Administrador.');
             window.location.href = 'index.html';
             return;
@@ -146,12 +140,11 @@
 
     function escapeHtml(str) {
         if (!str) return '';
-        return str.replace(/[&<>"']/g, function(m) {
+        return String(str).replace(/[&<>"']/g, function(m) {
             return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
         });
     }
 
-    // Inicialização automática conforme a página atual
     applyCasualProtections();
 
     window.NHSecurity = {

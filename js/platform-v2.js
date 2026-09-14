@@ -1,6 +1,6 @@
 /* ==========================================================================
    PLATAFORMA CORPORATIVA NEW HOLLAND CONSTRUCTION (LATAM)
-   Módulo de Autenticação, i18n, Temas e Governança (V2.1 - Escopo Seguro)
+   Módulo de Autenticação, i18n, Temas e Governança com Supabase Backend
    ========================================================================== */
 
 (function() {
@@ -10,7 +10,7 @@
     pt: {
       brandSubtitle: "Desenvolvimento de Rede NHCE LATAM",
       secureHttps: "Ambiente Seguro HTTPS",
-      shaActive: "Proteção SHA-256 Ativa",
+      shaActive: "Supabase Auth & RLS Ativo",
       themeToggle: "Alternar Tema Claro/Escuro",
       loginTitle: "Capacitação PAN LATAM",
       loginSubtitle: "Guia Interativo de Atualização do Plano Anual de Negócios",
@@ -20,7 +20,7 @@
       passwordPlaceholder: "••••••••••••",
       forgotPassword: "Esqueceu a senha?",
       rememberEmail: "Lembrar meu e-mail",
-      maxAttempts: "Máx. 5 tentativas",
+      maxAttempts: "Autenticação Segura",
       btnLogin: "ACESSAR TREINAMENTO →",
       newHere: "NOVO NA PLATAFORMA?",
       btnRequestAccess: "Solicitar Cadastro de Acesso",
@@ -83,24 +83,23 @@
       errPasswordLength: "A senha deve conter no mínimo 8 caracteres.",
       errPasswordMismatch: "As senhas digitadas não coincidem.",
       errEmailRegistered: "Este e-mail já está cadastrado no sistema.",
-      msgCadSuccess: "Solicitação enviada com sucesso! Seu acesso está em análise pela equipe de Dealer Development.",
-      msgPendingAccount: "Seu cadastro está em análise pela equipe de Dealer Development. Aguarde a aprovação.",
-      msgBlockedAccount: "Conta temporariamente bloqueada por excesso de tentativas. Contate o administrador.",
+      msgCadSuccess: "Cadastro realizado com sucesso! Seu acesso está aguardando aprovação pelo Painel Administrativo.",
+      msgPendingAccount: "Seu cadastro está aguardando aprovação pelo Administrador. Aguarde a liberação do acesso.",
+      msgBlockedAccount: "Conta temporariamente bloqueada por segurança. Contate o administrador.",
       msgRejectedAccount: "Sua solicitação de acesso não foi aprovada. Entre em contato com o suporte.",
-      msgWrongPassword: "Senha incorreta. Tentativa {current} de {max}.",
-      msgWarningLastChance: "ATENÇÃO: Última tentativa antes do bloqueio de segurança!",
+      msgWrongPassword: "E-mail ou senha incorretos.",
       msgUserNotFound: "Usuário não encontrado. Verifique o e-mail ou solicite um cadastro.",
       msgLoginSuccess: "Login realizado com sucesso! Redirecionando...",
       forgotTitle: "Recuperação de Acesso Corporativo",
-      forgotDesc: "Digite seu e-mail corporativo para solicitar a redefinição de senha ao administrador.",
-      btnSendRecovery: "Enviar Solicitação",
+      forgotDesc: "Digite seu e-mail corporativo para receber o link seguro de redefinição de senha.",
+      btnSendRecovery: "Enviar Link de Recuperação",
       btnClose: "Fechar",
-      msgForgotSent: "Solicitação enviada! O administrador do sistema foi notificado para redefinir seu acesso."
+      msgForgotSent: "Instruções de redefinição enviadas! Verifique sua caixa de entrada de e-mail."
     },
     es: {
       brandSubtitle: "Desarrollo de Red NHCE LATAM",
       secureHttps: "Ambiente Seguro HTTPS",
-      shaActive: "Protección SHA-256 Activa",
+      shaActive: "Supabase Auth y RLS Activo",
       themeToggle: "Alternar Tema Claro/Oscuro",
       loginTitle: "Capacitación PAN LATAM",
       loginSubtitle: "Guía Interactiva de Actualización del Plan Anual de Negocios",
@@ -110,7 +109,7 @@
       passwordPlaceholder: "••••••••••••",
       forgotPassword: "¿Olvidó su contraseña?",
       rememberEmail: "Recordar mi correo",
-      maxAttempts: "Máx. 5 intentos",
+      maxAttempts: "Autenticación Segura",
       btnLogin: "ACCEDER A LA CAPACITACIÓN →",
       newHere: "¿NUEVO EN LA PLATAFORMA?",
       btnRequestAccess: "Solicitar Registro de Acceso",
@@ -158,7 +157,7 @@
       colUser: "Usuario",
       colDealer: "Concesionario",
       colDate: "Fecha de Registro",
-      colRole: "Rol",
+      colRole: "Perfil",
       colStatus: "Estado",
       colActions: "Acciones",
       btnApprove: "Aprobar",
@@ -173,26 +172,25 @@
       errPasswordLength: "La contraseña debe tener al menos 8 caracteres.",
       errPasswordMismatch: "Las contraseñas ingresadas no coinciden.",
       errEmailRegistered: "Este correo ya está registrado en el sistema.",
-      msgCadSuccess: "¡Solicitud enviada con éxito! Su acceso está en revisión por el equipo de Dealer Development.",
-      msgPendingAccount: "Su registro está en revisión por el equipo de Dealer Development. Espere la aprobación.",
-      msgBlockedAccount: "Cuenta bloqueada temporalmente por exceso de intentos. Comuníquese con el administrador.",
-      msgRejectedAccount: "Su solicitud de acceso no fue aprobada. Póngase en contacto con soporte.",
-      msgWrongPassword: "Contraseña incorrecta. Intento {current} de {max}.",
-      msgWarningLastChance: "¡ATENCIÓN: Último intento antes del bloqueo de seguridad!",
-      msgUserNotFound: "Usuario no encontrado. Verifique el correo o solicite un registro.",
+      msgCadSuccess: "¡Registro realizado con éxito! Su solicitud está pendiente de aprobación por el Panel Administrativo.",
+      msgPendingAccount: "Su cuenta está pendiente de aprobación por el Administrador. Espere la autorización de acceso.",
+      msgBlockedAccount: "Cuenta bloqueada temporalmente por seguridad. Contacte al administrador.",
+      msgRejectedAccount: "Su solicitud de acceso no fue aprobada. Comuníquese con soporte.",
+      msgWrongPassword: "Correo o contraseña incorrectos.",
+      msgUserNotFound: "Usuario no encontrado. Verifique su correo o solicite un registro.",
       msgLoginSuccess: "¡Inicio de sesión exitoso! Redirigiendo...",
       forgotTitle: "Recuperación de Acceso Corporativo",
-      forgotDesc: "Ingrese su correo corporativo para solicitar el restablecimiento de contraseña al administrador.",
-      btnSendRecovery: "Enviar Solicitud",
+      forgotDesc: "Ingrese su correo corporativo para recibir el enlace de recuperación de contraseña.",
+      btnSendRecovery: "Enviar Enlace",
       btnClose: "Cerrar",
-      msgForgotSent: "¡Solicitud enviada! El administrador ha sido notificado para restablecer su acceso."
+      msgForgotSent: "¡Instrucciones enviadas! Revise su bandeja de entrada de correo."
     },
     en: {
       brandSubtitle: "Dealer Development NHCE LATAM",
       secureHttps: "Secure HTTPS Environment",
-      shaActive: "Active SHA-256 Protection",
+      shaActive: "Supabase Auth & RLS Active",
       themeToggle: "Toggle Light/Dark Theme",
-      loginTitle: "PAN LATAM Training",
+      loginTitle: "PAN Training LATAM",
       loginSubtitle: "Interactive Annual Business Plan Update Guide",
       emailLabel: "CORPORATE EMAIL",
       emailPlaceholder: "your.name@dealership.com",
@@ -200,7 +198,7 @@
       passwordPlaceholder: "••••••••••••",
       forgotPassword: "Forgot password?",
       rememberEmail: "Remember my email",
-      maxAttempts: "Max 5 attempts",
+      maxAttempts: "Secure Authentication",
       btnLogin: "ACCESS TRAINING →",
       newHere: "NEW TO THE PLATFORM?",
       btnRequestAccess: "Request Access Registration",
@@ -263,25 +261,25 @@
       errPasswordLength: "Password must be at least 8 characters long.",
       errPasswordMismatch: "Entered passwords do not match.",
       errEmailRegistered: "This email is already registered in the system.",
-      msgCadSuccess: "Request sent successfully! Your access is under review by Dealer Development.",
-      msgPendingAccount: "Your account is under review by Dealer Development. Please await approval.",
-      msgBlockedAccount: "Account temporarily locked due to excessive failed attempts. Contact admin.",
+      msgCadSuccess: "Registration successful! Your request is pending approval via the Admin Panel.",
+      msgPendingAccount: "Your registration is pending approval by the Administrator. Please await access clearance.",
+      msgBlockedAccount: "Account temporarily locked for security. Contact admin.",
       msgRejectedAccount: "Your access request was not approved. Please contact support.",
-      msgWrongPassword: "Incorrect password. Attempt {current} of {max}.",
-      msgWarningLastChance: "WARNING: Last attempt before security account lockout!",
+      msgWrongPassword: "Invalid email or password.",
       msgUserNotFound: "User not found. Check your email or request registration.",
       msgLoginSuccess: "Login successful! Redirecting...",
       forgotTitle: "Corporate Access Recovery",
-      forgotDesc: "Enter your corporate email to request a password reset from the administrator.",
-      btnSendRecovery: "Send Request",
+      forgotDesc: "Enter your corporate email to receive the password reset link.",
+      btnSendRecovery: "Send Link",
       btnClose: "Close",
-      msgForgotSent: "Request sent! The system administrator has been notified to reset your password."
+      msgForgotSent: "Reset instructions sent! Please check your email inbox."
     }
   };
 
   let activeLang = localStorage.getItem('nh_lang') || 'pt';
   let activeTheme = localStorage.getItem('nh_theme') || 'dark';
   let activeViewId = 'view-login';
+  let cachedAdminUsers = [];
 
   function tr(key, params = {}) {
     const dict = I18N_DICT[activeLang] || I18N_DICT['pt'];
@@ -297,7 +295,6 @@
     activeLang = lang;
     localStorage.setItem('nh_lang', lang);
 
-    // Atualizar botões no cabeçalho
     ['pt', 'es', 'en'].forEach(l => {
       const btn = document.getElementById(`btn-lang-${l}`);
       if (btn) {
@@ -306,7 +303,6 @@
       }
     });
 
-    // Atualizar textos no DOM
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const k = el.getAttribute('data-i18n');
       if (k) el.innerHTML = tr(k);
@@ -322,18 +318,14 @@
       if (k) el.title = tr(k);
     });
 
-    // Atualizar tabela administrativa se visível
     if (activeViewId === 'view-admin') {
       renderAdminTable();
     }
 
-    // Sincronizar com o motor de slides do treinamento
     if (typeof window.changeLanguage === 'function') {
       try {
         window.changeLanguage(lang);
-      } catch(e) {
-        console.warn('Sync training language:', e);
-      }
+      } catch(e) {}
     }
     const trainingLangSelect = document.getElementById('lang-select');
     if (trainingLangSelect) {
@@ -378,7 +370,6 @@
             const animBg = document.getElementById('nh-animated-bg');
             if (animBg) animBg.style.display = 'none';
 
-            // Garantir que os slides e interface do treinamento inicializem
             if (typeof window.initInterface === 'function') {
               try { window.initInterface(); } catch(e) {}
             }
@@ -405,76 +396,9 @@
     }
   }
 
-  /* ==========================================================================
-     AUTENTICAÇÃO & SEGURANÇA (SHA-256 COM SALT CORPORATIVO)
-     ========================================================================== */
-  const STORAGE_KEYS = {
-    USERS: 'nh_auth_users',
-    SESSION: 'nh_auth_session',
-    ATTEMPTS: 'nh_auth_failed_attempts',
-    AUDIT: 'nh_auth_audit_logs'
-  };
-
-  const MASTER_SALT = 'NHCE_LATAM_DEALER_NETWORK_2026_SALT';
-  const MAX_FAILED_ATTEMPTS = 5;
-
-  async function sha256(text) {
-    const enc = new TextEncoder();
-    const data = enc.encode(text + MASTER_SALT);
-    const hash = await crypto.subtle.digest('SHA-256', data);
-    const hashArray = Array.from(new Uint8Array(hash));
-    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-  }
-
-  function initDatabase() {
-    let users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || 'null');
-    if (!users || !Array.isArray(users) || users.length === 0) {
-      users = [
-        {
-          id: 'usr_admin_master',
-          name: 'Administrador Master NHCE',
-          email: 'admin@newholland.com',
-          dealership: 'CNH Industrial - Curitiba',
-          role: 'ADMIN',
-          status: 'APROVADO',
-          passwordHash: 'e6c2e399581f440538a79a32dc4fbca1456209b50e0544520973686f0c60965e', // Admin@NHCE2026!
-          createdAt: new Date().toISOString(),
-          approvedAt: new Date().toISOString(),
-          lastLogin: null
-        }
-      ];
-      localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
-    }
-
-    let audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || 'null');
-    if (!audit) {
-      audit = [
-        {
-          timestamp: new Date().toISOString(),
-          type: 'SYSTEM_INIT',
-          email: 'admin@newholland.com',
-          details: 'Plataforma inicializada com sucesso.'
-        }
-      ];
-      localStorage.setItem(STORAGE_KEYS.AUDIT, JSON.stringify(audit));
-    }
-  }
-
-  function addAuditLog(type, email, details) {
-    const audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || '[]');
-    audit.unshift({
-      timestamp: new Date().toISOString(),
-      type,
-      email,
-      details
-    });
-    if (audit.length > 200) audit.pop();
-    localStorage.setItem(STORAGE_KEYS.AUDIT, JSON.stringify(audit));
-  }
-
   function showAlert(prefix, message, isError = true) {
     const alertBox = document.getElementById(`${prefix}-alert`);
-    const alertText = document.getElementById(`${prefix}-alert-text`);
+    const alertText = document.getElementById(`${prefix}-alert-text`) || document.getElementById(`${prefix}-alert-msg`);
     const alertIcon = document.getElementById(`${prefix}-alert-icon`);
     if (!alertBox || !alertText) return;
 
@@ -494,6 +418,7 @@
     if (alertBox) alertBox.classList.add('hidden');
   }
 
+  // 1. SUBMIT DE LOGIN (SUPABASE AUTH)
   async function handleLoginSubmit(event) {
     if (event) event.preventDefault();
     hideAlert('login');
@@ -516,107 +441,53 @@
       localStorage.removeItem('nh_remembered_email');
     }
 
-    const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
-    const user = users.find(u => (u.email || '').toLowerCase() === email);
-
-    const attempts = JSON.parse(localStorage.getItem(STORAGE_KEYS.ATTEMPTS) || '{}');
-    const currentAttempts = attempts[email] || 0;
-
-    if (user && user.status === 'BLOQUEADO') {
-      showAlert('login', tr('msgBlockedAccount'), true);
-      addAuditLog('LOGIN_BLOCKED_ATTEMPT', email, 'Tentativa de login em conta bloqueada.');
-      return;
+    const btnSubmit = document.getElementById('btn-login-submit');
+    if (btnSubmit) {
+      btnSubmit.disabled = true;
+      btnSubmit.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Autenticando...`;
     }
 
-    if (currentAttempts >= MAX_FAILED_ATTEMPTS) {
-      if (user) {
-        user.status = 'BLOQUEADO';
-        localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+    try {
+      const res = await window.NHSupabase.signIn({ email, password });
+
+      if (!res.success) {
+        showAlert('login', res.error || tr('msgWrongPassword'), true);
+        return;
       }
-      showAlert('login', tr('msgBlockedAccount'), true);
-      addAuditLog('ACCOUNT_LOCKED', email, 'Bloqueio automático por exceder tentativas.');
-      return;
-    }
 
-    if (!user) {
-      showAlert('login', tr('msgUserNotFound'), true);
-      addAuditLog('LOGIN_USER_NOT_FOUND', email, 'E-mail não cadastrado.');
-      return;
-    }
+      showAlert('login', tr('msgLoginSuccess'), false);
 
-    const inputHash = await sha256(password);
-    if (inputHash !== user.passwordHash) {
-      const newCount = currentAttempts + 1;
-      attempts[email] = newCount;
-      localStorage.setItem(STORAGE_KEYS.ATTEMPTS, JSON.stringify(attempts));
+      setTimeout(() => {
+        const profile = res.profile || {};
+        const role = (profile.role || '').toLowerCase();
+        if (role === 'admin') {
+          showView('view-admin');
+        } else {
+          showView('view-training');
+        }
+      }, 400);
 
-      if (newCount >= MAX_FAILED_ATTEMPTS) {
-        user.status = 'BLOQUEADO';
-        localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
-        showAlert('login', tr('msgBlockedAccount'), true);
-        addAuditLog('ACCOUNT_LOCKED', email, 'Excedeu 5 tentativas de senha.');
-      } else if (newCount === MAX_FAILED_ATTEMPTS - 1) {
-        showAlert('login', `${tr('msgWrongPassword', { current: newCount, max: MAX_FAILED_ATTEMPTS })} - ${tr('msgWarningLastChance')}`, true);
-        addAuditLog('LOGIN_FAILED_WARN', email, `Falha ${newCount}/5.`);
-      } else {
-        showAlert('login', tr('msgWrongPassword', { current: newCount, max: MAX_FAILED_ATTEMPTS }), true);
-        addAuditLog('LOGIN_FAILED', email, `Falha ${newCount}/5.`);
+    } catch (err) {
+      showAlert('login', err.message || 'Erro ao conectar ao Supabase.', true);
+    } finally {
+      if (btnSubmit) {
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = `<span data-i18n="btnLogin">${tr('btnLogin')}</span>`;
       }
-      return;
     }
-
-    if (user.status === 'PENDENTE') {
-      showAlert('login', tr('msgPendingAccount'), true);
-      addAuditLog('LOGIN_PENDING', email, 'Acesso tentado em conta pendente.');
-      return;
-    }
-
-    if (user.status === 'REPROVADO') {
-      showAlert('login', tr('msgRejectedAccount'), true);
-      addAuditLog('LOGIN_REJECTED', email, 'Acesso tentado em conta reprovada.');
-      return;
-    }
-
-    // Sucesso
-    attempts[email] = 0;
-    localStorage.setItem(STORAGE_KEYS.ATTEMPTS, JSON.stringify(attempts));
-
-    user.lastLogin = new Date().toISOString();
-    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
-
-    const sessionData = {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-      dealership: user.dealership,
-      status: user.status,
-      loginTime: new Date().toISOString()
-    };
-    sessionStorage.setItem(STORAGE_KEYS.SESSION, JSON.stringify(sessionData));
-    addAuditLog('LOGIN_SUCCESS', email, `Login efetuado com perfil ${user.role}.`);
-
-    showAlert('login', tr('msgLoginSuccess'), false);
-
-    setTimeout(() => {
-      if (user.role === 'ADMIN') {
-        showView('view-admin');
-      } else {
-        showView('view-training');
-      }
-    }, 400);
   }
 
+  // 2. SUBMIT DE CADASTRO (SUPABASE AUTH + PENDING PROFILE)
   async function handleCadastroSubmit(event) {
     if (event) event.preventDefault();
     hideAlert('cad');
 
     const name = document.getElementById('cad-name').value.trim();
-    const dealer = document.getElementById('cad-dealer').value.trim();
+    const dealer = (document.getElementById('cad-dealer') || document.getElementById('cad-dealership'))?.value.trim();
     const role = document.getElementById('cad-role').value.trim();
     const email = document.getElementById('cad-email').value.trim().toLowerCase();
     const password = document.getElementById('cad-password').value;
-    const confirm = document.getElementById('cad-confirm').value;
+    const confirm = (document.getElementById('cad-confirm') || document.getElementById('cad-confirm-password'))?.value;
 
     if (!name || !dealer || !role || !email || !password || !confirm) {
       showAlert('cad', tr('errFillFields'), true);
@@ -633,55 +504,60 @@
       return;
     }
 
-    const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
-    if (users.some(u => (u.email || '').toLowerCase() === email)) {
-      showAlert('cad', tr('errEmailRegistered'), true);
-      return;
+    const btnSubmit = document.getElementById('btn-cad-submit');
+    if (btnSubmit) {
+      btnSubmit.disabled = true;
+      btnSubmit.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Registrando...`;
     }
 
-    const passwordHash = await sha256(password);
-    const newUser = {
-      id: 'usr_' + Date.now().toString(36) + Math.random().toString(36).substr(2, 4),
-      name,
-      dealership: dealer,
-      jobTitle: role,
-      email,
-      role: 'USER',
-      status: 'PENDENTE',
-      passwordHash,
-      createdAt: new Date().toISOString(),
-      approvedAt: null,
-      lastLogin: null
-    };
+    try {
+      const res = await window.NHSupabase.signUp({
+        email,
+        password,
+        fullName: name,
+        dealership: dealer,
+        cargo: role
+      });
 
-    users.push(newUser);
-    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
-    addAuditLog('REGISTER_REQUEST', email, `Novo cadastro solicitado por ${name} (${dealer}).`);
+      if (!res.success) {
+        showAlert('cad', res.error || tr('errEmailRegistered'), true);
+        return;
+      }
 
-    showAlert('cad', tr('msgCadSuccess'), false);
+      showAlert('cad', tr('msgCadSuccess'), false);
 
-    setTimeout(() => {
-      document.getElementById('form-cadastro').reset();
-      showView('view-login');
-      showAlert('login', tr('msgCadSuccess'), false);
-    }, 2000);
+      setTimeout(() => {
+        document.getElementById('form-cadastro').reset();
+        showView('view-login');
+        showAlert('login', tr('msgCadSuccess'), false);
+      }, 2000);
+
+    } catch (err) {
+      showAlert('cad', err.message || 'Erro ao solicitar cadastro no Supabase.', true);
+    } finally {
+      if (btnSubmit) {
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = `<span data-i18n="btnSubmitCad">${tr('btnSubmitCad')}</span>`;
+      }
+    }
   }
 
-  function handleLogout() {
-    sessionStorage.removeItem(STORAGE_KEYS.SESSION);
+  // 3. LOGOUT
+  async function handleLogout() {
+    if (window.NHSupabase) {
+      await window.NHSupabase.signOut();
+    }
     showView('view-login');
   }
 
   function togglePasswordVisibility(inputId, btn) {
     const input = document.getElementById(inputId);
     if (!input) return;
+    const isPass = input.type === 'password';
+    input.type = isPass ? 'text' : 'password';
     const icon = btn.querySelector('i');
-    if (input.type === 'password') {
-      input.type = 'text';
-      if (icon) { icon.classList.remove('fa-eye'); icon.classList.add('fa-eye-slash'); }
-    } else {
-      input.type = 'password';
-      if (icon) { icon.classList.remove('fa-eye-slash'); icon.classList.add('fa-eye'); }
+    if (icon) {
+      icon.className = isPass ? 'fa-regular fa-eye-slash text-xs' : 'fa-regular fa-eye text-xs';
     }
   }
 
@@ -725,16 +601,21 @@
     }
   }
 
-  function loadAdminData() {
-    const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
-    const audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || '[]');
+  // 4. PAINEL ADM: DADOS E MÉTRICAS DO SUPABASE
+  async function loadAdminData() {
+    if (!window.NHSupabase) return;
 
-    const total = users.length;
-    const approved = users.filter(u => u.status === 'APROVADO').length;
-    const pending = users.filter(u => u.status === 'PENDENTE').length;
-    const blocked = users.filter(u => u.status === 'BLOQUEADO').length;
-    const logins = audit.filter(a => a.type === 'LOGIN_SUCCESS').length;
-    const incidents = audit.filter(a => a.type.includes('BLOCKED') || a.type.includes('LOCKED')).length;
+    const users = await window.NHSupabase.getAdminUsers();
+    const logs = await window.NHSupabase.getAccessLogs(200);
+
+    cachedAdminUsers = users || [];
+
+    const total = cachedAdminUsers.length;
+    const approved = cachedAdminUsers.filter(u => (u.status || '').toLowerCase() === 'approved').length;
+    const pending = cachedAdminUsers.filter(u => (u.status || '').toLowerCase() === 'pending').length;
+    const blocked = cachedAdminUsers.filter(u => (u.status || '').toLowerCase() === 'blocked').length;
+    const totalLogins = logs.filter(l => l.event === 'LOGIN_SUCESSO').length;
+    const totalAlerts = logs.filter(l => (l.event || '').includes('BLOQUEADO') || (l.event || '').includes('FALHA')).length;
 
     const elTotal = document.getElementById('kpi-total-users');
     const elActive = document.getElementById('kpi-active-users');
@@ -747,26 +628,34 @@
     if (elActive) elActive.innerText = approved;
     if (elPending) elPending.innerText = pending;
     if (elBlocked) elBlocked.innerText = blocked;
-    if (elLogins) elLogins.innerText = logins;
-    if (elAlerts) elAlerts.innerText = incidents;
+    if (elLogins) elLogins.innerText = totalLogins;
+    if (elAlerts) elAlerts.innerText = totalAlerts;
 
     renderAdminTable();
-    renderAuditLogs();
+    renderAuditLogs(logs);
   }
 
   function renderAdminTable() {
     const tbody = document.getElementById('admin-users-table-body');
     if (!tbody) return;
 
-    const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
-    const searchTerm = (document.getElementById('admin-search-input')?.value || '').toLowerCase();
+    const searchTerm = (document.getElementById('admin-search-input')?.value || '').toLowerCase().trim();
     const statusFilter = document.getElementById('admin-status-filter')?.value || 'ALL';
 
-    const filtered = users.filter(u => {
-      const matchSearch = (u.name || '').toLowerCase().includes(searchTerm) ||
-                          (u.email || '').toLowerCase().includes(searchTerm) ||
-                          (u.dealership || '').toLowerCase().includes(searchTerm);
-      const matchStatus = statusFilter === 'ALL' || u.status === statusFilter;
+    const filtered = cachedAdminUsers.filter(u => {
+      const name = (u.full_name || u.name || '').toLowerCase();
+      const email = (u.email || '').toLowerCase();
+      const dealer = (u.dealership || '').toLowerCase();
+      const matchSearch = !searchTerm || name.includes(searchTerm) || email.includes(searchTerm) || dealer.includes(searchTerm);
+
+      const status = (u.status || '').toUpperCase();
+      const matchStatus = statusFilter === 'ALL' || 
+                          status === statusFilter || 
+                          (statusFilter === 'APROVADO' && status === 'APPROVED') ||
+                          (statusFilter === 'PENDENTE' && status === 'PENDING') ||
+                          (statusFilter === 'BLOQUEADO' && status === 'BLOCKED') ||
+                          (statusFilter === 'REPROVADO' && status === 'REJECTED');
+
       return matchSearch && matchStatus;
     });
 
@@ -776,52 +665,57 @@
     }
 
     tbody.innerHTML = filtered.map(u => {
+      const rawStatus = (u.status || 'pending').toLowerCase();
       const statusBadges = {
-        APROVADO: `<span class="px-2.5 py-1 rounded-full text-[10px] font-bold nh-badge-approved">APROVADO</span>`,
-        PENDENTE: `<span class="px-2.5 py-1 rounded-full text-[10px] font-bold nh-badge-pending">PENDENTE</span>`,
-        BLOQUEADO: `<span class="px-2.5 py-1 rounded-full text-[10px] font-bold nh-badge-blocked">BLOQUEADO</span>`,
-        REPROVADO: `<span class="px-2.5 py-1 rounded-full text-[10px] font-bold nh-badge-rejected">REPROVADO</span>`
+        approved: `<span class="px-2.5 py-1 rounded-full text-[10px] font-bold nh-badge-approved">APROVADO</span>`,
+        pending: `<span class="px-2.5 py-1 rounded-full text-[10px] font-bold nh-badge-pending">PENDENTE</span>`,
+        blocked: `<span class="px-2.5 py-1 rounded-full text-[10px] font-bold nh-badge-blocked">BLOQUEADO</span>`,
+        rejected: `<span class="px-2.5 py-1 rounded-full text-[10px] font-bold nh-badge-rejected">REPROVADO</span>`
       };
 
-      const isMasterAdmin = u.email === 'admin@newholland.com';
-      const dateFormatted = u.createdAt ? new Date(u.createdAt).toLocaleDateString(activeLang === 'pt' ? 'pt-BR' : activeLang === 'es' ? 'es-ES' : 'en-US') : '-';
+      const rawRole = (u.role || 'user').toLowerCase();
+      const isMasterAdmin = u.email === 'admin@newholland.com' || rawRole === 'admin';
+      const dateFormatted = u.created_at ? new Date(u.created_at).toLocaleDateString(activeLang === 'pt' ? 'pt-BR' : activeLang === 'es' ? 'es-ES' : 'en-US') : '-';
+      const lastLoginFormatted = u.last_login ? new Date(u.last_login).toLocaleString(activeLang === 'pt' ? 'pt-BR' : activeLang === 'es' ? 'es-ES' : 'en-US') : 'Nunca acessou';
+      const accessCount = u.access_count || 0;
 
       let actionBtns = '';
       if (!isMasterAdmin) {
-        if (u.status === 'PENDENTE') {
+        if (rawStatus === 'pending') {
           actionBtns += `
             <select id="role-select-${u.id}" class="bg-slate-800 text-slate-200 border border-slate-700 rounded px-1.5 py-1 text-xs mr-1 focus:outline-none cursor-pointer">
-              <option value="USER" ${u.role !== 'ADMIN' ? 'selected' : ''}>${tr('roleViewer') || 'Leitor'}</option>
-              <option value="ADMIN" ${u.role === 'ADMIN' ? 'selected' : ''}>${tr('roleAdmin') || 'Admin'}</option>
+              <option value="user" ${rawRole !== 'admin' ? 'selected' : ''}>${tr('roleViewer') || 'Leitor'}</option>
+              <option value="admin" ${rawRole === 'admin' ? 'selected' : ''}>${tr('roleAdmin') || 'Admin'}</option>
             </select>
-            <button onclick="updateUserStatus('${u.id}', 'APROVADO', document.getElementById('role-select-${u.id}').value)" class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500 hover:text-black font-semibold mr-1 transition-colors">${tr('btnApprove')}</button>
-            <button onclick="updateUserStatus('${u.id}', 'REPROVADO')" class="px-2.5 py-1 rounded bg-slate-700/50 text-slate-300 hover:bg-slate-600 mr-1 transition-colors">${tr('btnReject')}</button>
+            <button onclick="window.updateUserStatus('${u.id}', 'approved', document.getElementById('role-select-${u.id}').value)" class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500 hover:text-black font-semibold mr-1 transition-colors">${tr('btnApprove')}</button>
+            <button onclick="window.updateUserStatus('${u.id}', 'rejected')" class="px-2.5 py-1 rounded bg-slate-700/50 text-slate-300 hover:bg-slate-600 mr-1 transition-colors">${tr('btnReject')}</button>
           `;
-        } else if (u.status === 'BLOQUEADO') {
-          actionBtns += `<button onclick="updateUserStatus('${u.id}', 'APROVADO')" class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-400 hover:bg-amber-500 hover:text-black font-semibold mr-1 transition-colors">${tr('btnUnblock')}</button>`;
-        } else if (u.status === 'APROVADO') {
-          actionBtns += `<button onclick="updateUserStatus('${u.id}', 'BLOQUEADO')" class="px-2.5 py-1 rounded bg-rose-500/20 text-rose-400 hover:bg-rose-500 hover:text-white font-semibold mr-1 transition-colors">${tr('btnBlock')}</button>`;
+        } else if (rawStatus === 'blocked' || rawStatus === 'rejected') {
+          actionBtns += `<button onclick="window.updateUserStatus('${u.id}', 'approved')" class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-400 hover:bg-amber-500 hover:text-black font-semibold mr-1 transition-colors">${tr('btnUnblock')}</button>`;
+        } else if (rawStatus === 'approved') {
+          actionBtns += `<button onclick="window.updateUserStatus('${u.id}', 'blocked')" class="px-2.5 py-1 rounded bg-rose-500/20 text-rose-400 hover:bg-rose-500 hover:text-white font-semibold mr-1 transition-colors">${tr('btnBlock')}</button>`;
         }
-        actionBtns += `<button onclick="deleteUser('${u.id}')" class="p-1 rounded text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 transition-colors" title="${tr('btnDelete')}"><i class="fa-solid fa-trash-can"></i></button>`;
+        actionBtns += `<button onclick="window.deleteUser('${u.id}')" class="p-1 rounded text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 transition-colors" title="${tr('btnDelete')}"><i class="fa-solid fa-trash-can"></i></button>`;
       } else {
-        actionBtns = `<span class="text-[10px] font-semibold text-nhyellow-500">PROTEGIDO</span>`;
+        actionBtns = `<span class="text-[10px] font-semibold text-nhyellow-500">PROTEGIDO (ADMIN)</span>`;
       }
 
       return `
         <tr class="hover:bg-white/[0.02] transition-colors">
           <td class="py-3 px-3">
-            <div class="font-semibold text-white">${escapeHtml(u.name)}</div>
+            <div class="font-semibold text-white">${escapeHtml(u.full_name || u.name || 'Usuário')}</div>
             <div class="text-[11px] text-slate-400">${escapeHtml(u.email)}</div>
+            <div class="text-[10px] text-slate-500 mt-0.5">Acessos: <strong class="text-slate-300">${accessCount}</strong> • Último: <span class="text-slate-400">${lastLoginFormatted}</span></div>
           </td>
           <td class="py-3 px-3 text-slate-300">
             <div>${escapeHtml(u.dealership || '-')}</div>
-            <div class="text-[11px] text-slate-500">${escapeHtml(u.jobTitle || '')}</div>
+            <div class="text-[11px] text-slate-500">${escapeHtml(u.cargo || u.role_title || u.jobTitle || '')}</div>
           </td>
           <td class="py-3 px-3 text-slate-400">${dateFormatted}</td>
           <td class="py-3 px-3">
-            <span class="px-2 py-0.5 rounded text-[10px] font-bold ${u.role === 'ADMIN' ? 'bg-nhyellow-500/20 text-nhyellow-500' : 'bg-slate-800 text-slate-400'}">${u.role}</span>
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold ${rawRole === 'admin' ? 'bg-nhyellow-500/20 text-nhyellow-500' : 'bg-slate-800 text-slate-400'}">${rawRole.toUpperCase()}</span>
           </td>
-          <td class="py-3 px-3">${statusBadges[u.status] || u.status}</td>
+          <td class="py-3 px-3">${statusBadges[rawStatus] || rawStatus}</td>
           <td class="py-3 px-3 text-right whitespace-nowrap">${actionBtns}</td>
         </tr>
       `;
@@ -832,43 +726,39 @@
     renderAdminTable();
   }
 
-  function updateUserStatus(userId, newStatus, newRole) {
-    const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
-    const user = users.find(u => u.id === userId);
-    if (!user) return;
-
-    user.status = newStatus;
-    if (newRole) {
-      user.role = newRole;
+  async function updateUserStatus(userId, newStatus, newRole = null) {
+    if (!window.NHSupabase) return;
+    try {
+      const res = await window.NHSupabase.updateUserStatus(userId, newStatus, newRole);
+      if (!res.success) {
+        alert('Erro ao atualizar status: ' + (res.error || 'Operação não autorizada.'));
+        return;
+      }
+      await loadAdminData();
+    } catch (err) {
+      alert('Erro ao processar: ' + err.message);
     }
-    if (newStatus === 'APROVADO') {
-      user.approvedAt = new Date().toISOString();
-      const attempts = JSON.parse(localStorage.getItem(STORAGE_KEYS.ATTEMPTS) || '{}');
-      delete attempts[user.email.toLowerCase()];
-      localStorage.setItem(STORAGE_KEYS.ATTEMPTS, JSON.stringify(attempts));
-    }
-
-    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
-    addAuditLog('USER_STATUS_CHANGE', user.email, `Status alterado para ${newStatus} pelo Administrador.`);
-    loadAdminData();
   }
 
-  function deleteUser(userId) {
-    if (!confirm('Deseja realmente excluir este usuário?')) return;
-    let users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
-    const user = users.find(u => u.id === userId);
-    if (!user) return;
-
-    users = users.filter(u => u.id !== userId);
-    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
-    addAuditLog('USER_DELETED', user.email, `Usuário ${user.name} excluído do sistema.`);
-    loadAdminData();
+  async function deleteUser(userId) {
+    if (!confirm('Deseja realmente excluir o cadastro deste usuário?')) return;
+    if (!window.NHSupabase) return;
+    try {
+      const res = await window.NHSupabase.deleteUserProfile(userId);
+      if (!res.success) {
+        alert('Erro ao excluir usuário: ' + (res.error || 'Operação não autorizada.'));
+        return;
+      }
+      await loadAdminData();
+    } catch (err) {
+      alert('Erro ao excluir: ' + err.message);
+    }
   }
 
   function switchAdminTab(tabName) {
     ['users', 'audit', 'backup'].forEach(t => {
       const btn = document.getElementById(`tab-btn-${t}`);
-      const content = document.getElementById(`admin-tab-${t}-content`);
+      const content = document.getElementById(`admin-tab-${t}-content`) || document.getElementById(`admin-tab-${t}`);
       if (btn && content) {
         if (t === tabName) {
           btn.className = 'px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-nhyellow-500 text-nhdark-950 font-heading';
@@ -881,69 +771,42 @@
     });
   }
 
-  function renderAuditLogs() {
+  function renderAuditLogs(logs) {
     const box = document.getElementById('admin-audit-log-box');
     if (!box) return;
-    const audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || '[]');
-    if (audit.length === 0) {
-      box.innerHTML = '<div class="text-slate-500 text-center py-4">Nenhum registro de auditoria disponível.</div>';
+    if (!logs || logs.length === 0) {
+      box.innerHTML = '<div class="text-slate-500 text-center py-4">Nenhum registro de auditoria disponível no Supabase.</div>';
       return;
     }
 
-    box.innerHTML = audit.map(a => {
-      const time = new Date(a.timestamp).toLocaleString();
-      return `<div><span class="text-slate-500">[${time}]</span> <span class="text-nhyellow-500 font-bold">${a.type}</span>: <span class="text-slate-300">${escapeHtml(a.email)}</span> - <span class="text-slate-400">${escapeHtml(a.details)}</span></div>`;
+    box.innerHTML = logs.map(a => {
+      const time = new Date(a.created_at || a.timestamp).toLocaleString();
+      return `<div><span class="text-slate-500">[${time}]</span> <span class="text-nhyellow-500 font-bold">${escapeHtml(a.event || a.type)}</span>: <span class="text-slate-300">${escapeHtml(a.email || '')}</span> - <span class="text-slate-400">${escapeHtml(a.details || '')}</span></div>`;
     }).join('');
   }
 
-  function exportAuditCsv() {
-    const audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || '[]');
+  async function exportAuditCsv() {
+    if (!window.NHSupabase) return;
+    const logs = await window.NHSupabase.getAccessLogs(1000);
     const csvRows = ['Data/Hora,Evento,Usuario,Detalhes'];
-    audit.forEach(a => {
-      csvRows.push(`"${a.timestamp}","${a.type}","${a.email}","${(a.details || '').replace(/"/g, '""')}"`);
+    logs.forEach(a => {
+      csvRows.push(`"${a.created_at}","${a.event}","${a.email}","${(a.details || '').replace(/"/g, '""')}"`);
     });
-    downloadFile('nhce_audit_logs.csv', 'text/csv;charset=utf-8;', csvRows.join('\n'));
+    downloadFile('nhce_audit_logs_supabase.csv', 'text/csv;charset=utf-8;', csvRows.join('\n'));
   }
 
-  function clearAuditLogs() {
-    if (!confirm('Deseja limpar todos os registros de auditoria?')) return;
-    localStorage.setItem(STORAGE_KEYS.AUDIT, JSON.stringify([]));
-    renderAuditLogs();
-  }
-
-  function exportFullDatabaseJson() {
-    const users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || '[]');
-    const audit = JSON.parse(localStorage.getItem(STORAGE_KEYS.AUDIT) || '[]');
+  async function exportFullDatabaseJson() {
+    if (!window.NHSupabase) return;
+    const users = await window.NHSupabase.getAdminUsers();
+    const logs = await window.NHSupabase.getAccessLogs(500);
     const data = {
       exportDate: new Date().toISOString(),
-      system: 'NHCE LATAM PAN Training Platform',
-      version: '2.0.0',
+      system: 'NHCE LATAM PAN Training Platform (Supabase)',
+      version: '3.0.0',
       users,
-      audit
+      logs
     };
     downloadFile('nhce_pan_database_backup.json', 'application/json;charset=utf-8;', JSON.stringify(data, null, 2));
-  }
-
-  function importFullDatabaseJson(event) {
-    const file = event?.target?.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      try {
-        const data = JSON.parse(e.target.result);
-        if (data.users && Array.isArray(data.users)) {
-          localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(data.users));
-          if (data.audit) localStorage.setItem(STORAGE_KEYS.AUDIT, JSON.stringify(data.audit));
-          alert('Base de dados restaurada com sucesso!');
-          loadAdminData();
-        } else {
-          alert('Formato de arquivo JSON inválido.');
-        }
-      } catch(err) {
-        alert('Erro ao processar o arquivo: ' + err.message);
-      }
-    };
-    reader.readAsText(file);
   }
 
   function downloadFile(filename, type, content) {
@@ -968,12 +831,14 @@
     if (modal) modal.classList.add('hidden');
   }
 
-  function handleForgotPasswordSubmit(event) {
+  async function handleForgotPasswordSubmit(event) {
     if (event) event.preventDefault();
     const email = (document.getElementById('forgot-email')?.value || '').trim();
     if (!email) return;
 
-    addAuditLog('FORGOT_PASSWORD_REQUEST', email, 'Solicitação de recuperação de senha enviada.');
+    if (window.NHSupabase) {
+      await window.NHSupabase.resetPassword(email);
+    }
     alert(tr('msgForgotSent'));
     closeForgotPasswordModal();
   }
@@ -1002,13 +867,11 @@
   window.updateUserStatus = updateUserStatus;
   window.deleteUser = deleteUser;
   window.exportAuditCsv = exportAuditCsv;
-  window.clearAuditLogs = clearAuditLogs;
   window.exportFullDatabaseJson = exportFullDatabaseJson;
-  window.importFullDatabaseJson = importFullDatabaseJson;
+  window.loadAdminData = loadAdminData;
 
-  /* Inicialização automática */
-  function bootPlatform() {
-    initDatabase();
+  /* Inicialização automática e verificação de sessão */
+  async function bootPlatform() {
     applyTheme(activeTheme);
     setLanguage(activeLang);
 
@@ -1020,12 +883,16 @@
       if (rememberCheckbox) rememberCheckbox.checked = true;
     }
 
-    const session = JSON.parse(sessionStorage.getItem(STORAGE_KEYS.SESSION) || 'null');
-    if (session && session.status === 'APROVADO') {
-      if (session.role === 'ADMIN') {
-        showView('view-admin');
+    if (window.NHSupabase) {
+      const sessionData = await window.NHSupabase.getCurrentSession();
+      if (sessionData && sessionData.isApproved) {
+        if (sessionData.isAdmin) {
+          showView('view-admin');
+        } else {
+          showView('view-training');
+        }
       } else {
-        showView('view-training');
+        showView('view-login');
       }
     } else {
       showView('view-login');

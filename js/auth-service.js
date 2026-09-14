@@ -1,163 +1,64 @@
 /**
  * ============================================================================
  * PLATAFORMA CORPORATIVA NEW HOLLAND CONSTRUCTION (LATAM)
- * Serviço Central de Autenticação, Banco de Dados, Tentativas e Auditoria
+ * Serviço Central de Autenticação e Governança com Supabase Backend
  * ============================================================================
  */
 
 (function(window) {
     'use strict';
 
-    const DB_KEYS = {
-        USERS: 'nhce_pan_users_db',
-        LOGS: 'nhce_pan_access_logs',
-        SESSION: 'nhce_pan_active_session',
-        CONFIG: 'nhce_pan_sys_config'
-    };
-
-    // Função de Hash Criptográfico Seguro SHA-256 via Web Crypto API
-    async function sha256(message) {
-        const msgBuffer = new TextEncoder().encode(message + '_NHCE_PAN_LATAM_SALT_2026');
-        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    }
-
     class AuthService {
         constructor() {
             this.maxAttempts = 5;
             this.sessionTimeoutHours = 8;
-            this.initDatabase();
         }
 
-        // Inicializa banco de dados com estrutura padrão e administrador inicial
-        async initDatabase() {
-            if (!localStorage.getItem(DB_KEYS.USERS)) {
-                const defaultAdminPassHash = await sha256('Admin@NHCE2026!');
-                const initialUsers = [
-                    {
-                        id: 'usr_admin_001',
-                        nome: 'Administrador NHCE LATAM',
-                        email: 'admin@newholland.com',
-                        empresa: 'New Holland Construction - Dealer Development',
-                        senhaHash: defaultAdminPassHash,
-                        status: 'APROVADO',
-                        role: 'ADMIN',
-                        failed_login_attempts: 0,
-                        blocked_at: null,
-                        created_at: new Date().toISOString(),
-                        approved_at: new Date().toISOString(),
-                        last_login: null
-                    }
-                ];
-                localStorage.setItem(DB_KEYS.USERS, JSON.stringify(initialUsers));
-                
-                this.recordLog({
-                    user_id: 'usr_admin_001',
-                    email: 'admin@newholland.com',
-                    nome: 'Administrador NHCE LATAM',
-                    evento: 'SISTEMA_INICIALIZADO',
-                    resultado: 'SUCESSO',
-                    detalhes: 'Base de dados inicializada com usuário administrador padrão'
-                });
-            }
-
-            if (!localStorage.getItem(DB_KEYS.LOGS)) {
-                localStorage.setItem(DB_KEYS.LOGS, JSON.stringify([]));
-            }
-        }
-
-        // Obter todos os usuários do banco
-        getUsersFromDB() {
-            try {
-                return JSON.parse(localStorage.getItem(DB_KEYS.USERS) || '[]');
-            } catch (e) {
-                console.error('Erro ao ler base de usuários:', e);
-                return [];
-            }
-        }
-
-        // Salvar usuários no banco
-        saveUsersToDB(users) {
-            localStorage.setItem(DB_KEYS.USERS, JSON.stringify(users));
+        get client() {
+            return window.NHSupabase;
         }
 
         // Gravação de Log de Auditoria
-        recordLog({ user_id, email, nome, evento, resultado, detalhes = '' }) {
-            try {
-                const logs = JSON.parse(localStorage.getItem(DB_KEYS.LOGS) || '[]');
-                const newLog = {
-                    id: 'log_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
-                    user_id: user_id || 'ANONIMO',
-                    email: email || 'N/A',
-                    nome: nome || 'Visitante',
-                    evento: evento,
-                    resultado: resultado,
-                    dataHora: new Date().toISOString(),
-                    sessao: sessionStorage.getItem('nh_session_id') || 'SESS_' + Date.now(),
-                    detalhes: detalhes
-                };
-                logs.unshift(newLog); // Mais recentes primeiro
-                // Mantém até 5000 logs em histórico
-                if (logs.length > 5000) logs.pop();
-                localStorage.setItem(DB_KEYS.LOGS, JSON.stringify(logs));
-                return newLog;
-            } catch (e) {
-                console.error('Erro ao registrar log de auditoria:', e);
+        async recordLog({ user_id, email, nome, evento, resultado, detalhes = '' }) {
+            if (this.client) {
+                return await this.client.recordLog({
+                    userId: user_id,
+                    email: email,
+                    fullName: nome,
+                    event: evento,
+                    details: `${resultado ? '[' + resultado + '] ' : ''}${detalhes}`
+                });
             }
         }
 
         // Obter logs para monitoramento
-        getLogs(limit = 100) {
-            try {
-                const logs = JSON.parse(localStorage.getItem(DB_KEYS.LOGS) || '[]');
-                return logs.slice(0, limit);
-            } catch (e) {
-                return [];
+        async getLogs(limit = 100) {
+            if (this.client) {
+                return await this.client.getAccessLogs(limit);
             }
+            return [];
         }
 
         // 1. CADASTRO DE NOVO USUÁRIO
-        async register({ nome, email, empresa, senha }) {
-            const cleanEmail = email.trim().toLowerCase();
-            const users = this.getUsersFromDB();
-
-            // Validação de duplicidade por e-mail
-            const existingUser = users.find(u => u.email.toLowerCase() === cleanEmail);
-            if (existingUser) {
-                return {
-                    success: false,
-                    message: 'Este e-mail corporativo já possui cadastro no sistema. Se esqueceu sua senha, solicite a redefinição.'
-                };
+        async register({ nome, email, empresa, cargo, senha }) {
+            if (!this.client) {
+                return { success: false, message: 'Serviço de autenticação indisponível.' };
             }
 
-            const senhaHash = await sha256(senha);
-            const newUser = {
-                id: 'usr_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
-                nome: nome.trim(),
-                email: cleanEmail,
-                empresa: empresa.trim(),
-                senhaHash: senhaHash,
-                status: 'PENDENTE',
-                role: 'USER',
-                failed_login_attempts: 0,
-                blocked_at: null,
-                created_at: new Date().toISOString(),
-                approved_at: null,
-                last_login: null
-            };
-
-            users.push(newUser);
-            this.saveUsersToDB(users);
-
-            this.recordLog({
-                user_id: newUser.id,
-                email: newUser.email,
-                nome: newUser.nome,
-                evento: 'CADASTRO_CRIADO',
-                resultado: 'SUCESSO',
-                detalhes: `Novo usuário registrado para ${newUser.empresa}. Status inicial: PENDENTE`
+            const result = await this.client.signUp({
+                email,
+                password: senha,
+                fullName: nome,
+                dealership: empresa,
+                cargo: cargo
             });
+
+            if (!result.success) {
+                return {
+                    success: false,
+                    message: result.error || 'Erro ao realizar cadastro.'
+                };
+            }
 
             return {
                 success: true,
@@ -165,346 +66,114 @@
             };
         }
 
-        // 2. LOGIN COM LIMITE DE 5 TENTATIVAS NO BANCO DE DADOS
+        // 2. LOGIN COM CONTROLE DE STATUS NO SUPABASE
         async login(email, senha) {
-            const cleanEmail = email.trim().toLowerCase();
-            const users = this.getUsersFromDB();
-            const userIndex = users.findIndex(u => u.email.toLowerCase() === cleanEmail);
-
-            // Caso o usuário não exista
-            if (userIndex === -1) {
-                this.recordLog({
-                    user_id: 'INEXISTENTE',
-                    email: cleanEmail,
-                    nome: 'Desconhecido',
-                    evento: 'LOGIN_FALHA',
-                    resultado: 'FALHA',
-                    detalhes: 'Tentativa de login com e-mail não cadastrado.'
-                });
-                return {
-                    success: false,
-                    type: 'USER_NOT_FOUND',
-                    message: 'E-mail corporativo não encontrado. Por favor, crie seu cadastro.'
-                };
+            if (!this.client) {
+                return { success: false, message: 'Serviço de autenticação indisponível.' };
             }
 
-            const user = users[userIndex];
-
-            // 1. Verificar se usuário já está BLOQUEADO
-            if (user.status === 'BLOQUEADO') {
-                this.recordLog({
-                    user_id: user.id,
-                    email: user.email,
-                    nome: user.nome,
-                    evento: 'LOGIN_BLOQUEADO',
-                    resultado: 'ALERTA',
-                    detalhes: 'Usuário bloqueado tentou realizar login.'
-                });
-                return {
-                    success: false,
-                    type: 'USER_BLOCKED',
-                    message: 'Sua conta está BLOQUEADA devido a 5 tentativas incorretas consecutivas. Entre em contato com dealerdevelopmentnhce@newholland.com para solicitar o desbloqueio.'
-                };
-            }
-
-            // 2. Verificar se usuário está PENDENTE
-            if (user.status === 'PENDENTE') {
-                this.recordLog({
-                    user_id: user.id,
-                    email: user.email,
-                    nome: user.nome,
-                    evento: 'LOGIN_PENDENTE',
-                    resultado: 'ALERTA',
-                    detalhes: 'Usuário com cadastro pendente tentou realizar login.'
-                });
-                return {
-                    success: false,
-                    type: 'USER_PENDING',
-                    message: 'Seu cadastro está em análise (Status: PENDENTE). O acesso será liberado após aprovação da equipe Dealer Development NHCE.'
-                };
-            }
-
-            // 3. Verificar se usuário está REPROVADO
-            if (user.status === 'REPROVADO') {
-                this.recordLog({
-                    user_id: user.id,
-                    email: user.email,
-                    nome: user.nome,
-                    evento: 'LOGIN_REPROVADO',
-                    resultado: 'FALHA',
-                    detalhes: 'Usuário com cadastro reprovado tentou realizar login.'
-                });
-                return {
-                    success: false,
-                    type: 'USER_REJECTED',
-                    message: 'Acesso não autorizado para esta conta. Entre em contato com a equipe de Desenvolvimento de Rede NHCE.'
-                };
-            }
-
-            // 4. Validar Senha
-            const inputHash = await sha256(senha);
-            if (inputHash !== user.senhaHash) {
-                user.failed_login_attempts = (user.failed_login_attempts || 0) + 1;
-
-                // Regra de 5 tentativas consecutivas
-                if (user.failed_login_attempts >= this.maxAttempts) {
-                    user.status = 'BLOQUEADO';
-                    user.blocked_at = new Date().toISOString();
-                    users[userIndex] = user;
-                    this.saveUsersToDB(users);
-
-                    this.recordLog({
-                        user_id: user.id,
-                        email: user.email,
-                        nome: user.nome,
-                        evento: 'USUARIO_BLOQUEADO_TENTATIVAS',
-                        resultado: 'FALHA',
-                        detalhes: `Conta bloqueada automaticamente após 5 tentativas de senha incorretas.`
-                    });
-
-                    return {
-                        success: false,
-                        type: 'USER_BLOCKED_NOW',
-                        message: '⛔ CONTA BLOQUEADA: Você atingiu o limite de 5 tentativas consecutivas de senha incorreta. Sua conta foi bloqueada por segurança. Solicite o desbloqueio ao Administrador.'
-                    };
-                }
-
-                // Salvar incremento de falhas no banco
-                users[userIndex] = user;
-                this.saveUsersToDB(users);
-
-                const remaining = this.maxAttempts - user.failed_login_attempts;
-                const isLastAttempt = remaining === 1;
-
-                this.recordLog({
-                    user_id: user.id,
-                    email: user.email,
-                    nome: user.nome,
-                    evento: 'LOGIN_FALHA_SENHA',
-                    resultado: 'FALHA',
-                    detalhes: `Senha incorreta. Tentativa ${user.failed_login_attempts} de 5.`
-                });
-
-                return {
-                    success: false,
-                    type: 'PASSWORD_INCORRECT',
-                    attempts: user.failed_login_attempts,
-                    remaining: remaining,
-                    message: isLastAttempt
-                        ? `⚠️ ATENÇÃO: Senha incorreta! Esta é sua ÚLTIMA tentativa antes do BLOQUEIO da conta.`
-                        : `Senha incorreta. Tentativa ${user.failed_login_attempts} de 5 (${remaining} tentativas restantes).`
-                };
-            }
-
-            // 5. Sucesso de Autenticação (Aprovado + Senha Correta)
-            user.failed_login_attempts = 0;
-            user.last_login = new Date().toISOString();
-            users[userIndex] = user;
-            this.saveUsersToDB(users);
-
-            // Gerar Token de Sessão
-            const sessionData = {
-                sessionId: 'sess_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
-                userId: user.id,
-                nome: user.nome,
-                email: user.email,
-                empresa: user.empresa,
-                role: user.role,
-                status: user.status,
-                loginTime: new Date().toISOString(),
-                expiresAt: new Date(Date.now() + this.sessionTimeoutHours * 60 * 60 * 1000).toISOString()
-            };
-
-            sessionStorage.setItem(DB_KEYS.SESSION, JSON.stringify(sessionData));
-            sessionStorage.setItem('nh_session_id', sessionData.sessionId);
-
-            this.recordLog({
-                user_id: user.id,
-                email: user.email,
-                nome: user.nome,
-                evento: 'LOGIN_SUCESSO',
-                resultado: 'SUCESSO',
-                detalhes: `Sessão iniciada com sucesso. Role: ${user.role}`
+            const result = await this.client.signIn({
+                email,
+                password: senha
             });
+
+            if (!result.success) {
+                return {
+                    success: false,
+                    status: result.status,
+                    message: result.error || 'Falha ao autenticar usuário.'
+                };
+            }
 
             return {
                 success: true,
-                user: sessionData,
+                user: result.profile,
+                session: result.session,
                 message: 'Login realizado com sucesso!'
             };
         }
 
         // 3. CONTROLE E VALIDAÇÃO DE SESSÃO
-        getCurrentSession() {
-            try {
-                const sessionStr = sessionStorage.getItem(DB_KEYS.SESSION);
-                if (!sessionStr) return null;
-                const session = JSON.parse(sessionStr);
-
-                // Checar expiração
-                if (new Date() > new Date(session.expiresAt)) {
-                    this.logout('SESSAO_EXPIRADA');
-                    return null;
-                }
-
-                // Validar status atualizado no banco de dados
-                const users = this.getUsersFromDB();
-                const freshUser = users.find(u => u.id === session.userId);
-                if (!freshUser || freshUser.status !== 'APROVADO') {
-                    this.logout('STATUS_ALTERADO');
-                    return null;
-                }
-
-                return session;
-            } catch (e) {
-                return null;
-            }
+        async getCurrentSession() {
+            if (!this.client) return null;
+            return await this.client.getCurrentSession();
         }
 
         // Encerrar Sessão (Logout)
-        logout(reason = 'LOGOUT_VOLUNTARIO') {
-            const session = this.getCurrentSession();
-            if (session) {
-                this.recordLog({
-                    user_id: session.userId,
-                    email: session.email,
-                    nome: session.nome,
-                    evento: 'LOGOUT',
-                    resultado: 'SUCESSO',
-                    detalhes: `Sessão encerrada. Motivo: ${reason}`
-                });
+        async logout(reason = 'LOGOUT_VOLUNTARIO') {
+            if (this.client) {
+                await this.client.signOut();
             }
-            sessionStorage.removeItem(DB_KEYS.SESSION);
-            sessionStorage.removeItem('nh_session_id');
+            sessionStorage.clear();
             window.location.href = 'index.html';
         }
 
-        // 4. AÇÕES ADMINISTRATIVAS (APROVAR, REPROVAR, BLOQUEAR, DESBLOQUEAR)
-        approveUser(userId) {
-            const users = this.getUsersFromDB();
-            const index = users.findIndex(u => u.id === userId);
-            if (index === -1) return { success: false, message: 'Usuário não encontrado' };
-
-            users[index].status = 'APROVADO';
-            users[index].approved_at = new Date().toISOString();
-            users[index].failed_login_attempts = 0;
-            this.saveUsersToDB(users);
-
-            this.recordLog({
-                user_id: userId,
-                email: users[index].email,
-                nome: users[index].nome,
-                evento: 'USUARIO_APROVADO',
-                resultado: 'SUCESSO',
-                detalhes: `Usuário aprovado pelo Administrador.`
-            });
-
-            return { success: true, message: 'Usuário aprovado com sucesso!' };
+        // 4. AÇÕES ADMINISTRATIVAS
+        async approveUser(userId, role = null) {
+            if (!this.client) return { success: false, message: 'Cliente indisponível' };
+            const res = await this.client.updateUserStatus(userId, 'approved', role);
+            return res.success 
+                ? { success: true, message: 'Usuário aprovado com sucesso!' }
+                : { success: false, message: res.error || 'Erro ao aprovar usuário.' };
         }
 
-        rejectUser(userId) {
-            const users = this.getUsersFromDB();
-            const index = users.findIndex(u => u.id === userId);
-            if (index === -1) return { success: false, message: 'Usuário não encontrado' };
-
-            users[index].status = 'REPROVADO';
-            this.saveUsersToDB(users);
-
-            this.recordLog({
-                user_id: userId,
-                email: users[index].email,
-                nome: users[index].nome,
-                evento: 'USUARIO_REPROVADO',
-                resultado: 'SUCESSO',
-                detalhes: `Usuário reprovado pelo Administrador.`
-            });
-
-            return { success: true, message: 'Usuário reprovado com sucesso.' };
+        async rejectUser(userId) {
+            if (!this.client) return { success: false, message: 'Cliente indisponível' };
+            const res = await this.client.updateUserStatus(userId, 'rejected');
+            return res.success 
+                ? { success: true, message: 'Usuário reprovado com sucesso.' }
+                : { success: false, message: res.error || 'Erro ao reprovar usuário.' };
         }
 
-        blockUser(userId) {
-            const users = this.getUsersFromDB();
-            const index = users.findIndex(u => u.id === userId);
-            if (index === -1) return { success: false, message: 'Usuário não encontrado' };
-
-            users[index].status = 'BLOQUEADO';
-            users[index].blocked_at = new Date().toISOString();
-            this.saveUsersToDB(users);
-
-            this.recordLog({
-                user_id: userId,
-                email: users[index].email,
-                nome: users[index].nome,
-                evento: 'USUARIO_BLOQUEADO_ADMIN',
-                resultado: 'SUCESSO',
-                detalhes: `Usuário bloqueado manualmente pelo Administrador.`
-            });
-
-            return { success: true, message: 'Usuário bloqueado com sucesso.' };
+        async blockUser(userId) {
+            if (!this.client) return { success: false, message: 'Cliente indisponível' };
+            const res = await this.client.updateUserStatus(userId, 'blocked');
+            return res.success 
+                ? { success: true, message: 'Usuário bloqueado com sucesso.' }
+                : { success: false, message: res.error || 'Erro ao bloquear usuário.' };
         }
 
-        async unblockUser(userId, novaSenha = null) {
-            const users = this.getUsersFromDB();
-            const index = users.findIndex(u => u.id === userId);
-            if (index === -1) return { success: false, message: 'Usuário não encontrado' };
-
-            users[index].status = 'APROVADO';
-            users[index].blocked_at = null;
-            users[index].failed_login_attempts = 0;
-
-            if (novaSenha) {
-                users[index].senhaHash = await sha256(novaSenha);
-            }
-
-            this.saveUsersToDB(users);
-
-            this.recordLog({
-                user_id: userId,
-                email: users[index].email,
-                nome: users[index].nome,
-                evento: 'USUARIO_DESBLOQUEADO',
-                resultado: 'SUCESSO',
-                detalhes: novaSenha ? 'Usuário desbloqueado com redefinição de senha.' : 'Usuário desbloqueado e tentativas zeradas.'
-            });
-
-            return { success: true, message: 'Usuário desbloqueado e reativado com sucesso!' };
+        async unblockUser(userId) {
+            if (!this.client) return { success: false, message: 'Cliente indisponível' };
+            const res = await this.client.updateUserStatus(userId, 'approved');
+            return res.success 
+                ? { success: true, message: 'Usuário desbloqueado e reativado com sucesso!' }
+                : { success: false, message: res.error || 'Erro ao desbloquear usuário.' };
         }
 
-        async resetPassword(email, novaSenha) {
-            const cleanEmail = email.trim().toLowerCase();
-            const users = this.getUsersFromDB();
-            const index = users.findIndex(u => u.email.toLowerCase() === cleanEmail);
-            if (index === -1) return { success: false, message: 'E-mail não cadastrado.' };
+        async deleteUser(userId) {
+            if (!this.client) return { success: false, message: 'Cliente indisponível' };
+            const res = await this.client.deleteUserProfile(userId);
+            return res.success 
+                ? { success: true, message: 'Usuário excluído com sucesso!' }
+                : { success: false, message: res.error || 'Erro ao excluir usuário.' };
+        }
 
-            users[index].senhaHash = await sha256(novaSenha);
-            users[index].failed_login_attempts = 0;
-            this.saveUsersToDB(users);
-
-            this.recordLog({
-                user_id: users[index].id,
-                email: cleanEmail,
-                nome: users[index].nome,
-                evento: 'SENHA_REDEFINIDA',
-                resultado: 'SUCESSO',
-                detalhes: 'Senha redefinida com sucesso.'
-            });
-
-            return { success: true, message: 'Senha redefinida com sucesso!' };
+        async resetPassword(email) {
+            if (!this.client) return { success: false, message: 'Cliente indisponível' };
+            const res = await this.client.resetPassword(email);
+            return res.success 
+                ? { success: true, message: 'Instruções de redefinição de senha enviadas por e-mail.' }
+                : { success: false, message: res.error || 'Erro ao solicitar redefinição.' };
         }
 
         // 5. MÉTRICAS E INDICADORES DO DASHBOARD
-        getMetrics() {
-            const users = this.getUsersFromDB();
-            const logs = this.getLogs(500);
+        async getMetrics() {
+            if (!this.client) {
+                return { total: 0, approved: 0, pending: 0, blocked: 0, rejected: 0, totalLogins: 0, totalAlerts: 0 };
+            }
+
+            const users = await this.client.getAdminUsers();
+            const logs = await this.client.getAccessLogs(200);
 
             const total = users.length;
-            const approved = users.filter(u => u.status === 'APROVADO').length;
-            const pending = users.filter(u => u.status === 'PENDENTE').length;
-            const blocked = users.filter(u => u.status === 'BLOQUEADO').length;
-            const rejected = users.filter(u => u.status === 'REPROVADO').length;
+            const approved = users.filter(u => (u.status || '').toLowerCase() === 'approved').length;
+            const pending = users.filter(u => (u.status || '').toLowerCase() === 'pending').length;
+            const blocked = users.filter(u => (u.status || '').toLowerCase() === 'blocked').length;
+            const rejected = users.filter(u => (u.status || '').toLowerCase() === 'rejected').length;
 
-            const totalLogins = logs.filter(l => l.evento === 'LOGIN_SUCESSO').length;
-            const totalAttemptsFailed = logs.filter(l => l.evento.includes('LOGIN_FALHA')).length;
+            const totalLogins = logs.filter(l => l.event === 'LOGIN_SUCESSO').length;
+            const totalAlerts = logs.filter(l => (l.event || '').includes('BLOQUEADO') || (l.event || '').includes('FALHA')).length;
 
             return {
                 total,
@@ -513,13 +182,13 @@
                 blocked,
                 rejected,
                 totalLogins,
-                totalAttemptsFailed,
-                recentLogs: logs.slice(0, 15)
+                totalAlerts,
+                users,
+                recentLogs: logs.slice(0, 50)
             };
         }
     }
 
-    // Instanciação Global
     window.NHAuthService = new AuthService();
 
 })(window);
