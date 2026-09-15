@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -122,6 +122,31 @@
         /* Main Content Body */
         .content-body {
             padding: 32px 36px;
+        }
+
+                /* Adendo Notice Box */
+        .adendo-box {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.12) 0%, rgba(56, 189, 248, 0.04) 100%);
+            border-left: 5px solid #38bdf8;
+            border-radius: 0 12px 12px 0;
+            padding: 18px 22px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .adendo-box-icon {
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .adendo-box-text {
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #e2e8f0;
+        }
+        .adendo-box-text strong {
+            color: #38bdf8;
         }
 
         /* Intro Box */
@@ -470,7 +495,17 @@
             
             <!-- Official Communication Box -->
             <div class="intro-box">
-                <strong>Comunicado Oficial a la Red:</strong> Les informamos que la nueva plataforma de la <strong>Capacitaci&oacute;n PAN - Panel 360</strong> ya est&aacute; disponible en l&iacute;nea en el entorno corporativo. La plataforma cuenta con un sistema integrado de autenticaci&oacute;n y gobernanza de accesos, brindando una experiencia 100% interactiva directamente en su navegador web.
+                <strong>Comunicado Oficial a la Red:</strong> Les informamos que la plataforma de la <strong>Capacitaci&oacute;n PAN - Panel 360</strong> ya est&aacute; disponible en l&iacute;nea en el entorno corporativo para el <strong>aprendizaje, capacitaci&oacute;n y consulta continua</strong> de toda la red de concesionarios. La plataforma cuenta con un sistema integrado de autenticaci&oacute;n y gobernanza de accesos, brindando una experiencia 100% interactiva directamente en su navegador web.
+            </div>
+
+            <!-- Adendo Importante: Abertura del PAN -->
+            <div class="adendo-box">
+                <div class="adendo-box-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                </div>
+                <div class="adendo-box-text">
+                    <strong>&#128204; IMPORTANTE &bull; AVISO A LA RED:</strong> Esta capacitaci&oacute;n ha sido desarrollada para fines de <strong>estudio, aprendizaje y consulta</strong> de los procedimientos operativos en CNH 360. <strong>Tan pronto como el PAN est&eacute; oficialmente habilitado para su llenado y env&iacute;o de datos</strong>, se enviar&aacute; un <strong>nuevo comunicado oficial</strong> informando los plazos, cronograma y directrices para la sumisi&oacute;n.
+                </div>
             </div>
 
             <!-- Online Direct Access Banner -->
