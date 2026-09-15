@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunicado: PrÃ³ximamente CapacitaciÃ³n PAN - Panel 360 | New Holland Construction</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: #0b0f17; color: #e2e8f0; display: flex; justify-content: center; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+        .bulletin-card { width: 800px; background-color: #161c24; overflow: hidden; border: 1px solid #2d3748; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+        .brand-header { background-color: #ffcc00; padding: 16px 36px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #e6b800; }
+        .brand-logo { height: 48px; display: block; }
+        .brand-tag { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 13px; color: #161c24; letter-spacing: 1.5px; text-transform: uppercase; background: rgba(22, 28, 36, 0.12); padding: 8px 18px; border-radius: 20px; border: 1px solid rgba(22, 28, 36, 0.2); }
+        .hero-container { position: relative; width: 100%; height: 290px; overflow: hidden; }
+        .hero-img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(0.68); }
+        .hero-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 30px 36px; background: linear-gradient(to top, #161c24 0%, rgba(22, 28, 36, 0.88) 60%, transparent 100%); }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background-color: #ffcc00; color: #161c24; font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 11px; padding: 6px 14px; border-radius: 6px; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 10px; box-shadow: 0 4px 14px rgba(255, 204, 0, 0.4); }
+        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 900; color: #ffffff; line-height: 1.2; text-shadow: 0 2px 12px rgba(0,0,0,0.7); letter-spacing: -0.5px; }
+        .hero-subtitle { font-size: 16px; color: #ffcc00; margin-top: 6px; font-weight: 600; letter-spacing: 0.2px; }
+        .content-body { padding: 34px 36px 30px 36px; }
+        .intro-box { background: linear-gradient(135deg, #1e2632 0%, #171f2b 100%); border-left: 5px solid #ffcc00; padding: 22px 26px; border-radius: 0 14px 14px 0; margin-bottom: 26px; font-size: 15px; line-height: 1.65; color: #e2e8f0; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25); }
+        .intro-box strong { color: #ffcc00; font-weight: 700; }
+        .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 26px; }
+        .feature-card { background-color: #1a222d; border: 1px solid #2d3748; border-radius: 12px; padding: 18px 20px; display: flex; align-items: flex-start; gap: 14px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); }
+        .feature-icon-wrap { background: rgba(255, 204, 0, 0.12); border: 1px solid rgba(255, 204, 0, 0.3); width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .feature-content h4 { font-family: 'Montserrat', sans-serif; font-size: 14.5px; font-weight: 800; color: #ffffff; margin-bottom: 4px; }
+        .feature-content p { font-size: 12.5px; color: #94a3b8; line-height: 1.5; }
+        .adendo-box { background: linear-gradient(135deg, rgba(56, 189, 248, 0.12) 0%, rgba(56, 189, 248, 0.04) 100%); border-left: 5px solid #38bdf8; border-radius: 0 12px 12px 0; padding: 20px 24px; margin-bottom: 24px; display: flex; align-items: flex-start; gap: 14px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
+        .adendo-box-icon { flex-shrink: 0; margin-top: 2px; }
+        .adendo-box-text { font-size: 13.5px; line-height: 1.6; color: #e2e8f0; }
+        .adendo-box-text strong { color: #38bdf8; }
+        .support-box { background-color: #17202c; border: 1px solid #2d3748; border-radius: 12px; padding: 18px 22px; display: flex; align-items: center; gap: 16px; }
+        .support-icon-wrap { background: rgba(255, 204, 0, 0.15); border: 1px solid rgba(255, 204, 0, 0.4); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .support-content { font-size: 13px; line-height: 1.55; color: #cbd5e1; }
+        .support-content strong { color: #ffffff; }
+        .support-content a { color: #ffcc00; text-decoration: none; font-weight: 700; }
+        .footer { background-color: #0d121a; padding: 22px 36px; text-align: center; border-top: 1px solid #2d3748; font-size: 12px; color: #64748b; }
+        .footer-brand { font-family: 'Montserrat', sans-serif; font-weight: 800; color: #cbd5e1; margin-bottom: 4px; font-size: 13px; letter-spacing: 0.5px; }
+        .footer-sub { color: #94a3b8; font-size: 11.5px; margin-bottom: 6px; }
+        .footer-copy { color: #475569; font-size: 11px; }
+    </style>
+</head>
+<body>
+    <div class="bulletin-card" id="bulletinCard">
+        <div class="brand-header">
+            <img src="" alt="New Holland Construction" class="brand-logo">
+            <span class="brand-tag">Comunicado Oficial &bull; Pr&oacute;ximamente</span>
+        </div>
+        <div class="hero-container">
+            <img src="" alt="New Holland Construction Machinery" class="hero-img">
+            <div class="hero-overlay">
+                <span class="hero-badge">&#128640; Capacitaci&oacute;n Red LATAM</span>
+                <h1 class="hero-title">Pr&oacute;ximamente Capacitaci&oacute;n PAN</h1>
+                <p class="hero-subtitle">Plan Anual de Negocios &bull; Panel 360 CNH Industrial</p>
+            </div>
+        </div>
+        <div class="content-body">
+            <div class="intro-box">
+                <strong>Estimada Red de Concesionarios:</strong> Les informamos que pr&oacute;ximamente iniciaremos la <strong>Capacitaci&oacute;n Oficial del Plan Anual de Negocios (PAN) - Panel 360</strong>. Una plataforma 100% interactiva en l&iacute;nea, dise&ntilde;ada especialmente para guiar y preparar a todos los equipos en el llenado y consolidaci&oacute;n estrat&eacute;gica de la concesi&oacute;n.
+            </div>
+            <div class="grid-2col">
+                <div class="feature-card">
+                    <div class="feature-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffcc00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div>
+                    <div class="feature-content">
+                        <h4>100% Online e Interactivo</h4>
+                        <p>Gu&iacute;a paso a paso con los 10 m&oacute;dulos de navegaci&oacute;n directa en CNH 360.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffcc00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg></div>
+                    <div class="feature-content">
+                        <h4>Locuci&oacute;n con Audio Nativo</h4>
+                        <p>Explicaciones en audio y recursos visuales completos para cada paso.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffcc00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
+                    <div class="feature-content">
+                        <h4>Multiling&uuml;e (ES &bull; PT &bull; EN)</h4>
+                        <p>Plataforma con soporte completo en Espa&ntilde;ol, Portugu&ecirc;s e Ingl&eacute;s.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffcc00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div>
+                    <div class="feature-content">
+                        <h4>Asistente Virtual PAN</h4>
+                        <p>Chatbot inteligente integrado para responder dudas operativas r&aacute;pidas.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="adendo-box">
+                <div class="adendo-box-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></div>
+                <div class="adendo-box-text">
+                    <strong>&#128204; ATENCI&Oacute;N &bull; AVISO IMPORTANTE:</strong> Esta capacitaci&oacute;n estar&aacute; disponible para <strong>aprendizaje, estudio y consulta</strong>. <strong>Tan pronto como el PAN est&eacute; oficialmente habilitado para el llenado en CNH 360</strong>, enviaremos un <strong>nuevo comunicado oficial</strong> con el enlace de acceso, cronograma y plazos de env&iacute;o.
+                </div>
+            </div>
+            <div class="support-box">
+                <div class="support-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffcc00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+                <div class="support-content">
+                    <strong>Soporte del Equipo Regional:</strong> El equipo de <strong>Desarrollo de Red NHCE (Dealer Development LATAM)</strong> estar&aacute; a su total disposici&oacute;n para asistirlos.<br>
+                    <strong>Contacto:</strong> <a href="mailto:dealerdevelopmentnhce@newholland.com">dealerdevelopmentnhce@newholland.com</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer-brand">Desarrollo de Red NHCE &bull; Dealer Development LATAM</div>
+            <div class="footer-sub">New Holland Construction &bull; CNH Industrial</div>
+            <div class="footer-copy">&copy; 2026 CNH Industrial. Todos los derechos reservados.</div>
+        </div>
+    </div>
+</body>
+</html>
