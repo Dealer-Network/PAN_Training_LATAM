@@ -460,6 +460,68 @@
             });
 
             return { success: true, data };
+        },
+
+        // 12. RESET ADMINISTRATIVO DE SENHA (VIA SUPABASE EDGE FUNCTION)
+        async adminResetPassword({ userId, newPassword }) {
+            const sb = getSupabase();
+            if (!sb) throw new Error('Cliente Supabase não inicializado.');
+
+            try {
+                const { data: { session }, error: sessionError } = await sb.auth.getSession();
+                if (sessionError || !session || !session.access_token) {
+                    return { success: false, error: 'Sessão administrativa não identificada ou expirada.' };
+                }
+
+                const token = session.access_token;
+                let resultData = null;
+                let resultError = null;
+
+                // Tentar invocar via Supabase Functions SDK
+                if (sb.functions && typeof sb.functions.invoke === 'function') {
+                    const { data, error } = await sb.functions.invoke('admin-reset-password', {
+                        body: { userId, newPassword },
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    });
+                    resultData = data;
+                    resultError = error;
+                } else {
+                    // Fallback nativo via Fetch HTTPS caso o bundle SDK não contenha functions
+                    const res = await fetch(`${SUPABASE_CONFIG.URL}/functions/v1/admin-reset-password`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`,
+                            'apikey': SUPABASE_CONFIG.PUBLISHABLE_KEY
+                        },
+                        body: JSON.stringify({ userId, newPassword })
+                    });
+                    const resJson = await res.json().catch(() => ({}));
+                    if (!res.ok) {
+                        resultError = new Error(resJson.error || `HTTP ${res.status}`);
+                    } else {
+                        resultData = resJson;
+                    }
+                }
+
+                if (resultError) {
+                    const msg = resultError.message || (typeof resultError === 'string' ? resultError : 'Falha na comunicação com o servidor.');
+                    return { success: false, error: msg };
+                }
+
+                if (resultData && resultData.error) {
+                    return { success: false, error: resultData.error };
+                }
+
+                return {
+                    success: true,
+                    message: resultData?.message || 'Senha redefinida com sucesso. Informe a nova senha ao usuário por outro canal.'
+                };
+            } catch (err) {
+                return { success: false, error: err.message || 'Erro inesperado ao redefinir senha.' };
+            }
         }
     };
 

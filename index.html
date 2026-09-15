@@ -1052,6 +1052,12 @@ body.theme-light .nh-machinery-pan {
                 <i id="theme-icon" class="fa-solid fa-moon text-nhyellow-400 text-sm"></i>
                 <span id="theme-text" class="hidden sm:inline font-heading font-extrabold uppercase text-[11px]">Modo Oscuro</span>
             </button>
+
+            <!-- BOTON SAIR / LOGOUT -->
+            <button type="button" onclick="window.handleLogout()" id="btn-training-logout" class="bg-nhdark-850 hover:bg-rose-500/20 text-rose-400 hover:text-rose-300 border border-rose-500/40 px-3 py-1.5 rounded-full text-xs font-bold transition duration-300 flex items-center space-x-1.5 shadow-md active:scale-95 cursor-pointer" title="Sair do Treinamento" data-i18n-title="btnTrainingLogout">
+                <i class="fa-solid fa-arrow-right-from-bracket text-xs"></i>
+                <span id="lbl-training-logout" class="hidden sm:inline font-heading font-extrabold uppercase text-[11px]" data-i18n="btnTrainingLogout">Sair</span>
+            </button>
         </div>
     </div>
 </header>
@@ -1254,6 +1260,7 @@ body.theme-light .nh-machinery-pan {
             btnFinish: 'Finalizar',
             slideAudioBtn: 'Audio Explicativo',
             copyBtn: 'Copiar',
+            logoutBtn: 'Salir',
             chatTitle: 'Asistente Virtual PAN NHCE',
             chatSub: 'Inteligencia de Respuesta Operativa',
             chatInputPlaceholder: 'Escribe tu duda (ej: como solicitar acceso, login...)',
@@ -1270,6 +1277,7 @@ body.theme-light .nh-machinery-pan {
             btnFinish: 'Finalizar',
             slideAudioBtn: 'Áudio Explicativo',
             copyBtn: 'Copiar',
+            logoutBtn: 'Sair',
             chatTitle: 'Assistente Virtual PAN NHCE',
             chatSub: 'Inteligência de Resposta Operacional',
             chatInputPlaceholder: 'Digite sua dúvida (ex: como solicitar acesso, login...)',
@@ -1286,6 +1294,7 @@ body.theme-light .nh-machinery-pan {
             btnFinish: 'Finish',
             slideAudioBtn: 'Audio Explanation',
             copyBtn: 'Copy',
+            logoutBtn: 'Logout',
             chatTitle: 'NHCE PAN Virtual Assistant',
             chatSub: 'Operational Intelligence Assistant',
             chatInputPlaceholder: 'Type your question (e.g. how to request access, login...)',
@@ -1522,6 +1531,8 @@ body.theme-light .nh-machinery-pan {
         document.getElementById('lbl-support-header').textContent = ui.supportHeader;
         document.getElementById('lbl-btn-prev').textContent = ui.btnPrev;
         document.getElementById('lbl-slide-audio-btn').textContent = ui.slideAudioBtn;
+        const logoutBtnEl = document.getElementById('lbl-training-logout');
+        if (logoutBtnEl) { logoutBtnEl.textContent = ui.logoutBtn || (langCode === 'es' ? 'Salir' : langCode === 'pt' ? 'Sair' : 'Logout'); }
 
         // Actualizar Chatbot UI
         document.getElementById('chat-header-title').textContent = ui.chatTitle;

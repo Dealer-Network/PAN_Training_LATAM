@@ -157,6 +157,14 @@
                 : { success: false, message: res.error || 'Erro ao solicitar redefinição.' };
         }
 
+        async adminResetPassword(userId, newPassword) {
+            if (!this.client) return { success: false, message: 'Cliente indisponível' };
+            const res = await this.client.adminResetPassword({ userId, newPassword });
+            return res.success
+                ? { success: true, message: res.message || 'Senha redefinida com sucesso!' }
+                : { success: false, message: res.error || 'Erro ao redefinir senha.' };
+        }
+
         // 5. MÉTRICAS E INDICADORES DO DASHBOARD
         async getMetrics() {
             if (!this.client) {

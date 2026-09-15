@@ -49,6 +49,7 @@
       adminHeaderSubtitle: "Desenvolvimento de Rede NHCE LATAM • Gestão de Usuários e Auditoria",
       btnGoTraining: "Ir para o Treinamento →",
       btnLogout: "Sair do Sistema",
+      btnTrainingLogout: "Sair",
       tabUsers: "Gestão de Usuários",
       tabMetrics: "Métricas & Auditoria",
       tabSecurity: "Segurança & Backup",
@@ -94,7 +95,17 @@
       forgotDesc: "Digite seu e-mail corporativo para receber o link seguro de redefinição de senha.",
       btnSendRecovery: "Enviar Link de Recuperação",
       btnClose: "Fechar",
-      msgForgotSent: "Instruções de redefinição enviadas! Verifique sua caixa de entrada de e-mail."
+      msgForgotSent: "Instruções de redefinição enviadas! Verifique sua caixa de entrada de e-mail.",
+      btnResetPassword: "Resetar Senha",
+      modalResetTitle: "Resetar Senha",
+      modalResetSubtitle: "Definir nova senha para:",
+      lblNewPassword: "Nova Senha",
+      lblResetNotice: "Informe a nova senha ao usuário por outro canal (WhatsApp, telefone, Teams, etc.)",
+      btnResetCancel: "Cancelar",
+      btnResetConfirm: "Resetar Senha",
+      btnResetting: "Redefinindo...",
+      msgResetSuccess: "Senha redefinida com sucesso. Informe a nova senha ao usuário por outro canal.",
+      errResetFailed: "Erro ao redefinir senha."
     },
     es: {
       brandSubtitle: "Desarrollo de Red NHCE LATAM",
@@ -136,8 +147,12 @@
       btnBackLogin: "Volver al Inicio de Sesión",
       adminHeaderTitle: "Panel de Gobernanza y Accesos",
       adminHeaderSubtitle: "Desarrollo de Red NHCE LATAM • Gestión de Usuarios y Auditoría",
+      adminTabUsers: "Gestión de Usuarios",
+      adminTabMetrics: "Métricas y Auditoría",
+      adminTabSecurity: "Seguridad y Copia de Seguridad",
       btnGoTraining: "Ir a la Capacitación →",
       btnLogout: "Cerrar Sesión",
+      btnTrainingLogout: "Salir",
       tabUsers: "Gestión de Usuarios",
       tabMetrics: "Métricas y Auditoría",
       tabSecurity: "Seguridad y Copia de Seguridad",
@@ -183,7 +198,17 @@
       forgotDesc: "Ingrese su correo corporativo para recibir el enlace de recuperación de contraseña.",
       btnSendRecovery: "Enviar Enlace",
       btnClose: "Cerrar",
-      msgForgotSent: "¡Instrucciones enviadas! Revise su bandeja de entrada de correo."
+      msgForgotSent: "¡Instrucciones enviadas! Revise su bandeja de entrada de correo.",
+      btnResetPassword: "Restablecer Contraseña",
+      modalResetTitle: "Restablecer Contraseña",
+      modalResetSubtitle: "Definir nueva contraseña para:",
+      lblNewPassword: "Nueva Contraseña",
+      lblResetNotice: "Informe la nueva contraseña al usuario por otro canal (WhatsApp, teléfono, Teams, etc.)",
+      btnResetCancel: "Cancelar",
+      btnResetConfirm: "Restablecer Contraseña",
+      btnResetting: "Restableciendo...",
+      msgResetSuccess: "Contraseña restablecida con éxito. Informe la nueva contraseña al usuario por otro canal.",
+      errResetFailed: "Error al restablecer la contraseña."
     },
     en: {
       brandSubtitle: "Dealer Development NHCE LATAM",
@@ -225,8 +250,12 @@
       btnBackLogin: "Back to Login",
       adminHeaderTitle: "Governance & Access Panel",
       adminHeaderSubtitle: "Dealer Development NHCE LATAM • User Management & Audit",
+      adminTabUsers: "User Management",
+      adminTabMetrics: "Metrics & Audit",
+      adminTabSecurity: "Security & Backup",
       btnGoTraining: "Go to Training →",
       btnLogout: "Sign Out",
+      btnTrainingLogout: "Logout",
       tabUsers: "User Management",
       tabMetrics: "Metrics & Audit",
       tabSecurity: "Security & Backup",
@@ -272,7 +301,17 @@
       forgotDesc: "Enter your corporate email to receive the password reset link.",
       btnSendRecovery: "Send Link",
       btnClose: "Close",
-      msgForgotSent: "Reset instructions sent! Please check your email inbox."
+      msgForgotSent: "Reset instructions sent! Please check your email inbox.",
+      btnResetPassword: "Reset Password",
+      modalResetTitle: "Reset Password",
+      modalResetSubtitle: "Set new password for:",
+      lblNewPassword: "New Password",
+      lblResetNotice: "Inform the new password to the user through another channel (WhatsApp, phone, Teams, etc.)",
+      btnResetCancel: "Cancel",
+      btnResetConfirm: "Reset Password",
+      btnResetting: "Resetting...",
+      msgResetSuccess: "Password successfully reset. Inform the new password to the user through another channel.",
+      errResetFailed: "Error resetting password."
     }
   };
 
@@ -695,7 +734,8 @@
         } else if (rawStatus === 'approved') {
           actionBtns += `<button onclick="window.updateUserStatus('${u.id}', 'blocked')" class="px-2.5 py-1 rounded bg-rose-500/20 text-rose-400 hover:bg-rose-500 hover:text-white font-semibold mr-1 transition-colors">${tr('btnBlock')}</button>`;
         }
-        actionBtns += `<button onclick="window.deleteUser('${u.id}')" class="p-1 rounded text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 transition-colors" title="${tr('btnDelete')}"><i class="fa-solid fa-trash-can"></i></button>`;
+        actionBtns += `<button onclick="window.openAdminResetModal('${u.id}', '${escapeHtml(u.full_name || u.name || 'Usuário')}')" class="p-1 rounded text-slate-400 hover:text-nhyellow-400 hover:bg-nhyellow-500/10 transition-colors mr-1 cursor-pointer" title="${tr('btnResetPassword') || 'Resetar Senha'}"><i class="fa-solid fa-key"></i></button>`;
+        actionBtns += `<button onclick="window.deleteUser('${u.id}')" class="p-1 rounded text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 transition-colors cursor-pointer" title="${tr('btnDelete')}"><i class="fa-solid fa-trash-can"></i></button>`;
       } else {
         actionBtns = `<span class="text-[10px] font-semibold text-nhyellow-500">PROTEGIDO (ADMIN)</span>`;
       }
@@ -843,6 +883,145 @@
     closeForgotPasswordModal();
   }
 
+  /* ==========================================================================
+     MODAL DE RESET ADMINISTRATIVO DE SENHA (VIA SUPABASE EDGE FUNCTION)
+     ========================================================================== */
+  let currentAdminResetUserId = null;
+
+  function openAdminResetModal(userId, userName) {
+    currentAdminResetUserId = userId;
+    const modal = document.getElementById('modal-admin-reset-password');
+    const userNameEl = document.getElementById('admin-reset-user-name');
+    const pwdInput = document.getElementById('admin-reset-password');
+    const alertBox = document.getElementById('admin-reset-alert');
+    const btnSubmit = document.getElementById('btn-admin-reset-submit');
+
+    if (userNameEl) userNameEl.innerText = userName || 'Usuário';
+    if (pwdInput) pwdInput.value = '';
+    if (alertBox) {
+      alertBox.classList.add('hidden');
+      const msgEl = document.getElementById('admin-reset-alert-msg');
+      if (msgEl) msgEl.innerText = '';
+    }
+    if (btnSubmit) {
+      btnSubmit.disabled = false;
+      btnSubmit.innerHTML = `<span>${tr('btnResetConfirm') || 'Resetar Senha'}</span>`;
+    }
+    checkAdminResetPasswordStrength('');
+    if (modal) modal.classList.remove('hidden');
+  }
+
+  function closeAdminResetModal() {
+    const modal = document.getElementById('modal-admin-reset-password');
+    const pwdInput = document.getElementById('admin-reset-password');
+    if (pwdInput) pwdInput.value = '';
+    currentAdminResetUserId = null;
+    if (modal) modal.classList.add('hidden');
+  }
+
+  function checkAdminResetPasswordStrength(password) {
+    const label = document.getElementById('pwd-strength-admin-reset-label');
+    const bar1 = document.getElementById('bar-strength-admin-reset-1');
+    const bar2 = document.getElementById('bar-strength-admin-reset-2');
+    const bar3 = document.getElementById('bar-strength-admin-reset-3');
+
+    if (!label || !bar1 || !bar2 || !bar3) return;
+
+    if (!password) {
+      label.innerText = '-';
+      label.className = 'font-semibold text-slate-500';
+      bar1.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
+      bar2.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
+      bar3.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
+      return;
+    }
+
+    let score = 0;
+    if (password.length >= 8) score++;
+    if (/[A-Z]/.test(password) && /[a-z]/.test(password)) score++;
+    if (/[0-9]/.test(password) || /[^A-Za-z0-9]/.test(password)) score++;
+
+    if (score <= 1) {
+      label.innerText = tr('strengthWeak');
+      label.className = 'font-semibold text-rose-400';
+      bar1.className = 'h-full w-1/3 bg-rose-500 transition-all duration-300';
+      bar2.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
+      bar3.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
+    } else if (score === 2) {
+      label.innerText = tr('strengthMedium');
+      label.className = 'font-semibold text-amber-400';
+      bar1.className = 'h-full w-1/3 bg-amber-500 transition-all duration-300';
+      bar2.className = 'h-full w-1/3 bg-amber-500 transition-all duration-300';
+      bar3.className = 'h-full w-1/3 bg-slate-700 transition-all duration-300';
+    } else {
+      label.innerText = tr('strengthStrong');
+      label.className = 'font-semibold text-emerald-400';
+      bar1.className = 'h-full w-1/3 bg-emerald-500 transition-all duration-300';
+      bar2.className = 'h-full w-1/3 bg-emerald-500 transition-all duration-300';
+      bar3.className = 'h-full w-1/3 bg-emerald-500 transition-all duration-300';
+    }
+  }
+
+  async function handleAdminResetSubmit(event) {
+    if (event) event.preventDefault();
+    if (!currentAdminResetUserId) return;
+
+    const pwdInput = document.getElementById('admin-reset-password');
+    const alertBox = document.getElementById('admin-reset-alert');
+    const alertMsg = document.getElementById('admin-reset-alert-msg');
+    const btnSubmit = document.getElementById('btn-admin-reset-submit');
+
+    const newPassword = pwdInput?.value || '';
+
+    if (!newPassword || newPassword.length < 8) {
+      if (alertBox && alertMsg) {
+        alertMsg.innerText = tr('errPasswordLength') || 'A senha deve conter no mínimo 8 caracteres.';
+        alertBox.classList.remove('hidden');
+      }
+      return;
+    }
+
+    if (alertBox) alertBox.classList.add('hidden');
+
+    // Estado de carregamento no botão e impedir múltiplos cliques
+    if (btnSubmit) {
+      btnSubmit.disabled = true;
+      btnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-1.5"></i><span>${tr('btnResetting') || 'Redefinindo...'}</span>`;
+    }
+
+    try {
+      const res = await window.NHSupabase.adminResetPassword({
+        userId: currentAdminResetUserId,
+        newPassword: newPassword
+      });
+
+      if (!res.success) {
+        if (alertBox && alertMsg) {
+          alertMsg.innerText = res.error || tr('errResetFailed') || 'Erro ao redefinir senha.';
+          alertBox.classList.remove('hidden');
+        }
+        if (btnSubmit) {
+          btnSubmit.disabled = false;
+          btnSubmit.innerHTML = `<span>${tr('btnResetConfirm') || 'Resetar Senha'}</span>`;
+        }
+        return;
+      }
+
+      // Sucesso
+      alert(tr('msgResetSuccess') || 'Senha redefinida com sucesso. Informe a nova senha ao usuário por outro canal.');
+      closeAdminResetModal();
+    } catch (err) {
+      if (alertBox && alertMsg) {
+        alertMsg.innerText = err.message || tr('errResetFailed') || 'Erro ao redefinir senha.';
+        alertBox.classList.remove('hidden');
+      }
+      if (btnSubmit) {
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = `<span>${tr('btnResetConfirm') || 'Resetar Senha'}</span>`;
+      }
+    }
+  }
+
   function escapeHtml(str) {
     if (!str) return '';
     return String(str).replace(/[&<>"']/g, function(m) {
@@ -862,6 +1041,10 @@
   window.openForgotPasswordModal = openForgotPasswordModal;
   window.closeForgotPasswordModal = closeForgotPasswordModal;
   window.handleForgotPasswordSubmit = handleForgotPasswordSubmit;
+  window.openAdminResetModal = openAdminResetModal;
+  window.closeAdminResetModal = closeAdminResetModal;
+  window.handleAdminResetSubmit = handleAdminResetSubmit;
+  window.checkAdminResetPasswordStrength = checkAdminResetPasswordStrength;
   window.switchAdminTab = switchAdminTab;
   window.filterAdminUsers = filterAdminUsers;
   window.updateUserStatus = updateUserStatus;

@@ -492,3 +492,73 @@
         </form>
     </div>
 </div>
+
+<!-- =================================================================== -->
+<!-- MODAL: RESET ADMINISTRATIVO DE SENHA (PAINEL ADM) -->
+<!-- =================================================================== -->
+<div id="modal-admin-reset-password" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden nh-fade-in">
+    <div class="w-full max-w-md nh-glass-card rounded-2xl p-6 sm:p-7 relative border border-nhyellow-500/30">
+        <button type="button" onclick="window.closeAdminResetModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-lg cursor-pointer">
+            <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+
+        <div class="text-center mb-4">
+            <div class="w-12 h-12 mx-auto mb-2.5 rounded-xl bg-nhyellow-500/10 border border-nhyellow-500/30 flex items-center justify-center text-nhyellow-500 shadow-inner">
+                <i class="fa-solid fa-key text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold font-heading text-white flex items-center justify-center gap-1.5" data-i18n="modalResetTitle">
+                🔑 Resetar Senha
+            </h3>
+            <p class="text-xs text-slate-400 mt-1">
+                <span data-i18n="modalResetSubtitle">Definir nova senha para:</span><br>
+                <span id="admin-reset-user-name" class="font-semibold text-nhyellow-500 text-sm"></span>
+            </p>
+        </div>
+
+        <div id="admin-reset-alert" class="hidden mb-4 p-3 rounded-xl text-xs font-semibold border bg-rose-500/10 border-rose-500/30 text-rose-400 flex items-center space-x-2">
+            <i class="fa-solid fa-circle-exclamation flex-shrink-0"></i>
+            <span id="admin-reset-alert-msg"></span>
+        </div>
+
+        <form onsubmit="window.handleAdminResetSubmit(event)" class="space-y-3.5">
+            <div>
+                <label for="admin-reset-password" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1" data-i18n="lblNewPassword">Nova Senha</label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                        <i class="fa-solid fa-lock text-sm"></i>
+                    </span>
+                    <input type="password" id="admin-reset-password" required minlength="8" oninput="window.checkAdminResetPasswordStrength(this.value)"
+                        class="nh-input w-full pl-10 pr-10 py-2.5 rounded-xl text-sm placeholder-slate-500 font-mono"
+                        placeholder="Mínimo 8 caracteres" autocomplete="new-password">
+                    <button type="button" onclick="window.togglePasswordVisibility('admin-reset-password', this)" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-200 cursor-pointer">
+                        <i class="fa-regular fa-eye text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Indicador de Força de Senha -->
+            <div class="space-y-1 pt-0.5">
+                <div class="flex items-center justify-between text-[11px] text-slate-400">
+                    <span data-i18n="pwdStrengthText">Força da senha:</span>
+                    <span id="pwd-strength-admin-reset-label" class="font-semibold text-slate-500">-</span>
+                </div>
+                <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden flex gap-1">
+                    <div id="bar-strength-admin-reset-1" class="h-full w-1/3 bg-slate-700 transition-all duration-300"></div>
+                    <div id="bar-strength-admin-reset-2" class="h-full w-1/3 bg-slate-700 transition-all duration-300"></div>
+                    <div id="bar-strength-admin-reset-3" class="h-full w-1/3 bg-slate-700 transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <!-- Aviso Textual Informativo -->
+            <div class="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 text-[11px] text-slate-400 flex items-start space-x-2">
+                <i class="fa-solid fa-circle-info text-nhyellow-500 mt-0.5 flex-shrink-0"></i>
+                <span data-i18n="lblResetNotice">Informe a nova senha ao usuário por outro canal (WhatsApp, telefone, Teams, etc.)</span>
+            </div>
+
+            <div class="flex items-center space-x-2 pt-2">
+                <button type="button" onclick="window.closeAdminResetModal()" class="nh-btn-secondary flex-1 py-2.5 rounded-xl text-xs font-semibold cursor-pointer" data-i18n="btnResetCancel">Cancelar</button>
+                <button type="submit" id="btn-admin-reset-submit" class="nh-btn-primary flex-1 py-2.5 rounded-xl text-xs font-bold cursor-pointer" data-i18n="btnResetConfirm">Resetar Senha</button>
+            </div>
+        </form>
+    </div>
+</div>

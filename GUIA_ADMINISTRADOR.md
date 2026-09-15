@@ -85,9 +85,43 @@ Ao fazer login com uma conta com perfil `ADMIN`, a opção de **Painel ADM** é 
 ### D. Backup e Restauração
 - Na aba **Segurança & Backup**, clique em **Baixar Backup JSON** para salvar uma cópia completa dos registros de usuários e histórico de auditoria.
 
+### E. Reset Administrativo de Senha (Sem E-mail) 🔑
+1. Na aba **Gestão de Usuários**, localize o usuário desejado.
+2. Na coluna **Ações**, clique no ícone de chave 🔑.
+3. No modal **Resetar Senha**, digite a nova senha de acesso (mínimo de 8 caracteres).
+4. Clique em **Resetar Senha**.
+5. O sistema atualizará a credencial com segurança no Supabase Auth via Edge Function.
+6. Informe a nova senha diretamente ao colaborador através de um canal seguro corporativo (WhatsApp, telefone, Teams, etc.).
+7. **Importante**: O reset de senha altera apenas a credencial e **não altera** o status do usuário (se estava aprovado, pendente, bloqueado ou reprovado, permanece o mesmo).
+
 ---
 
-## 5. 🚀 Publicação no GitHub Pages (HTTPS)
+## 5. ⚡ Implantação da Supabase Edge Function (`admin-reset-password`)
+
+A redefinição administrativa de senha é protegida por uma **Edge Function** no Supabase, garantindo que operações administrativas privilegiadas ocorram exclusivamente no servidor.
+
+### Opção 1: Implantação via Supabase CLI
+```bash
+# 1. Login no Supabase
+supabase login
+
+# 2. Vincular ao projeto
+supabase link --project-ref tghzcprzjysrbdxhvdlu
+
+# 3. Publicar a Edge Function
+supabase functions deploy admin-reset-password --no-verify-jwt
+```
+
+### Opção 2: Criação via Dashboard do Supabase
+1. Acesse o menu **Edge Functions** no Dashboard do Supabase: [https://supabase.com/dashboard/project/tghzcprzjysrbdxhvdlu/functions](https://supabase.com/dashboard/project/tghzcprzjysrbdxhvdlu/functions).
+2. Clique em **New Function** e nomeie como `admin-reset-password`.
+3. Cole o código do arquivo [`supabase/functions/admin-reset-password/index.ts`](supabase/functions/admin-reset-password/index.ts).
+4. No Dashboard em **Edge Functions > Secrets**, certifique-se de cadastrar o secret `ADMIN_SERVICE_ROLE_KEY` com o valor da sua chave secreta privada (`sb_secret_...`). As variáveis `SUPABASE_URL` e `SUPABASE_ANON_KEY` são injetadas automaticamente pelo Supabase.
+5. Salve e implante a função.
+
+---
+
+## 6. 🚀 Publicação no GitHub Pages (HTTPS)
 
 Como a plataforma é compatível com ambientes estáticos HTTPS e utiliza o SDK oficial do Supabase:
 
@@ -95,10 +129,10 @@ Como a plataforma é compatível com ambientes estáticos HTTPS e utiliza o SDK 
    ```bash
    git status
    ```
-2. Realize o commit e push para o repositório:
+2. Realize o commit e push para o repositório (apenas após aprovação):
    ```bash
    git add .
-   git commit -m "Integracao oficial Supabase: Auth, RLS, Perfis e Painel Administrativo"
+   git commit -m "Implementacao do Reset Administrativo de Senha via Edge Function"
    git push origin main
    ```
 3. O GitHub Pages publicará a versão atualizada automaticamente em:
